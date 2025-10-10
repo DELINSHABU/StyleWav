@@ -58,7 +58,7 @@ export function ProductList({ products, onEdit, onDelete, isEditing, isLoading =
                 <TableCell>
                   <div className="relative h-12 w-12 rounded-md overflow-hidden border">
                     <img
-                      src={product.image}
+                      src={product.image.startsWith('data:') || product.image.startsWith('http') ? product.image : `/api/images/${product.image}`}
                       alt={product.name}
                       className="h-full w-full object-cover"
                       onError={(e) => {
@@ -117,7 +117,10 @@ export function ProductList({ products, onEdit, onDelete, isEditing, isLoading =
                     <Button
                       size="sm"
                       variant="outline"
-                      onClick={() => window.open(product.image, '_blank')}
+                      onClick={() => {
+                        const imageUrl = product.image.startsWith('data:') || product.image.startsWith('http') ? product.image : `/api/images/${product.image}`
+                        window.open(imageUrl, '_blank')
+                      }}
                     >
                       <Eye className="h-4 w-4" />
                     </Button>

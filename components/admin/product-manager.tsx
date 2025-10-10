@@ -1,11 +1,12 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useMemo } from "react"
 import { Product } from "@/lib/products"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { ProductList } from "./product-list"
 import { ProductForm } from "./product-form"
+import { ProductFilters } from "./product-filters"
 import { Plus } from "lucide-react"
 
 interface ProductManagerProps {
@@ -14,10 +15,78 @@ interface ProductManagerProps {
   onRefresh: () => void
 }
 
+// Filter types
+export type FilterOptions = {
+  category: string
+  stockStatus: string
+  searchTerm: string
+}
+
 export function ProductManager({ products, setProducts, onRefresh }: ProductManagerProps) {
   const [editingProduct, setEditingProduct] = useState<Product | null>(null)
   const [isAddingProduct, setIsAddingProduct] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  
+  // Filter states
+  const [filters, setFilters] = useState<FilterOptions>({
+    category: '',
+    stockStatus: '',
+    searchTerm: ''
+  })
+  
+  // Get unique categories from products
+  const categories = useMemo(() => {
+    const uniqueCategories = Array.from(new Set(products.map(p => p.category).filter(Boolean)))
+    return uniqueCategories.sort()
+  }, [products])
+  
+  // Filter products based on current filters
+  const filteredProducts = useMemo(() => {
+    return products.filter(product => {
+      // Category filter
+      if (filters.category && product.category !== filters.category) {
+        return false
+      }
+      
+      // Stock status filter
+      if (filters.stockStatus) {
+        const totalStock = product.sizeStock 
+          ? Object.values(product.sizeStock).reduce((sum, stock) => sum + stock, 0)
+          : (product.stockQuantity || 0)
+        
+        const isInStock = product.unlimitedStock || (totalStock > 0 && product.inStock !== false)
+        const isLowStock = !product.unlimitedStock && totalStock > 0 && totalStock <= (product.lowStockThreshold || 10)
+        const isOutOfStock = !product.unlimitedStock && (totalStock === 0 || product.inStock === false)
+        
+        switch (filters.stockStatus) {
+          case 'in-stock':
+            if (!isInStock) return false
+            break
+          case 'low-stock':
+            if (!isLowStock) return false
+            break
+          case 'out-of-stock':
+            if (!isOutOfStock) return false
+            break
+          case 'unlimited':
+            if (!product.unlimitedStock) return false
+            break
+        }
+      }
+      
+      // Search term filter (searches in name and ID)
+      if (filters.searchTerm) {
+        const searchLower = filters.searchTerm.toLowerCase()
+        const nameMatch = product.name.toLowerCase().includes(searchLower)
+        const idMatch = product.id.toLowerCase().includes(searchLower)
+        if (!nameMatch && !idMatch) {
+          return false
+        }
+      }
+      
+      return true
+    })
+  }, [products, filters])
 
   const handleAddProduct = async (product: Omit<Product, "id">) => {
     setIsLoading(true)
@@ -107,7 +176,7 @@ export function ProductManager({ products, setProducts, onRefresh }: ProductMana
             <div>
               <CardTitle>Products</CardTitle>
               <CardDescription>
-                Manage your product catalog
+                Manage your product catalog ({filteredProducts.length} of {products.length} products)
               </CardDescription>
             </div>
             <Button 
@@ -120,6 +189,17 @@ export function ProductManager({ products, setProducts, onRefresh }: ProductMana
           </div>
         </CardHeader>
         <CardContent>
+          {/* Product Filters */}
+          <div className="mb-6">
+            <ProductFilters
+              filters={filters}
+              onFiltersChange={setFilters}
+              categories={categories}
+              productCount={filteredProducts.length}
+              totalCount={products.length}
+            />
+          </div>
+
           {(isAddingProduct || editingProduct) && (
             <div className="mb-6 p-4 border border-border rounded-lg bg-muted/50">
               <ProductForm
@@ -132,7 +212,7 @@ export function ProductManager({ products, setProducts, onRefresh }: ProductMana
           )}
 
           <ProductList
-            products={products}
+            products={filteredProducts}
             onEdit={setEditingProduct}
             onDelete={handleDeleteProduct}
             isEditing={!!editingProduct || isAddingProduct}

@@ -291,7 +291,20 @@ export function AdminOrders() {
                     </div>
                   </TableCell>
                   <TableCell>
-                    <span className="text-sm">{order.items.length} item{order.items.length !== 1 ? 's' : ''}</span>
+                    <div className="space-y-1">
+                      <span className="text-sm font-medium">{order.items.length} item{order.items.length !== 1 ? 's' : ''}</span>
+                      <div className="text-xs text-muted-foreground max-w-xs">
+                        {order.items.slice(0, 2).map((item, index) => (
+                          <div key={index} className="truncate">
+                            {item.name}{item.size ? ` (${item.size})` : ''}
+                            {index < Math.min(order.items.length, 2) - 1 && ', '}
+                          </div>
+                        ))}
+                        {order.items.length > 2 && (
+                          <div className="text-xs text-muted-foreground">+{order.items.length - 2} more...</div>
+                        )}
+                      </div>
+                    </div>
                   </TableCell>
                   <TableCell className="font-medium">₹{order.total}</TableCell>
                   <TableCell>
@@ -393,8 +406,8 @@ function OrderDetailsDialog({
         <div>
           <h3 className="font-semibold mb-2">Order Items</h3>
           <div className="space-y-2">
-            {order.items.map((item) => (
-              <div key={item.id} className="flex items-center gap-3 p-2 bg-muted rounded">
+            {order.items.map((item, index) => (
+              <div key={`${item.id}-${item.size || 'no-size'}-${index}`} className="flex items-center gap-3 p-2 bg-muted rounded">
                 <img 
                   src={item.image || "/placeholder.svg"} 
                   alt={item.name}
@@ -402,6 +415,9 @@ function OrderDetailsDialog({
                 />
                 <div className="flex-1">
                   <p className="font-medium">{item.name}</p>
+                  {item.size && (
+                    <p className="text-xs text-muted-foreground font-medium">Size: {item.size}</p>
+                  )}
                   <p className="text-sm text-muted-foreground">
                     Qty: {item.quantity} × ₹{item.price} = ₹{item.quantity * item.price}
                   </p>

@@ -127,7 +127,8 @@ export default function CheckoutPage() {
           name: item.name,
           price: item.price,
           quantity: item.qty,
-          image: item.image
+          image: item.image,
+          size: item.size
         })),
         subtotal: total,
         shipping: shippingCost,
@@ -404,8 +405,8 @@ export default function CheckoutPage() {
                   <CardTitle>Order Summary</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  {items.map((item) => (
-                    <div key={item.id} className="flex items-center gap-3">
+                  {items.map((item, index) => (
+                    <div key={`${item.id}-${item.size || 'no-size'}-${index}`} className="flex items-center gap-3">
                       <img
                         src={item.image || "/placeholder.svg?height=60&width=60"}
                         alt={item.name}
@@ -413,6 +414,9 @@ export default function CheckoutPage() {
                       />
                       <div className="flex-1">
                         <p className="font-medium text-sm">{item.name}</p>
+                        {item.size && (
+                          <p className="text-xs text-muted-foreground font-medium">Size: {item.size}</p>
+                        )}
                         <p className="text-sm text-muted-foreground">
                           Qty: {item.qty} × ₹{item.price}
                         </p>

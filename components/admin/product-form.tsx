@@ -22,6 +22,7 @@ export function ProductForm({ product, onSubmit, onCancel, isEditing }: ProductF
     name: product?.name || "",
     price: product?.price || 0,
     image: product?.image || "",
+    images: product?.images || [],
     description: product?.description || "",
     category: product?.category || "",
     sizes: product?.sizes || [],
@@ -32,9 +33,27 @@ export function ProductForm({ product, onSubmit, onCancel, isEditing }: ProductF
     unlimitedStock: product?.unlimitedStock || false,
     inStock: product?.inStock !== false,
   })
-  const [imagePreview, setImagePreview] = useState<string>(product?.image || "")
+  const [imagePreview, setImagePreview] = useState<string>(() => {
+    if (!product?.image) return ""
+    // If it's a base64 image, use it directly
+    if (product.image.startsWith('data:')) {
+      return product.image
+    }
+    // If it's a filename, construct the API URL
+    return `/api/images/${product.image}`
+  })
+  const [additionalImagePreviews, setAdditionalImagePreviews] = useState<string[]>(() => {
+    if (!product?.images) return []
+    return product.images.map(img => {
+      if (img.startsWith('data:') || img.startsWith('http')) {
+        return img
+      }
+      return `/api/images/${img}`
+    })
+  })
   const [isUploading, setIsUploading] = useState(false)
   const fileInputRef = useRef<HTMLInputElement>(null)
+  const additionalImagesInputRef = useRef<HTMLInputElement>(null)
   const [newSize, setNewSize] = useState("")
   const [newColor, setNewColor] = useState("")
 
@@ -95,21 +114,82 @@ export function ProductForm({ product, onSubmit, onCancel, isEditing }: ProductF
     setIsUploading(true)
     
     try {
-      // Convert file to base64 for demo purposes
-      // In a real app, you'd upload to a service like Cloudinary, AWS S3, etc.
-      const reader = new FileReader()
-      reader.onload = (e) => {
-        const result = e.target?.result as string
-        setImagePreview(result)
-        setFormData(prev => ({
-          ...prev,
-          image: result
-        }))
-        setIsUploading(false)
+      // Create FormData for file upload
+      const formData = new FormData()
+      formData.append('image', file)
+
+      // Upload file to our API
+      const response = await fetch('/api/admin/products/upload-image', {
+        method: 'POST',
+        body: formData,
+      })
+
+      if (!response.ok) {
+        const error = await response.json()
+        throw new Error(error.error || 'Upload failed')
       }
-      reader.readAsDataURL(file)
+
+      const result = await response.json()
+      
+      // Use the imageUrl for both preview and storage
+      setImagePreview(result.imageUrl)
+      setFormData(prev => ({
+        ...prev,
+        image: result.filename // Store just the filename in JSON
+      }))
+      
+      console.log('Image uploaded successfully:', result)
     } catch (error) {
       console.error("Error uploading image:", error)
+      alert(`Error uploading image: ${error.message}`)
+    } finally {
+      setIsUploading(false)
+    }
+  }
+
+  const handleAdditionalImagesUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files
+    if (!files || files.length === 0) return
+
+    setIsUploading(true)
+    const uploadedImages: string[] = []
+    const uploadedPreviews: string[] = []
+    
+    try {
+      // Upload each file
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i]
+        const formData = new FormData()
+        formData.append('image', file)
+
+        const response = await fetch('/api/admin/products/upload-image', {
+          method: 'POST',
+          body: formData,
+        })
+
+        if (!response.ok) {
+          const error = await response.json()
+          throw new Error(`Error uploading ${file.name}: ${error.error || 'Upload failed'}`)
+        }
+
+        const result = await response.json()
+        uploadedImages.push(result.filename)
+        uploadedPreviews.push(result.imageUrl)
+      }
+      
+      // Update form data and previews
+      setFormData(prev => ({
+        ...prev,
+        images: [...prev.images, ...uploadedImages]
+      }))
+      
+      setAdditionalImagePreviews(prev => [...prev, ...uploadedPreviews])
+      
+      console.log('Additional images uploaded successfully:', uploadedImages)
+    } catch (error) {
+      console.error("Error uploading additional images:", error)
+      alert(`Error uploading images: ${error.message}`)
+    } finally {
       setIsUploading(false)
     }
   }
@@ -118,7 +198,7 @@ export function ProductForm({ product, onSubmit, onCancel, isEditing }: ProductF
     setImagePreview(url)
     setFormData(prev => ({
       ...prev,
-      image: url
+      image: url // For URLs, store the full URL
     }))
   }
 
@@ -164,6 +244,25 @@ export function ProductForm({ product, onSubmit, onCancel, isEditing }: ProductF
     }))
     if (fileInputRef.current) {
       fileInputRef.current.value = ""
+    }
+  }
+
+  const removeAdditionalImage = (index: number) => {
+    setFormData(prev => ({
+      ...prev,
+      images: prev.images.filter((_, i) => i !== index)
+    }))
+    setAdditionalImagePreviews(prev => prev.filter((_, i) => i !== index))
+  }
+
+  const clearAllAdditionalImages = () => {
+    setFormData(prev => ({
+      ...prev,
+      images: []
+    }))
+    setAdditionalImagePreviews([])
+    if (additionalImagesInputRef.current) {
+      additionalImagesInputRef.current.value = ""
     }
   }
 
@@ -404,14 +503,19 @@ export function ProductForm({ product, onSubmit, onCancel, isEditing }: ProductF
             <Label htmlFor="image-url">Image URL</Label>
             <Input
               id="image-url"
-              value={formData.image.startsWith('data:') ? '' : formData.image}
+              value={formData.image.startsWith('data:') || (!formData.image.startsWith('http') && formData.image.length < 100) ? '' : formData.image}
               onChange={(e) => handleImageUrl(e.target.value)}
               placeholder="Enter image URL or upload file below"
             />
+            {formData.image && !formData.image.startsWith('http') && !formData.image.startsWith('data:') && (
+              <p className="text-xs text-muted-foreground mt-1">
+                Uploaded file: {formData.image}
+              </p>
+            )}
           </div>
 
           <div>
-            <Label>Upload Image</Label>
+            <Label>Upload Main Image</Label>
             <div className="flex items-center gap-2 mt-1">
               <Button
                 type="button"
@@ -421,7 +525,7 @@ export function ProductForm({ product, onSubmit, onCancel, isEditing }: ProductF
                 className="w-full"
               >
                 <Upload className="h-4 w-4 mr-2" />
-                {isUploading ? "Uploading..." : "Choose File"}
+                {isUploading ? "Uploading..." : "Choose Main Image"}
               </Button>
               <input
                 ref={fileInputRef}
@@ -431,6 +535,78 @@ export function ProductForm({ product, onSubmit, onCancel, isEditing }: ProductF
                 className="hidden"
               />
             </div>
+            <p className="text-xs text-muted-foreground mt-1">
+              This will be the primary product image displayed in listings.
+            </p>
+          </div>
+
+          <div>
+            <div className="flex items-center justify-between mb-2">
+              <Label>Additional Images</Label>
+              {formData.images.length > 0 && (
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="sm"
+                  onClick={clearAllAdditionalImages}
+                  className="text-destructive hover:text-destructive"
+                >
+                  Clear All
+                </Button>
+              )}
+            </div>
+            <div className="flex items-center gap-2 mt-1">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => additionalImagesInputRef.current?.click()}
+                disabled={isUploading}
+                className="w-full"
+              >
+                <Upload className="h-4 w-4 mr-2" />
+                {isUploading ? "Uploading..." : "Add More Images"}
+              </Button>
+              <input
+                ref={additionalImagesInputRef}
+                type="file"
+                accept="image/*"
+                multiple
+                onChange={handleAdditionalImagesUpload}
+                className="hidden"
+              />
+            </div>
+            <p className="text-xs text-muted-foreground mt-1">
+              Upload additional product images. You can select multiple files at once.
+            </p>
+            
+            {/* Additional Images Preview */}
+            {additionalImagePreviews.length > 0 && (
+              <div className="mt-4">
+                <div className="grid grid-cols-2 gap-2">
+                  {additionalImagePreviews.map((preview, index) => (
+                    <div key={index} className="relative border border-border rounded-lg p-2 bg-muted/50">
+                      <img
+                        src={preview}
+                        alt={`Additional image ${index + 1}`}
+                        className="w-full h-24 object-cover rounded-md"
+                      />
+                      <Button
+                        type="button"
+                        variant="destructive"
+                        size="sm"
+                        className="absolute top-1 right-1 h-6 w-6 p-0"
+                        onClick={() => removeAdditionalImage(index)}
+                      >
+                        <X className="h-3 w-3" />
+                      </Button>
+                      <div className="text-xs text-center mt-1 text-muted-foreground">
+                        Image {index + 1}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
 

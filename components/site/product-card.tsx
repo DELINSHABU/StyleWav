@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { useCart } from "@/hooks/use-cart"
 import { useWishlist } from "@/hooks/use-wishlist"
@@ -8,6 +9,7 @@ import { getStockStatus, isProductAvailable, getStockStatusText } from "@/lib/st
 import { Heart, Star } from "lucide-react"
 import Link from "next/link"
 import { useToast } from "@/hooks/use-toast"
+import { useRouter } from "next/navigation"
 
 type Product = {
   id: string
@@ -28,6 +30,7 @@ export function ProductCard({ product }: { product: Product }) {
   const { addItem } = useCart()
   const { addItem: addToWishlist, removeItem: removeFromWishlist, isInWishlist } = useWishlist()
   const { toast } = useToast()
+  const router = useRouter()
   const isWishlisted = isInWishlist(product.id)
   const stockStatus = getStockStatus(product)
   const isAvailable = isProductAvailable(product)
@@ -69,6 +72,13 @@ export function ProductCard({ product }: { product: Product }) {
       return
     }
     
+    // If product has sizes, redirect to product page for size selection
+    if (product.sizes && product.sizes.length > 0) {
+      router.push(`/products/${product.id}`)
+      return
+    }
+    
+    // If no sizes, add directly to cart
     addItem(product)
     toast({
       title: "Added to cart",
@@ -76,12 +86,17 @@ export function ProductCard({ product }: { product: Product }) {
     })
   }
   
+  
   return (
     <Link href={`/products/${product.id}`}>
       <article className="rounded-lg border border-border overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group">
         <div className="aspect-[4/5] w-full relative">
           <img 
-            src={product.image || "/placeholder.svg"} 
+            src={product.image 
+              ? (product.image.startsWith('data:') || product.image.startsWith('http') 
+                ? product.image 
+                : `/api/images/${product.image}`)
+              : "/placeholder.svg"} 
             alt={product.name} 
             className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300" 
           />
@@ -144,7 +159,12 @@ export function ProductCard({ product }: { product: Product }) {
               disabled={!isAvailable}
               variant={!isAvailable ? 'secondary' : 'default'}
             >
-              {isAvailable ? 'Add to Cart' : getStockStatusText(product)}
+              {!isAvailable 
+                ? getStockStatusText(product)
+                : (product.sizes && product.sizes.length > 0)
+                  ? 'View Product'
+                  : 'Add to Cart'
+              }
             </Button>
             {stockStatus === 'low-stock' && isAvailable && (
               <p className="text-xs text-orange-600 mt-1 text-center">

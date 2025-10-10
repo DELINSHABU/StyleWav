@@ -9,12 +9,13 @@ import {
 // GET - Get a specific order by ID
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     await initializeOrdersFile()
     
-    const order = await getOrderById(params.id)
+    const { id } = await params
+    const order = await getOrderById(id)
     
     if (!order) {
       return NextResponse.json(
@@ -48,16 +49,17 @@ export async function GET(
 // PUT - Update a specific order
 export async function PUT(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     await initializeOrdersFile()
     const updates = await request.json()
     
     // Remove fields that shouldn't be updated directly
-    const { id, orderNumber, orderDate, ...allowedUpdates } = updates
+    const { id: updateId, orderNumber, orderDate, ...allowedUpdates } = updates
     
-    const updatedOrder = await updateOrder(params.id, allowedUpdates)
+    const { id } = await params
+    const updatedOrder = await updateOrder(id, allowedUpdates)
     
     if (!updatedOrder) {
       return NextResponse.json(
@@ -91,12 +93,13 @@ export async function PUT(
 // DELETE - Delete a specific order (admin only)
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     await initializeOrdersFile()
     
-    const success = await deleteOrder(params.id)
+    const { id } = await params
+    const success = await deleteOrder(id)
     
     if (!success) {
       return NextResponse.json(

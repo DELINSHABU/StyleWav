@@ -7,13 +7,16 @@ import {
 // GET - Get orders by customer email
 export async function GET(
   request: Request,
-  { params }: { params: { email: string } }
+  { params }: { params: Promise<{ email: string }> }
 ) {
   try {
     await initializeOrdersFile()
     
+    // Await params before accessing properties
+    const { email } = await params
+    
     // Decode email in case it's URL encoded
-    const decodedEmail = decodeURIComponent(params.email)
+    const decodedEmail = decodeURIComponent(email)
     
     const orders = await getOrdersByCustomerEmail(decodedEmail)
     

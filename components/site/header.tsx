@@ -47,12 +47,6 @@ export function Header() {
           </Link>
           <nav aria-label="Primary" className="hidden md:flex items-center gap-4 text-sm">
             <Link href="#" className="hover:opacity-80">
-              Men
-            </Link>
-            <Link href="#" className="hover:opacity-80">
-              Women
-            </Link>
-            <Link href="#" className="hover:opacity-80">
               Oversized
             </Link>
             <Link href="#" className="hover:opacity-80">

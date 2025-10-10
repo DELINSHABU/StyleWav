@@ -164,10 +164,24 @@ export default function ProductPage() {
       return
     }
 
-    addItem({ ...product, quantity })
+    // Create cart item with selected size (quantity handled by addItem function)
+    const cartItem = {
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      size: selectedSize || undefined
+    }
+
+    // Add each quantity as separate cart operations to maintain proper cart logic
+    for (let i = 0; i < quantity; i++) {
+      addItem(cartItem)
+    }
+    
+    const sizeText = selectedSize ? ` (${selectedSize})` : ''
     toast({
       title: "Added to cart",
-      description: `${quantity} x ${product.name} added to your cart.`
+      description: `${quantity} x ${product.name}${sizeText} added to your cart.`
     })
   }
 
@@ -192,7 +206,11 @@ export default function ProductPage() {
           <div className="space-y-4">
             <div className="aspect-square w-full rounded-lg overflow-hidden bg-muted">
               <img
-                src={selectedImage || product.image || "/placeholder.svg"}
+                src={(selectedImage || product.image)
+                  ? ((selectedImage || product.image).startsWith('data:') || (selectedImage || product.image).startsWith('http')
+                    ? (selectedImage || product.image)
+                    : `/api/images/${selectedImage || product.image}`)
+                  : "/placeholder.svg"}
                 alt={product.name}
                 className="h-full w-full object-cover"
               />
@@ -208,7 +226,11 @@ export default function ProductPage() {
                     }`}
                   >
                     <img
-                      src={image || "/placeholder.svg"}
+                      src={image
+                        ? (image.startsWith('data:') || image.startsWith('http')
+                          ? image
+                          : `/api/images/${image}`)
+                        : "/placeholder.svg"}
                       alt={`${product.name} view ${index + 1}`}
                       className="h-full w-full object-cover"
                     />

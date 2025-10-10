@@ -7,6 +7,7 @@ export type CartItem = {
   name: string
   price: number
   image?: string
+  size?: string
   qty: number
 }
 
@@ -38,32 +39,48 @@ export function useCart() {
   const items = data ?? []
   const total = items.reduce((acc, it) => acc + it.price * it.qty, 0)
 
-  function addItem(p: { id: string; name: string; price: number; image?: string }) {
+  function addItem(p: { id: string; name: string; price: number; image?: string; size?: string }) {
     const next = [...items]
-    const idx = next.findIndex((i) => i.id === p.id)
+    // Find item with same id AND size (or both without size)
+    const idx = next.findIndex((i) => i.id === p.id && i.size === p.size)
     if (idx >= 0) {
       next[idx] = { ...next[idx], qty: next[idx].qty + 1 }
     } else {
-      next.push({ id: p.id, name: p.name, price: p.price, image: p.image, qty: 1 })
+      next.push({ id: p.id, name: p.name, price: p.price, image: p.image, size: p.size, qty: 1 })
     }
     writeCart(next)
     mutate(next, false)
   }
 
-  function removeItem(id: string) {
-    const next = items.filter((i) => i.id !== id)
+  function removeItem(id: string, size?: string) {
+    const next = items.filter((i) => {
+      if (size !== undefined) {
+        return !(i.id === id && i.size === size)
+      }
+      return i.id !== id
+    })
     writeCart(next)
     mutate(next, false)
   }
 
-  function increment(id: string) {
-    const next = items.map((i) => (i.id === id ? { ...i, qty: i.qty + 1 } : i))
+  function increment(id: string, size?: string) {
+    const next = items.map((i) => {
+      if (size !== undefined) {
+        return (i.id === id && i.size === size) ? { ...i, qty: i.qty + 1 } : i
+      }
+      return (i.id === id) ? { ...i, qty: i.qty + 1 } : i
+    })
     writeCart(next)
     mutate(next, false)
   }
 
-  function decrement(id: string) {
-    const next = items.map((i) => (i.id === id ? { ...i, qty: Math.max(1, i.qty - 1) } : i))
+  function decrement(id: string, size?: string) {
+    const next = items.map((i) => {
+      if (size !== undefined) {
+        return (i.id === id && i.size === size) ? { ...i, qty: Math.max(1, i.qty - 1) } : i
+      }
+      return (i.id === id) ? { ...i, qty: Math.max(1, i.qty - 1) } : i
+    })
     writeCart(next)
     mutate(next, false)
   }
