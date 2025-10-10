@@ -1,0 +1,448 @@
+[
+  {
+    "customerId": "customer_1759862808282_didkjltl2",
+    "customerEmail": "delincelin@gmail.com",
+    "items": [
+      {
+        "id": "sw-001",
+        "name": "Wave Rider Oversized Tee",
+        "price": 699,
+        "quantity": 1,
+        "image": "/oversized-graphic-tee.png"
+      }
+    ],
+    "subtotal": 699,
+    "shipping": 99,
+    "total": 798,
+    "status": "confirmed",
+    "paymentStatus": "paid",
+    "paymentMethod": "Credit Card",
+    "shippingAddress": {
+      "firstName": "DELIN",
+      "lastName": "SHABU",
+      "address": "karikom PO kottarakara",
+      "city": "kollam",
+      "state": "Kerala",
+      "zipCode": "691531"
+    },
+    "id": "order_1759862809138_v48py4lwt",
+    "orderNumber": "ORD-809138-104",
+    "orderDate": "2025-10-07T18:46:49.138Z",
+    "updatedAt": "2025-10-07T18:46:49.138Z"
+  },
+  {
+    "customerId": "customer_1759862808282_didkjltl2",
+    "customerEmail": "delincelin@gmail.com",
+    "items": [
+      {
+        "id": "sw-001",
+        "name": "Wave Rider Oversized Tee",
+        "price": 699,
+        "quantity": 1,
+        "image": "/oversized-graphic-tee.png"
+      }
+    ],
+    "subtotal": 699,
+    "shipping": 99,
+    "total": 798,
+    "status": "confirmed",
+    "paymentStatus": "paid",
+    "paymentMethod": "Credit Card",
+    "shippingAddress": {
+      "firstName": "DELIN",
+      "lastName": "SHABU",
+      "address": "karikom PO kottarakara",
+      "city": "kollam",
+      "state": "Kerala",
+      "zipCode": "691531"
+    },
+    "id": "order_1759862854008_y7k1ycy7g",
+    "orderNumber": "ORD-854008-528",
+    "orderDate": "2025-10-07T18:47:34.008Z",
+    "updatedAt": "2025-10-07T18:47:34.008Z"
+  },
+  {
+    "customerId": "customer_1759862808282_didkjltl2",
+    "customerEmail": "delincelin@gmail.com",
+    "items": [
+      {
+        "id": "sw-001",
+        "name": "Wave Rider Oversized Tee",
+        "price": 699,
+        "quantity": 1,
+        "image": "/oversized-graphic-tee.png"
+      }
+    ],
+    "subtotal": 699,
+    "shipping": 99,
+    "total": 798,
+    "status": "confirmed",
+    "paymentStatus": "paid",
+    "paymentMethod": "Credit Card",
+    "shippingAddress": {
+      "firstName": "DELIN",
+      "lastName": "SHABU",
+      "address": "karikom PO kottarakara",
+      "city": "kollam",
+      "state": "Kerala",
+      "zipCode": "691531"
+    },
+    "id": "order_1759862884404_g65ccj9en",
+    "orderNumber": "ORD-884404-150",
+    "orderDate": "2025-10-07T18:48:04.404Z",
+    "updatedAt": "2025-10-07T18:48:04.404Z"
+  },
+  {
+    "customerId": "customer_1759862808282_didkjltl2",
+    "customerEmail": "delincelin@gmail.com",
+    "items": [
+      {
+        "id": "sw-001",
+        "name": "Wave Rider Oversized Tee",
+        "price": 699,
+        "quantity": 4,
+        "image": "/oversized-graphic-tee.png"
+      }
+    ],
+    "subtotal": 2796,
+    "shipping": 0,
+    "total": 2796,
+    "status": "confirmed",
+    "paymentStatus": "paid",
+    "paymentMethod": "Credit Card",
+    "shippingAddress": {
+      "firstName": "DELIN",
+      "lastName": "SHABU",
+      "address": "karikom PO kottarakara",
+      "city": "kollam",
+      "state": "Kerala",
+      "zipCode": "691531"
+    },
+    "id": "order_1759863019933_xa17791ch",
+    "orderNumber": "ORD-019933-243",
+    "orderDate": "2025-10-07T18:50:19.933Z",
+    "updatedAt": "2025-10-07T18:50:19.933Z"
+  },
+  {
+    "customerId": "customer_1759865069745_5kwn0b2kl",
+    "customerEmail": "sonusasi3344@gmail.com",
+    "items": [
+      {
+        "id": "sw-005",
+        "name": "Neon Print Tee",
+        "price": 799,
+        "quantity": 3,
+        "image": "/neon-print-tee.jpg"
+      },
+      {
+        "id": "sw-006",
+        "name": "Skater Fit Tee",
+        "price": 699,
+        "quantity": 3,
+        "image": "/skater-fit-tee.jpg"
+      },
+      {
+        "id": "sw-007",
+        "name": "Minimal Logo Tee",
+        "price": 599,
+        "quantity": 1,
+        "image": "/minimal-logo-tee.jpg"
+      }
+    ],
+    "subtotal": 5093,
+    "shipping": 0,
+    "total": 5093,
+    "status": "confirmed",
+    "paymentStatus": "paid",
+    "paymentMethod": "Credit Card",
+    "shippingAddress": {
+      "firstName": "DELIN",
+      "lastName": "SHABU",
+      "address": "karikom PO kottarakara",
+      "city": "kollam",
+      "state": "Kerala",
+      "zipCode": "691531"
+    },
+    "id": "order_1759865069984_9d7kp4fty",
+    "orderNumber": "ORD-069984-858",
+    "orderDate": "2025-10-07T19:24:29.984Z",
+    "updatedAt": "2025-10-07T19:24:29.984Z"
+  },
+  {
+    "customerId": "customer_1759865069745_5kwn0b2kl",
+    "customerEmail": "sonusasi3344@gmail.com",
+    "items": [
+      {
+        "id": "sw-007",
+        "name": "Minimal Logo Tee",
+        "price": 599,
+        "quantity": 1,
+        "image": "/minimal-logo-tee.jpg"
+      },
+      {
+        "id": "sw-006",
+        "name": "Skater Fit Tee",
+        "price": 699,
+        "quantity": 1,
+        "image": "/skater-fit-tee.jpg"
+      },
+      {
+        "id": "sw-005",
+        "name": "Neon Print Tee",
+        "price": 799,
+        "quantity": 1,
+        "image": "/neon-print-tee.jpg"
+      },
+      {
+        "id": "sw-008",
+        "name": "Daily Comfort Tee",
+        "price": 549,
+        "quantity": 3,
+        "image": "/plain-tee-comfort.jpg"
+      }
+    ],
+    "subtotal": 3744,
+    "shipping": 0,
+    "total": 3744,
+    "status": "confirmed",
+    "paymentStatus": "paid",
+    "paymentMethod": "Credit Card",
+    "shippingAddress": {
+      "firstName": "sonu",
+      "lastName": "sasi",
+      "address": "karikom PO kottarakara",
+      "city": "kollam",
+      "state": "Kerala",
+      "zipCode": "691531"
+    },
+    "id": "order_1759865127997_enkk2ekd5",
+    "orderNumber": "ORD-127997-034",
+    "orderDate": "2025-10-07T19:25:27.997Z",
+    "updatedAt": "2025-10-07T19:25:27.997Z"
+  },
+  {
+    "customerId": "customer_1759865069745_5kwn0b2kl",
+    "customerEmail": "sonusasi3344@gmail.com",
+    "items": [
+      {
+        "id": "sw-001",
+        "name": "Wave Rider Oversized Tee",
+        "price": 699,
+        "quantity": 3,
+        "image": "/oversized-graphic-tee.png"
+      }
+    ],
+    "subtotal": 2097,
+    "shipping": 0,
+    "total": 2097,
+    "status": "confirmed",
+    "paymentStatus": "paid",
+    "paymentMethod": "Credit Card",
+    "shippingAddress": {
+      "firstName": "sonu",
+      "lastName": "sasi",
+      "address": "karikom PO kottarakara",
+      "city": "kollam",
+      "state": "Kerala",
+      "zipCode": "691531"
+    },
+    "id": "order_1759866243143_1ckptu0wg",
+    "orderNumber": "ORD-243143-906",
+    "orderDate": "2025-10-07T19:44:03.143Z",
+    "updatedAt": "2025-10-07T19:44:03.143Z"
+  },
+  {
+    "customerId": "customer_1759862808282_didkjltl2",
+    "customerEmail": "delincelin@gmail.com",
+    "items": [
+      {
+        "id": "sw-002",
+        "name": "Monochrome Graphic Tee",
+        "price": 649,
+        "quantity": 7,
+        "image": "/monochrome-tee.jpg"
+      }
+    ],
+    "subtotal": 4543,
+    "shipping": 0,
+    "total": 4543,
+    "status": "confirmed",
+    "paymentStatus": "paid",
+    "paymentMethod": "Credit Card",
+    "shippingAddress": {
+      "firstName": "DELIN",
+      "lastName": "SHABU",
+      "address": "karikom PO kottarakara",
+      "city": "kollam",
+      "state": "Kerala",
+      "zipCode": "691531"
+    },
+    "id": "order_1760091766371_81mtk273f",
+    "orderNumber": "ORD-766371-125",
+    "orderDate": "2025-10-10T10:22:46.371Z",
+    "updatedAt": "2025-10-10T10:22:46.371Z"
+  },
+  {
+    "customerId": "customer_1759862808282_didkjltl2",
+    "customerEmail": "delincelin@gmail.com",
+    "items": [
+      {
+        "id": "sw-003",
+        "name": "Retro Script Tee",
+        "price": 749,
+        "quantity": 2,
+        "image": "/retro-script-tee.jpg"
+      },
+      {
+        "id": "sw-001",
+        "name": "Wave Rider Oversized Tee",
+        "price": 699,
+        "quantity": 3,
+        "image": "/oversized-graphic-tee.png"
+      }
+    ],
+    "subtotal": 3595,
+    "shipping": 0,
+    "total": 3595,
+    "status": "confirmed",
+    "paymentStatus": "paid",
+    "paymentMethod": "Credit Card",
+    "shippingAddress": {
+      "firstName": "DELIN",
+      "lastName": "SHABU",
+      "address": "karikom PO kottarakara",
+      "city": "kollam",
+      "state": "Kerala",
+      "zipCode": "691531"
+    },
+    "id": "order_1760092706700_sjjmm67h0",
+    "orderNumber": "ORD-706700-375",
+    "orderDate": "2025-10-10T10:38:26.700Z",
+    "updatedAt": "2025-10-10T10:38:26.700Z"
+  },
+  {
+    "customerId": "customer_1759862808282_didkjltl2",
+    "customerEmail": "delincelin@gmail.com",
+    "items": [
+      {
+        "id": "sw-001",
+        "name": "Wave Rider Oversized Tee",
+        "price": 699,
+        "quantity": 51,
+        "image": "/oversized-graphic-tee.png"
+      }
+    ],
+    "subtotal": 35649,
+    "shipping": 0,
+    "total": 35649,
+    "status": "confirmed",
+    "paymentStatus": "paid",
+    "paymentMethod": "Credit Card",
+    "shippingAddress": {
+      "firstName": "DELIN",
+      "lastName": "SHABU",
+      "address": "karikom PO kottarakara",
+      "city": "kollam",
+      "state": "Kerala",
+      "zipCode": "691531"
+    },
+    "id": "order_1760092778408_ryoft9cpn",
+    "orderNumber": "ORD-778408-997",
+    "orderDate": "2025-10-10T10:39:38.408Z",
+    "updatedAt": "2025-10-10T10:39:38.408Z"
+  },
+  {
+    "customerId": "customer_1759862808282_didkjltl2",
+    "customerEmail": "delincelin@gmail.com",
+    "items": [
+      {
+        "id": "sw-001",
+        "name": "Wave Rider Oversized Tee",
+        "price": 699,
+        "quantity": 16,
+        "image": "/oversized-graphic-tee.png"
+      }
+    ],
+    "subtotal": 11184,
+    "shipping": 0,
+    "total": 11184,
+    "status": "confirmed",
+    "paymentStatus": "paid",
+    "paymentMethod": "Credit Card",
+    "shippingAddress": {
+      "firstName": "DELIN",
+      "lastName": "SHABU",
+      "address": "karikom PO kottarakara",
+      "city": "kollam",
+      "state": "Kerala",
+      "zipCode": "691531"
+    },
+    "id": "order_1760095084799_24ok8d7ib",
+    "orderNumber": "ORD-084799-164",
+    "orderDate": "2025-10-10T11:18:04.799Z",
+    "updatedAt": "2025-10-10T11:18:04.799Z"
+  },
+  {
+    "customerId": "customer_1759862808282_didkjltl2",
+    "customerEmail": "delincelin@gmail.com",
+    "items": [
+      {
+        "id": "sw-001",
+        "name": "Wave Rider Oversized Tee",
+        "price": 699,
+        "quantity": 5,
+        "image": "/oversized-graphic-tee.png"
+      }
+    ],
+    "subtotal": 3495,
+    "shipping": 0,
+    "total": 3495,
+    "status": "confirmed",
+    "paymentStatus": "paid",
+    "paymentMethod": "Credit Card",
+    "shippingAddress": {
+      "firstName": "DELIN",
+      "lastName": "SHABU",
+      "address": "karikom PO kottarakara",
+      "city": "kollam",
+      "state": "Kerala",
+      "zipCode": "691531"
+    },
+    "id": "order_1760096841948_n93ej8l61",
+    "orderNumber": "ORD-841948-833",
+    "orderDate": "2025-10-10T11:47:21.948Z",
+    "updatedAt": "2025-10-10T11:47:21.948Z"
+  },
+  {
+    "customerId": "customer_1760097804133_pxnxgo4q3",
+    "customerEmail": "delinshabu.b@gmail.com",
+    "items": [
+      {
+        "id": "sw-002",
+        "name": "Monochrome Graphic Tee",
+        "price": 649,
+        "quantity": 7,
+        "image": "/monochrome-tee.jpg"
+      }
+    ],
+    "subtotal": 4543,
+    "shipping": 0,
+    "total": 4543,
+    "status": "processing",
+    "paymentStatus": "paid",
+    "paymentMethod": "Credit Card",
+    "shippingAddress": {
+      "firstName": "DELIN",
+      "lastName": "SHABU",
+      "address": "karikom PO kottarakara",
+      "city": "kollam",
+      "state": "Kerala",
+      "zipCode": "691531"
+    },
+    "id": "order_1760097805420_hy8ccojpc",
+    "orderNumber": "ORD-805420-495",
+    "orderDate": "2025-10-10T12:03:25.420Z",
+    "updatedAt": "2025-10-10T12:04:10.101Z",
+    "notes": ""
+  }
+]

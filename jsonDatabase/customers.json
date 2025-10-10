@@ -1,0 +1,116 @@
+[
+  {
+    "id": "customer_1759862808282_didkjltl2",
+    "email": "delincelin@gmail.com",
+    "firstName": "DELIN",
+    "lastName": "SHABU",
+    "phone": "09633766791",
+    "dateJoined": "2025-10-07T18:46:48.282Z",
+    "lastActive": "2025-10-07T18:46:48.282Z",
+    "isActive": true,
+    "defaultShippingAddress": {
+      "firstName": "DELIN",
+      "lastName": "SHABU",
+      "address": "karikom PO kottarakara",
+      "city": "kollam",
+      "state": "Kerala",
+      "zipCode": "691531"
+    },
+    "addresses": [
+      {
+        "firstName": "DELIN",
+        "lastName": "SHABU",
+        "address": "karikom PO kottarakara",
+        "city": "kollam",
+        "state": "Kerala",
+        "zipCode": "691531"
+      }
+    ],
+    "wishlist": [],
+    "cart": [],
+    "totalOrders": 0,
+    "totalSpent": 0,
+    "emailMarketing": true,
+    "smsMarketing": false,
+    "preferences": {
+      "currency": "INR",
+      "notifications": true
+    }
+  },
+  {
+    "id": "customer_1759865069745_5kwn0b2kl",
+    "email": "sonusasi3344@gmail.com",
+    "firstName": "DELIN",
+    "lastName": "SHABU",
+    "phone": "09633766791",
+    "dateJoined": "2025-10-07T19:24:29.745Z",
+    "lastActive": "2025-10-07T19:24:29.745Z",
+    "isActive": true,
+    "defaultShippingAddress": {
+      "firstName": "DELIN",
+      "lastName": "SHABU",
+      "address": "karikom PO kottarakara",
+      "city": "kollam",
+      "state": "Kerala",
+      "zipCode": "691531"
+    },
+    "addresses": [
+      {
+        "firstName": "DELIN",
+        "lastName": "SHABU",
+        "address": "karikom PO kottarakara",
+        "city": "kollam",
+        "state": "Kerala",
+        "zipCode": "691531"
+      }
+    ],
+    "wishlist": [],
+    "cart": [],
+    "totalOrders": 0,
+    "totalSpent": 0,
+    "emailMarketing": true,
+    "smsMarketing": false,
+    "preferences": {
+      "currency": "INR",
+      "notifications": true
+    }
+  },
+  {
+    "id": "customer_1760097804133_pxnxgo4q3",
+    "email": "delinshabu.b@gmail.com",
+    "firstName": "DELIN",
+    "lastName": "SHABU",
+    "phone": "09633766791",
+    "dateJoined": "2025-10-10T12:03:24.133Z",
+    "lastActive": "2025-10-10T12:03:24.133Z",
+    "isActive": true,
+    "defaultShippingAddress": {
+      "firstName": "DELIN",
+      "lastName": "SHABU",
+      "address": "karikom PO kottarakara",
+      "city": "kollam",
+      "state": "Kerala",
+      "zipCode": "691531"
+    },
+    "addresses": [
+      {
+        "firstName": "DELIN",
+        "lastName": "SHABU",
+        "address": "karikom PO kottarakara",
+        "city": "kollam",
+        "state": "Kerala",
+        "zipCode": "691531"
+      }
+    ],
+    "wishlist": [],
+    "cart": [],
+    "totalOrders": 0,
+    "totalSpent": 0,
+    "emailMarketing": true,
+    "smsMarketing": false,
+    "preferences": {
+      "currency": "INR",
+      "notifications": true
+    }
+  }
+]

@@ -1,0 +1,286 @@
+[
+  {
+    "id": "sw-001",
+    "name": "Wave Rider Oversized Tee",
+    "price": 699,
+    "image": "/oversized-graphic-tee.png",
+    "stockQuantity": 154,
+    "lowStockThreshold": 100,
+    "unlimitedStock": false,
+    "inStock": true,
+    "description": "Ride the waves of style with this premium oversized graphic tee. Made from 100% cotton with a unique wave-inspired design that embodies the free-spirited lifestyle.",
+    "category": "Graphic Tees",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Navy",
+      "Black",
+      "White"
+    ],
+    "sizeStock": {
+      "S": 15,
+      "M": 30,
+      "L": 50,
+      "XL": 45,
+      "XXL": 35
+    },
+    "images": [
+      "/oversized-graphic-tee.png",
+      "/oversized-graphic-tee-2.png",
+      "/oversized-graphic-tee-3.png"
+    ],
+    "rating": 4.8,
+    "reviews": 127
+  },
+  {
+    "id": "sw-002",
+    "name": "Monochrome Graphic Tee",
+    "price": 649,
+    "image": "/monochrome-tee.jpg",
+    "stockQuantity": 743,
+    "lowStockThreshold": 30,
+    "unlimitedStock": false,
+    "inStock": true,
+    "description": "Clean and minimalist design meets bold statement. This monochrome graphic tee features high-quality printing on soft cotton fabric.",
+    "category": "Graphic Tees",
+    "colors": [
+      "Black",
+      "White"
+    ],
+    "images": [
+      "/monochrome-tee.jpg",
+      "/monochrome-tee-2.jpg"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "sizeStock": {
+      "S": 150,
+      "M": 200,
+      "L": 300,
+      "XL": 100
+    }
+  },
+  {
+    "id": "sw-003",
+    "name": "Retro Script Tee",
+    "price": 749,
+    "image": "/retro-script-tee.jpg",
+    "stockQuantity": 730,
+    "lowStockThreshold": 10,
+    "unlimitedStock": false,
+    "inStock": true,
+    "description": "Throwback vibes with modern comfort. This retro script tee brings vintage aesthetics to your contemporary wardrobe.",
+    "category": "Vintage",
+    "colors": [
+      "Cream",
+      "Brown",
+      "Green"
+    ],
+    "images": [
+      "/retro-script-tee.jpg",
+      "/retro-script-tee-2.jpg",
+      "/retro-script-tee-3.jpg"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "sizeStock": {
+      "S": 80,
+      "M": 150,
+      "L": 200,
+      "XL": 180,
+      "XXL": 120
+    }
+  },
+  {
+    "id": "sw-004",
+    "name": "Core Black Tee",
+    "price": 599,
+    "image": "/black-tee-minimal.jpg",
+    "stockQuantity": 1000,
+    "lowStockThreshold": 10,
+    "unlimitedStock": false,
+    "inStock": true,
+    "description": "The essential black tee every wardrobe needs. Premium cotton construction with perfect fit and lasting comfort.",
+    "category": "Essentials",
+    "colors": [
+      "Black"
+    ],
+    "images": [
+      "/black-tee-minimal.jpg",
+      "/black-tee-minimal-2.jpg"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "sizeStock": {
+      "XS": 50,
+      "S": 100,
+      "M": 200,
+      "L": 300,
+      "XL": 200,
+      "XXL": 150
+    }
+  },
+  {
+    "id": "sw-005",
+    "name": "Neon Print Tee",
+    "price": 799,
+    "image": "/neon-print-tee.jpg",
+    "stockQuantity": 993,
+    "lowStockThreshold": 10,
+    "unlimitedStock": false,
+    "inStock": true,
+    "description": "Electric style meets street fashion. Bold neon prints that glow under UV light, perfect for festivals and night outs.",
+    "category": "Streetwear",
+    "colors": [
+      "Neon Green",
+      "Electric Blue",
+      "Hot Pink"
+    ],
+    "images": [
+      "/neon-print-tee.jpg",
+      "/neon-print-tee-2.jpg",
+      "/neon-print-tee-glow.jpg"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "sizeStock": {
+      "S": 200,
+      "M": 250,
+      "L": 300,
+      "XL": 243
+    }
+  },
+  {
+    "id": "sw-006",
+    "name": "Skater Fit Tee",
+    "price": 699,
+    "image": "/skater-fit-tee.jpg",
+    "stockQuantity": 993,
+    "lowStockThreshold": 10,
+    "unlimitedStock": false,
+    "inStock": true,
+    "description": "Loose, comfortable fit inspired by skate culture. Durable construction that can handle your active lifestyle.",
+    "category": "Streetwear",
+    "colors": [
+      "Gray",
+      "Black",
+      "Navy"
+    ],
+    "images": [
+      "/skater-fit-tee.jpg",
+      "/skater-fit-tee-2.jpg"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "sizeStock": {
+      "S": 180,
+      "M": 200,
+      "L": 280,
+      "XL": 200,
+      "XXL": 133
+    }
+  },
+  {
+    "id": "sw-007",
+    "name": "Minimal Logo Tee",
+    "price": 599,
+    "image": "/minimal-logo-tee.jpg",
+    "stockQuantity": 998,
+    "lowStockThreshold": 10,
+    "unlimitedStock": false,
+    "inStock": true,
+    "description": "Subtle branding, maximum style. Clean design with small logo placement for those who prefer understated fashion.",
+    "category": "Essentials",
+    "colors": [
+      "White",
+      "Gray",
+      "Navy"
+    ],
+    "images": [
+      "/minimal-logo-tee.jpg",
+      "/minimal-logo-tee-2.jpg"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "sizeStock": {
+      "XS": 150,
+      "S": 200,
+      "M": 250,
+      "L": 200,
+      "XL": 198
+    }
+  },
+  {
+    "id": "sw-008",
+    "name": "Daily Comfort Tee",
+    "price": 549,
+    "image": "/plain-tee-comfort.jpg",
+    "stockQuantity": 997,
+    "lowStockThreshold": 10,
+    "unlimitedStock": false,
+    "inStock": true,
+    "description": "Your go-to tee for everyday wear. Super soft cotton blend that gets softer with every wash. Perfect for layering or wearing solo.",
+    "category": "Essentials",
+    "colors": [
+      "White",
+      "Gray",
+      "Black",
+      "Navy",
+      "Olive"
+    ],
+    "images": [
+      "/plain-tee-comfort.jpg",
+      "/plain-tee-comfort-2.jpg"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "sizeStock": {
+      "XS": 100,
+      "S": 150,
+      "M": 200,
+      "L": 250,
+      "XL": 200,
+      "XXL": 97
+    }
+  }
+]
