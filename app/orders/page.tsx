@@ -420,9 +420,14 @@ export default function YourOrdersPage() {
                                 </div>
                                 <div className="flex-1">
                                   <p className="font-medium">{item.name}</p>
-                                  {item.size && (
-                                    <p className="text-sm text-primary font-medium">Size: {item.size}</p>
-                                  )}
+                                  <div className="flex gap-3 text-sm text-primary font-medium">
+                                    {item.size && (
+                                      <span>Size: {item.size}</span>
+                                    )}
+                                    {item.color && (
+                                      <span>Color: {item.color}</span>
+                                    )}
+                                  </div>
                                   <p className="text-sm text-muted-foreground">
                                     Quantity: {item.quantity} × ₹{item.price}
                                   </p>

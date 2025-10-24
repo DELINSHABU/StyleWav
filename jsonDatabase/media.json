@@ -1,0 +1,33 @@
+{
+  "banners": [
+    {
+      "url": "/uploads/1761335254200-sunset-horizon-standing-alone-mountains-scenery-ai-art-4k-wallpaper-uhdpaper.com-715_1_l.jpg",
+      "alt": "Sale",
+      "title": "Summer Sale",
+      "isActive": false,
+      "id": "banner-1761335265929",
+      "createdAt": "2025-10-24T19:47:45.929Z",
+      "updatedAt": "2025-10-24T19:47:45.929Z"
+    },
+    {
+      "url": "/uploads/1761335301125-beach-vacation-fun-sexy-couple-bikini-swimwear-blue-swim-shorts-perfect-turquoise-ocean-background-happy-people-holding-67068523.webp",
+      "alt": "Sale",
+      "title": "Summer Sale",
+      "isActive": false,
+      "id": "banner-1761335311842",
+      "createdAt": "2025-10-24T19:48:31.842Z",
+      "updatedAt": "2025-10-24T19:48:31.842Z"
+    },
+    {
+      "url": "/uploads/1761335327673-Gemini_Generated_Image_404brv404brv404b.png",
+      "alt": "Sale",
+      "title": "Summer Sale",
+      "isActive": true,
+      "id": "banner-1761335337221",
+      "createdAt": "2025-10-24T19:48:57.221Z",
+      "updatedAt": "2025-10-24T19:49:01.691Z"
+    }
+  ],
+  "productImages": {},
+  "uploadedAt": "2025-10-24T19:49:01.691Z"
+}

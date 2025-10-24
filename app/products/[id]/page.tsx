@@ -9,6 +9,7 @@ import { Separator } from '@/components/ui/separator'
 import { Card, CardContent } from '@/components/ui/card'
 import { Header } from '@/components/site/header'
 import { Footer } from '@/components/site/footer'
+import { SizeChartModal } from '@/components/site/size-chart-modal'
 import { useCart } from '@/hooks/use-cart'
 import { useWishlist } from '@/hooks/use-wishlist'
 import { useToast } from '@/hooks/use-toast'
@@ -16,7 +17,7 @@ import { getProductById } from '@/lib/products'
 import type { Product } from '@/lib/products'
 import { StockStatusBadge, StockQuantityDisplay } from '@/components/ui/stock-status-badge'
 import { getStockStatus, isProductAvailable, getStockStatusText } from '@/lib/stock-utils'
-import { Heart, Star, ArrowLeft, ShoppingBag, Truck, Shield, RotateCcw } from 'lucide-react'
+import { Heart, Star, ArrowLeft, ShoppingBag, Truck, Shield, RotateCcw, Ruler } from 'lucide-react'
 
 export default function ProductPage() {
   const params = useParams()
@@ -27,6 +28,7 @@ export default function ProductPage() {
   const [selectedImage, setSelectedImage] = useState<string>('')
   const [quantity, setQuantity] = useState(1)
   const [loading, setLoading] = useState(true)
+  const [showSizeChart, setShowSizeChart] = useState(false)
 
   const { addItem } = useCart()
   const { addItem: addToWishlist, removeItem: removeFromWishlist, isInWishlist } = useWishlist()
@@ -155,6 +157,8 @@ export default function ProductPage() {
   }
 
   const handleAddToCart = () => {
+    console.log('Adding to cart with quantity:', quantity)
+    
     if (!isAvailable) {
       toast({
         variant: "destructive",
@@ -164,24 +168,28 @@ export default function ProductPage() {
       return
     }
 
-    // Create cart item with selected size (quantity handled by addItem function)
+    // Create cart item with selected size and color (quantity handled by addItem function)
     const cartItem = {
       id: product.id,
       name: product.name,
       price: product.price,
       image: product.image,
-      size: selectedSize || undefined
+      size: selectedSize || undefined,
+      color: selectedColor || undefined
     }
 
-    // Add each quantity as separate cart operations to maintain proper cart logic
-    for (let i = 0; i < quantity; i++) {
-      addItem(cartItem)
-    }
+    console.log('Cart item to add:', cartItem)
+    console.log('Adding', quantity, 'items to cart')
+
+    // Add the item with the specified quantity
+    addItem(cartItem, quantity)
+    console.log(`Added ${quantity} items to cart successfully`)
     
     const sizeText = selectedSize ? ` (${selectedSize})` : ''
+    const colorText = selectedColor ? ` - ${selectedColor}` : ''
     toast({
       title: "Added to cart",
-      description: `${quantity} x ${product.name}${sizeText} added to your cart.`
+      description: `${quantity} x ${product.name}${sizeText}${colorText} added to your cart.`
     })
   }
 
@@ -306,7 +314,18 @@ export default function ProductPage() {
             {/* Size Selection */}
             {product.sizes && product.sizes.length > 0 && (
               <div>
-                <h3 className="font-medium mb-3">Size</h3>
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="font-medium">Size</h3>
+                  <Button 
+                    variant="ghost" 
+                    size="sm"
+                    onClick={() => setShowSizeChart(true)}
+                    className="text-sm text-muted-foreground hover:text-foreground flex items-center gap-1"
+                  >
+                    <Ruler className="h-4 w-4" />
+                    Size Chart
+                  </Button>
+                </div>
                 <div className="flex gap-2">
                   {product.sizes.map((size) => (
                     <Button
@@ -349,21 +368,32 @@ export default function ProductPage() {
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                  onClick={() => {
+                    console.log('Decreasing quantity from', quantity, 'to', Math.max(1, quantity - 1))
+                    setQuantity(Math.max(1, quantity - 1))
+                  }}
                   disabled={quantity <= 1}
+                  className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                 >
                   -
                 </Button>
-                <span className="text-lg font-medium px-4">{quantity}</span>
+                <div className="flex items-center justify-center min-w-[60px] h-10 px-4 border rounded-md bg-background">
+                  <span className="text-lg font-medium">{quantity}</span>
+                </div>
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={() => setQuantity(quantity + 1)}
+                  onClick={() => {
+                    console.log('Increasing quantity from', quantity, 'to', quantity + 1)
+                    setQuantity(quantity + 1)
+                  }}
                   disabled={quantity >= 10}
+                  className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                 >
                   +
                 </Button>
               </div>
+              <p className="text-xs text-muted-foreground mt-1">Maximum 10 items per order</p>
             </div>
 
             <Separator />
@@ -443,6 +473,12 @@ export default function ProductPage() {
       </main>
 
       <Footer />
+      
+      {/* Size Chart Modal */}
+      <SizeChartModal 
+        isOpen={showSizeChart}
+        onClose={() => setShowSizeChart(false)}
+      />
     </div>
   )
 }

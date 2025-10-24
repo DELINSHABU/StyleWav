@@ -1,0 +1,16 @@
+{
+  "hero": {
+    "heading": {
+      "line1": "Bold.",
+      "line2": "Graphic.",
+      "line3": "Oversized."
+    },
+    "description": "Make waves with StyleWav. Street-ready tees and oversized fits crafted for comfort, style, and attitude.",
+    "stats": {
+      "customers": "60K+",
+      "customersLabel": "Happy Customers",
+      "rating": "4.9/5",
+      "ratingLabel": "Customer Rating"
+    }
+  }
+}

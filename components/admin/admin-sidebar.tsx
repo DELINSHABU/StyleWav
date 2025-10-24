@@ -52,7 +52,10 @@ interface AdminSidebarProps {
 export function AdminSidebar({ activeItem, onItemClick }: AdminSidebarProps) {
 
   return (
-    <aside className="w-64 border-r border-border bg-background/50 backdrop-blur supports-[backdrop-filter]:bg-background/30">
+    <aside className="w-64 h-full border-r border-border bg-background/50 backdrop-blur supports-[backdrop-filter]:bg-background/30">
+      <div className="p-4 border-b border-border">
+        <h1 className="text-lg font-semibold">StyleWav</h1>
+      </div>
       <nav className="p-4 space-y-2">
         {sidebarItems.map((item) => {
           const Icon = item.icon

@@ -17,6 +17,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { AuthModal } from "@/components/auth/auth-modal"
 import { cn } from "@/lib/utils"
 import { User, LogOut, ShoppingBag, Heart } from "lucide-react"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 export function Header() {
   const { items, total, removeItem } = useCart()
@@ -59,6 +60,7 @@ export function Header() {
         </div>
 
         <div className="flex items-center gap-3">
+          <ThemeToggle />
           <Link href="/admin" className="text-sm hover:opacity-80 hidden md:inline-block bg-primary/10 px-2 py-1 rounded">
             Admin
           </Link>

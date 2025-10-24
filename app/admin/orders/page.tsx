@@ -343,7 +343,14 @@ export default function AdminOrdersPage() {
                     <div className="space-y-2">
                       {order.items.map((item, index) => (
                         <div key={index} className="flex items-center justify-between text-sm">
-                          <span>{item.name} × {item.quantity}</span>
+                          <div>
+                            <span>{item.name} × {item.quantity}</span>
+                            <div className="text-xs text-muted-foreground">
+                              {item.size && <span>Size: {item.size}</span>}
+                              {item.size && item.color && <span> | </span>}
+                              {item.color && <span>Color: {item.color}</span>}
+                            </div>
+                          </div>
                           <span>₹{item.price * item.quantity}</span>
                         </div>
                       ))}

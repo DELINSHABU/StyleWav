@@ -128,7 +128,8 @@ export default function CheckoutPage() {
           price: item.price,
           quantity: item.qty,
           image: item.image,
-          size: item.size
+          size: item.size,
+          color: item.color
         })),
         subtotal: total,
         shipping: shippingCost,
@@ -406,7 +407,7 @@ export default function CheckoutPage() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   {items.map((item, index) => (
-                    <div key={`${item.id}-${item.size || 'no-size'}-${index}`} className="flex items-center gap-3">
+                    <div key={`${item.id}-${item.size || 'no-size'}-${item.color || 'no-color'}-${index}`} className="flex items-center gap-3">
                       <img
                         src={item.image || "/placeholder.svg?height=60&width=60"}
                         alt={item.name}
@@ -414,9 +415,14 @@ export default function CheckoutPage() {
                       />
                       <div className="flex-1">
                         <p className="font-medium text-sm">{item.name}</p>
-                        {item.size && (
-                          <p className="text-xs text-muted-foreground font-medium">Size: {item.size}</p>
-                        )}
+                        <div className="flex gap-3 text-xs text-muted-foreground font-medium">
+                          {item.size && (
+                            <span>Size: {item.size}</span>
+                          )}
+                          {item.color && (
+                            <span>Color: {item.color}</span>
+                          )}
+                        </div>
                         <p className="text-sm text-muted-foreground">
                           Qty: {item.qty} × ₹{item.price}
                         </p>

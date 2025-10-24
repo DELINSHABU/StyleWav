@@ -41,6 +41,8 @@ export async function writeProductsToFile(products: Product[]): Promise<void> {
 export async function initializeProductsFile(): Promise<void> {
   try {
     await fs.access(PRODUCTS_FILE)
+    // File exists, don't overwrite it
+    return
   } catch {
     // File doesn't exist, create it with default products
     const defaultProducts: Product[] = [

@@ -8,6 +8,7 @@ export type CartItem = {
   price: number
   image?: string
   size?: string
+  color?: string
   qty: number
 }
 
@@ -39,23 +40,23 @@ export function useCart() {
   const items = data ?? []
   const total = items.reduce((acc, it) => acc + it.price * it.qty, 0)
 
-  function addItem(p: { id: string; name: string; price: number; image?: string; size?: string }) {
+  function addItem(p: { id: string; name: string; price: number; image?: string; size?: string; color?: string }, quantity: number = 1) {
     const next = [...items]
-    // Find item with same id AND size (or both without size)
-    const idx = next.findIndex((i) => i.id === p.id && i.size === p.size)
+    // Find item with same id, size AND color (or all matching undefined values)
+    const idx = next.findIndex((i) => i.id === p.id && i.size === p.size && i.color === p.color)
     if (idx >= 0) {
-      next[idx] = { ...next[idx], qty: next[idx].qty + 1 }
+      next[idx] = { ...next[idx], qty: next[idx].qty + quantity }
     } else {
-      next.push({ id: p.id, name: p.name, price: p.price, image: p.image, size: p.size, qty: 1 })
+      next.push({ id: p.id, name: p.name, price: p.price, image: p.image, size: p.size, color: p.color, qty: quantity })
     }
     writeCart(next)
     mutate(next, false)
   }
 
-  function removeItem(id: string, size?: string) {
+  function removeItem(id: string, size?: string, color?: string) {
     const next = items.filter((i) => {
-      if (size !== undefined) {
-        return !(i.id === id && i.size === size)
+      if (size !== undefined || color !== undefined) {
+        return !(i.id === id && i.size === size && i.color === color)
       }
       return i.id !== id
     })
@@ -63,10 +64,10 @@ export function useCart() {
     mutate(next, false)
   }
 
-  function increment(id: string, size?: string) {
+  function increment(id: string, size?: string, color?: string) {
     const next = items.map((i) => {
-      if (size !== undefined) {
-        return (i.id === id && i.size === size) ? { ...i, qty: i.qty + 1 } : i
+      if (size !== undefined || color !== undefined) {
+        return (i.id === id && i.size === size && i.color === color) ? { ...i, qty: i.qty + 1 } : i
       }
       return (i.id === id) ? { ...i, qty: i.qty + 1 } : i
     })
@@ -74,10 +75,10 @@ export function useCart() {
     mutate(next, false)
   }
 
-  function decrement(id: string, size?: string) {
+  function decrement(id: string, size?: string, color?: string) {
     const next = items.map((i) => {
-      if (size !== undefined) {
-        return (i.id === id && i.size === size) ? { ...i, qty: Math.max(1, i.qty - 1) } : i
+      if (size !== undefined || color !== undefined) {
+        return (i.id === id && i.size === size && i.color === color) ? { ...i, qty: Math.max(1, i.qty - 1) } : i
       }
       return (i.id === id) ? { ...i, qty: Math.max(1, i.qty - 1) } : i
     })

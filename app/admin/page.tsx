@@ -6,7 +6,14 @@ import { AdminStats } from "@/components/admin/admin-stats"
 import { AdminAuth } from "@/components/admin/admin-auth"
 import { AdminSidebar } from "@/components/admin/admin-sidebar"
 import { AdminOrders } from "@/components/admin/admin-orders"
+import { AdminDashboard } from "@/components/admin/admin-dashboard"
+import { MediaLibrary } from "@/components/admin/media-library"
+import { AdminSettings } from "@/components/admin/admin-settings"
+import { ThemeToggle } from "@/components/theme-toggle"
 import { Product } from "@/lib/products"
+import Link from "next/link"
+import { ArrowLeft } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 export default function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
@@ -70,10 +77,10 @@ export default function AdminPage() {
           <div className="space-y-6">
             <div>
               <h1 className="text-3xl font-bold">Admin Dashboard</h1>
-              <p className="text-muted-foreground">Manage your StyleWav store</p>
+              <p className="text-muted-foreground">Manage your StyleWav store with interactive analytics</p>
             </div>
             <AdminStats products={products} />
-            <ProductManager products={products} setProducts={updateProducts} onRefresh={fetchProducts} />
+            <AdminDashboard products={products} />
           </div>
         )
       case 'products':
@@ -126,11 +133,9 @@ export default function AdminPage() {
           <div className="space-y-6">
             <div>
               <h1 className="text-3xl font-bold">Media Library</h1>
-              <p className="text-muted-foreground">Manage images and media files</p>
+              <p className="text-muted-foreground">Manage banner and product images</p>
             </div>
-            <div className="text-center py-16 text-muted-foreground">
-              <p>Media library coming soon...</p>
-            </div>
+            <MediaLibrary products={products} />
           </div>
         )
       case 'settings':
@@ -140,9 +145,7 @@ export default function AdminPage() {
               <h1 className="text-3xl font-bold">Settings</h1>
               <p className="text-muted-foreground">Configure store settings</p>
             </div>
-            <div className="text-center py-16 text-muted-foreground">
-              <p>Settings panel coming soon...</p>
-            </div>
+            <AdminSettings />
           </div>
         )
       default:
@@ -150,21 +153,42 @@ export default function AdminPage() {
           <div className="space-y-6">
             <div>
               <h1 className="text-3xl font-bold">Admin Dashboard</h1>
-              <p className="text-muted-foreground">Manage your StyleWav store</p>
+              <p className="text-muted-foreground">Manage your StyleWav store with interactive analytics</p>
             </div>
             <AdminStats products={products} />
-            <ProductManager products={products} setProducts={updateProducts} onRefresh={fetchProducts} />
+            <AdminDashboard products={products} />
           </div>
         )
     }
   }
 
   return (
-    <div className="flex">
+    <div className="flex h-screen">
       <AdminSidebar activeItem={activeSection} onItemClick={setActiveSection} />
-      <main className="flex-1 p-6">
-        {renderActiveSection()}
-      </main>
+      <div className="flex-1 flex flex-col">
+        {/* Admin Header */}
+        <header className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+          <div className="flex h-14 items-center justify-between px-6">
+            <div className="flex items-center gap-4">
+              <h2 className="font-semibold text-foreground">StyleWav Admin</h2>
+              <span className="text-sm text-muted-foreground">Manage your store</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <Link href="/">
+                <Button variant="outline" size="sm" className="gap-2">
+                  <ArrowLeft className="h-4 w-4" />
+                  Back to Shop
+                </Button>
+              </Link>
+              <ThemeToggle />
+            </div>
+          </div>
+        </header>
+        {/* Main Content */}
+        <main className="flex-1 overflow-auto p-6">
+          {renderActiveSection()}
+        </main>
+      </div>
     </div>
   )
 }
