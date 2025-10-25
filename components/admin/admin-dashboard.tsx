@@ -265,9 +265,9 @@ export function AdminDashboard({ products }: AdminDashboardProps) {
             )}
           </div>
         </CardHeader>
-        <CardContent>
-          <ChartContainer config={chartConfig}>
-            <ResponsiveContainer width="100%" height={400}>
+        <CardContent className="h-[300px] sm:h-[400px] lg:h-[50vh] p-6">
+          <ChartContainer config={chartConfig} className="h-full w-full">
+            <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={ordersData}>
                 <defs>
                   <linearGradient id="fillOrders" x1="0" y1="0" x2="0" y2="1">

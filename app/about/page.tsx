@@ -1,30 +1,115 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+
+interface AboutContent {
+  hero: {
+    title: string
+    subtitle: string
+  }
+  story: {
+    title: string
+    paragraphs: string[]
+  }
+  mission: {
+    title: string
+    items: {
+      title: string
+      description: string
+    }[]
+  }
+  stats: {
+    title: string
+    items: {
+      value: string
+      label: string
+    }[]
+  }
+  cta: {
+    title: string
+    subtitle: string
+    buttonText: string
+  }
+}
+
+const defaultContent: AboutContent = {
+  hero: {
+    title: "StyleWav",
+    subtitle: "Where style meets the streets"
+  },
+  story: {
+    title: "Our Story",
+    paragraphs: [
+      "Born from the streets and crafted for the culture, StyleWav is more than just a clothing brand—it's a movement. We believe that fashion should be accessible, expressive, and bold.",
+      "Every piece we create is designed to make a statement, to turn heads, and to give you the confidence to be unapologetically yourself."
+    ]
+  },
+  mission: {
+    title: "Our Mission",
+    items: [
+      {
+        title: "Quality First",
+        description: "We source premium materials and work with skilled artisans to ensure every piece meets our high standards."
+      },
+      {
+        title: "Sustainable Fashion",
+        description: "We're committed to reducing our environmental impact through responsible manufacturing and sustainable practices."
+      },
+      {
+        title: "Community Driven",
+        description: "Your feedback shapes our designs. We listen, we adapt, and we create what you want to wear."
+      }
+    ]
+  },
+  stats: {
+    title: "By The Numbers",
+    items: [
+      { value: "10K+", label: "Happy Customers" },
+      { value: "500+", label: "Unique Designs" },
+      { value: "5★", label: "Average Rating" }
+    ]
+  },
+  cta: {
+    title: "Join The Wave",
+    subtitle: "Be part of something bigger. Shop the latest collection now.",
+    buttonText: "Shop Now"
+  }
+};
 
 export default function AboutPage() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start start', 'end end'],
-  });
+  const [content, setContent] = useState<AboutContent>(defaultContent);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const opacity1 = useTransform(scrollYProgress, [0, 0.05, 0.4], [1, 1, 0]);
-  const opacity2 = useTransform(scrollYProgress, [0.35, 0.4, 0.75], [0, 1, 1]);
-  const opacity3 = useTransform(scrollYProgress, [0.8, 0.95, 1], [0, 1, 1]);
+  useEffect(() => {
+    const loadContent = async () => {
+      try {
+        const response = await fetch('/api/admin/about');
+        if (response.ok) {
+          const data = await response.json();
+          setContent(data);
+        }
+      } catch (error) {
+        console.error('Error loading about content:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    loadContent();
+  }, []);
 
-  const scale1 = useTransform(scrollYProgress, [0, 0.05], [1, 1]);
-  const scale2 = useTransform(scrollYProgress, [0.35, 0.45], [0.8, 1]);
-  const scale3 = useTransform(scrollYProgress, [0.8, 0.95], [0.8, 1]);
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-black">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
+      </div>
+    );
+  }
 
   return (
-    <div ref={containerRef} className="relative bg-black">
+    <div className="relative bg-black">
       {/* Hero Section */}
-      <motion.section
-        style={{ opacity: opacity1, scale: scale1 }}
-        className="sticky top-0 flex min-h-screen items-center justify-center px-6"
-      >
+      <section className="flex min-h-screen items-center justify-center px-6 bg-black">
         <div className="max-w-4xl text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -32,7 +117,7 @@ export default function AboutPage() {
             transition={{ duration: 0.8 }}
             className="mb-6 text-6xl font-bold text-white md:text-8xl"
           >
-            StyleWav
+            {content.hero.title}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -40,114 +125,76 @@ export default function AboutPage() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-xl text-gray-400 md:text-2xl"
           >
-            Where style meets the streets
+            {content.hero.subtitle}
           </motion.p>
         </div>
-      </motion.section>
+      </section>
 
       {/* Story Section */}
-      <motion.section
-        style={{ opacity: opacity2, scale: scale2 }}
-        className="sticky top-0 flex min-h-screen items-center justify-center px-6"
-      >
-        <div className="max-w-4xl">
+      <section className="flex min-h-screen items-center justify-center px-6 bg-black">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true, amount: 0.3 }}
+          className="max-w-4xl"
+        >
           <h2 className="mb-8 text-5xl font-bold text-white md:text-7xl">
-            Our Story
+            {content.story.title}
           </h2>
           <div className="space-y-6 text-lg text-gray-300 md:text-xl">
-            <p>
-              Born from the streets and crafted for the culture, StyleWav is more than
-              just a clothing brand—it's a movement. We believe that fashion should be
-              accessible, expressive, and bold.
-            </p>
-            <p>
-              Every piece we create is designed to make a statement, to turn heads,
-              and to give you the confidence to be unapologetically yourself.
-            </p>
+            {content.story.paragraphs.map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+            ))}
           </div>
-        </div>
-      </motion.section>
+        </motion.div>
+      </section>
 
       {/* Mission Section */}
-      <motion.section
-        style={{ opacity: opacity3, scale: scale3 }}
-        className="sticky top-0 flex min-h-screen items-center justify-center px-6"
-      >
-        <div className="max-w-4xl">
+      <section className="flex min-h-screen items-center justify-center px-6 bg-black">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true, amount: 0.3 }}
+          className="max-w-4xl"
+        >
           <h2 className="mb-8 text-5xl font-bold text-white md:text-7xl">
-            Our Mission
+            {content.mission.title}
           </h2>
           <div className="space-y-8">
-            <div className="border-l-4 border-white pl-6">
-              <h3 className="mb-3 text-2xl font-semibold text-white">Quality First</h3>
-              <p className="text-lg text-gray-300">
-                We source premium materials and work with skilled artisans to ensure
-                every piece meets our high standards.
-              </p>
-            </div>
-            <div className="border-l-4 border-white pl-6">
-              <h3 className="mb-3 text-2xl font-semibold text-white">
-                Sustainable Fashion
-              </h3>
-              <p className="text-lg text-gray-300">
-                We're committed to reducing our environmental impact through
-                responsible manufacturing and sustainable practices.
-              </p>
-            </div>
-            <div className="border-l-4 border-white pl-6">
-              <h3 className="mb-3 text-2xl font-semibold text-white">
-                Community Driven
-              </h3>
-              <p className="text-lg text-gray-300">
-                Your feedback shapes our designs. We listen, we adapt, and we create
-                what you want to wear.
-              </p>
-            </div>
+            {content.mission.items.map((item, index) => (
+              <div key={index} className="border-l-4 border-white pl-6">
+                <h3 className="mb-3 text-2xl font-semibold text-white">{item.title}</h3>
+                <p className="text-lg text-gray-300">
+                  {item.description}
+                </p>
+              </div>
+            ))}
           </div>
-        </div>
-      </motion.section>
-
-      {/* Spacer to extend scroll */}
-      <div className="h-screen"></div>
-      <div className="h-screen"></div>
+        </motion.div>
+      </section>
 
       {/* Stats Section */}
       <section className="relative min-h-screen bg-white px-6 py-20">
         <div className="mx-auto max-w-6xl">
           <h2 className="mb-16 text-center text-5xl font-bold text-black md:text-6xl">
-            By The Numbers
+            {content.stats.title}
           </h2>
           <div className="grid gap-12 md:grid-cols-3">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="text-center"
-            >
-              <div className="mb-4 text-6xl font-bold text-black">10K+</div>
-              <div className="text-xl text-gray-600">Happy Customers</div>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              viewport={{ once: true }}
-              className="text-center"
-            >
-              <div className="mb-4 text-6xl font-bold text-black">500+</div>
-              <div className="text-xl text-gray-600">Unique Designs</div>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="text-center"
-            >
-              <div className="mb-4 text-6xl font-bold text-black">5★</div>
-              <div className="text-xl text-gray-600">Average Rating</div>
-            </motion.div>
+            {content.stats.items.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="text-center"
+              >
+                <div className="mb-4 text-6xl font-bold text-black">{item.value}</div>
+                <div className="text-xl text-gray-600">{item.label}</div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
@@ -162,16 +209,16 @@ export default function AboutPage() {
             viewport={{ once: true }}
           >
             <h2 className="mb-6 text-5xl font-bold text-white md:text-6xl">
-              Join The Wave
+              {content.cta.title}
             </h2>
             <p className="mb-10 text-xl text-gray-400">
-              Be part of something bigger. Shop the latest collection now.
+              {content.cta.subtitle}
             </p>
             <a
               href="/products"
               className="inline-block bg-white px-10 py-4 text-lg font-semibold text-black transition-transform hover:scale-105"
             >
-              Shop Now
+              {content.cta.buttonText}
             </a>
           </motion.div>
         </div>

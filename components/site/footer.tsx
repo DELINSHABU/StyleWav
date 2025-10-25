@@ -14,17 +14,17 @@ export function Footer() {
           <h4 className="font-medium">Help</h4>
           <ul className="mt-2 space-y-2">
             <li>
-              <Link href="#" className="hover:opacity-80">
+              <Link href="/shipping" className="hover:opacity-80">
                 Shipping
               </Link>
             </li>
             <li>
-              <Link href="#" className="hover:opacity-80">
+              <Link href="/returns" className="hover:opacity-80">
                 Returns
               </Link>
             </li>
             <li>
-              <Link href="#" className="hover:opacity-80">
+              <Link href="/support" className="hover:opacity-80">
                 Support
               </Link>
             </li>
@@ -39,12 +39,12 @@ export function Footer() {
               </Link>
             </li>
             <li>
-              <Link href="#" className="hover:opacity-80">
+              <Link href="/careers" className="hover:opacity-80">
                 Careers
               </Link>
             </li>
             <li>
-              <Link href="#" className="hover:opacity-80">
+              <Link href="/contact" className="hover:opacity-80">
                 Contact
               </Link>
             </li>

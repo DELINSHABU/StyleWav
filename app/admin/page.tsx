@@ -9,6 +9,8 @@ import { AdminOrders } from "@/components/admin/admin-orders"
 import { AdminDashboard } from "@/components/admin/admin-dashboard"
 import { MediaLibrary } from "@/components/admin/media-library"
 import { AdminSettings } from "@/components/admin/admin-settings"
+import { AdminAbout } from "@/components/admin/admin-about"
+import { AdminCareers } from "@/components/admin/admin-careers"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { Product } from "@/lib/products"
 import Link from "next/link"
@@ -136,6 +138,26 @@ export default function AdminPage() {
               <p className="text-muted-foreground">Manage banner and product images</p>
             </div>
             <MediaLibrary products={products} />
+          </div>
+        )
+      case 'about':
+        return (
+          <div className="space-y-6">
+            <div>
+              <h1 className="text-3xl font-bold">About Us Management</h1>
+              <p className="text-muted-foreground">Edit your about page content</p>
+            </div>
+            <AdminAbout />
+          </div>
+        )
+      case 'careers':
+        return (
+          <div className="space-y-6">
+            <div>
+              <h1 className="text-3xl font-bold">Careers Management</h1>
+              <p className="text-muted-foreground">Manage job postings on your careers page</p>
+            </div>
+            <AdminCareers />
           </div>
         )
       case 'settings':

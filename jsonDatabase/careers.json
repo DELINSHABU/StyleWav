@@ -1,0 +1,58 @@
+[
+  {
+    "id": "1",
+    "title": "Senior Frontend Developer (he he)",
+    "department": "Engineering",
+    "location": "Remote",
+    "type": "Full-time",
+    "description": "Join our engineering team to build cutting-edge e-commerce experiences with Next.js and React.",
+    "requirements": [
+      "5+ years React experience",
+      "Next.js expertise",
+      "TypeScript proficiency",
+      "E-commerce experience"
+    ]
+  },
+  {
+    "id": "2",
+    "title": "Fashion Designer",
+    "department": "Design",
+    "location": "New York, NY",
+    "type": "Full-time",
+    "description": "Create innovative streetwear designs that resonate with our community and push the boundaries of fashion.",
+    "requirements": [
+      "3+ years fashion design",
+      "Portfolio required",
+      "Streetwear passion",
+      "Adobe Creative Suite"
+    ]
+  },
+  {
+    "id": "3",
+    "title": "Marketing Manager",
+    "department": "Marketing",
+    "location": "Los Angeles, CA",
+    "type": "Full-time",
+    "description": "Lead our marketing initiatives across social media, influencer partnerships, and brand campaigns.",
+    "requirements": [
+      "5+ years marketing",
+      "Social media expertise",
+      "Fashion industry experience",
+      "Data-driven mindset"
+    ]
+  },
+  {
+    "id": "4",
+    "title": "Content Creator",
+    "department": "Marketing",
+    "location": "Remote",
+    "type": "Part-time",
+    "description": "Produce engaging content for our social channels including photography, videography, and copywriting.",
+    "requirements": [
+      "Photography/videography skills",
+      "Social media savvy",
+      "Creative portfolio",
+      "Fashion interest"
+    ]
+  }
+]

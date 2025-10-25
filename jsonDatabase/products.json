@@ -4,7 +4,7 @@
     "name": "Urban Nomad",
     "price": 849,
     "image": "urbannomad-1760128048523.png",
-    "stockQuantity": 162,
+    "stockQuantity": 152,
     "lowStockThreshold": 20,
     "unlimitedStock": false,
     "inStock": true,
@@ -27,9 +27,9 @@
       "XXL"
     ],
     "sizeStock": {
-      "S": 23,
+      "S": 18,
       "M": 37,
-      "L": 45,
+      "L": 40,
       "XL": 32,
       "XXL": 25
     },
@@ -192,7 +192,7 @@
     "name": "Lost in Thought",
     "price": 829,
     "image": "lostinthought-1760124821007.png",
-    "stockQuantity": 177,
+    "stockQuantity": 174,
     "lowStockThreshold": 22,
     "unlimitedStock": false,
     "inStock": true,
@@ -218,7 +218,7 @@
       "S": 32,
       "M": 42,
       "L": 43,
-      "XL": 35,
+      "XL": 32,
       "XXL": 25
     },
     "rating": 4.7,
@@ -229,7 +229,7 @@
     "name": "Solace",
     "price": 869,
     "image": "solace-1760124878094.png",
-    "stockQuantity": 155,
+    "stockQuantity": 151,
     "lowStockThreshold": 20,
     "unlimitedStock": false,
     "inStock": true,
@@ -254,7 +254,7 @@
     "sizeStock": {
       "S": 26,
       "M": 35,
-      "L": 40,
+      "L": 36,
       "XL": 30,
       "XXL": 24
     },
@@ -266,7 +266,7 @@
     "name": "Horizon",
     "price": 889,
     "image": "horizon-1760124938054.png",
-    "stockQuantity": 170,
+    "stockQuantity": 180,
     "lowStockThreshold": 21,
     "unlimitedStock": false,
     "inStock": true,
@@ -287,14 +287,16 @@
       "M",
       "L",
       "XL",
-      "XXL"
+      "XXL",
+      "XS"
     ],
     "sizeStock": {
       "S": 30,
       "M": 38,
       "L": 44,
       "XL": 33,
-      "XXL": 25
+      "XXL": 25,
+      "XS": 10
     },
     "rating": 4.9,
     "reviews": 96
@@ -1313,7 +1315,7 @@
     "name": "Solis",
     "price": 1999,
     "image": "solis-1760127480243.png",
-    "stockQuantity": 80,
+    "stockQuantity": 77,
     "lowStockThreshold": 10,
     "unlimitedStock": false,
     "inStock": true,
@@ -1338,7 +1340,7 @@
     "sizeStock": {
       "XS": 11,
       "S": 16,
-      "M": 21,
+      "M": 18,
       "L": 19,
       "XL": 13
     },
@@ -1686,7 +1688,7 @@
     "name": "Wanderlust",
     "price": 2099,
     "image": "wanderlust-1760125683660.png",
-    "stockQuantity": 75,
+    "stockQuantity": 65,
     "lowStockThreshold": 9,
     "unlimitedStock": false,
     "inStock": true,
@@ -1712,8 +1714,8 @@
     "sizeStock": {
       "XS": 10,
       "S": 15,
-      "M": 20,
-      "L": 18,
+      "M": 14,
+      "L": 14,
       "XL": 12
     },
     "rating": 4.7,

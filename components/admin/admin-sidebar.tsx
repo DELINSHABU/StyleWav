@@ -8,7 +8,9 @@ import {
   Users, 
   Settings, 
   FileImage,
-  ShoppingCart
+  ShoppingCart,
+  Info,
+  Briefcase
 } from "lucide-react"
 
 const sidebarItems = [
@@ -36,6 +38,16 @@ const sidebarItems = [
     id: "media",
     label: "Media",
     icon: FileImage,
+  },
+  {
+    id: "about",
+    label: "About Us",
+    icon: Info,
+  },
+  {
+    id: "careers",
+    label: "Careers",
+    icon: Briefcase,
   },
   {
     id: "settings",
