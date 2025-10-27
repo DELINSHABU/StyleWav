@@ -168,12 +168,12 @@
     "qaWmS0HRrCTiq0loxPi12zDyHtt1": {
       "customerId": "qaWmS0HRrCTiq0loxPi12zDyHtt1",
       "customerEmail": "delincelin@gmail.com",
-      "balance": 21750,
+      "balance": 12109,
       "totalEarned": 21750,
-      "totalSpent": 0,
-      "lastTransactionDate": "2025-10-26T21:22:17.617Z",
+      "totalSpent": 9641,
+      "lastTransactionDate": "2025-10-27T10:13:22.173Z",
       "createdAt": "2025-10-26T20:33:50.283Z",
-      "updatedAt": "2025-10-26T21:22:17.617Z",
+      "updatedAt": "2025-10-27T10:13:22.173Z",
       "transactions": [
         {
           "id": "txn_1761510830283_semg6d",
@@ -366,18 +366,30 @@
           "paymentMethod": "demo",
           "paymentAmount": 4.5,
           "createdAt": "2025-10-26T21:22:17.617Z"
+        },
+        {
+          "id": "txn_1761560002173_md80kg",
+          "customerId": "qaWmS0HRrCTiq0loxPi12zDyHtt1",
+          "customerEmail": "delincelin@gmail.com",
+          "type": "deduction",
+          "amount": -9641,
+          "balanceBefore": 21750,
+          "balanceAfter": 12109,
+          "description": "Payment for order ORD-001994-879",
+          "orderId": "ORD-001994-879",
+          "createdAt": "2025-10-27T10:13:22.173Z"
         }
       ]
     },
     "db89rYY9wJYLOFzxc6ktMmLpy042": {
       "customerId": "db89rYY9wJYLOFzxc6ktMmLpy042",
       "customerEmail": "delinshabu.b@gmail.com",
-      "balance": 9703,
-      "totalEarned": 15500,
+      "balance": 10253,
+      "totalEarned": 16050,
       "totalSpent": 5797,
-      "lastTransactionDate": "2025-10-26T22:18:45.887Z",
+      "lastTransactionDate": "2025-10-27T08:06:08.228Z",
       "createdAt": "2025-10-26T21:19:30.262Z",
-      "updatedAt": "2025-10-26T22:18:45.887Z",
+      "updatedAt": "2025-10-27T08:06:08.228Z",
       "transactions": [
         {
           "id": "txn_1761513570262_mxfz9m",
@@ -467,18 +479,31 @@
           "description": "Payment for order ORD-125766-608",
           "orderId": "ORD-125766-608",
           "createdAt": "2025-10-26T22:18:45.887Z"
+        },
+        {
+          "id": "txn_1761552368228_23g19g",
+          "customerId": "db89rYY9wJYLOFzxc6ktMmLpy042",
+          "customerEmail": "delinshabu.b@gmail.com",
+          "type": "purchase",
+          "amount": 550,
+          "balanceBefore": 9703,
+          "balanceAfter": 10253,
+          "description": "Purchased Value Pack",
+          "paymentMethod": "demo",
+          "paymentAmount": 500,
+          "createdAt": "2025-10-27T08:06:08.228Z"
         }
       ]
     },
     "FGkdTIJZQAZaVwdD0YInIbcRRu82": {
       "customerId": "FGkdTIJZQAZaVwdD0YInIbcRRu82",
       "customerEmail": "rahulravi000007@gmail.com",
-      "balance": 22050,
-      "totalEarned": 22050,
-      "totalSpent": 0,
-      "lastTransactionDate": "2025-10-26T21:46:22.324Z",
+      "balance": 16109,
+      "totalEarned": 38650,
+      "totalSpent": 22541,
+      "lastTransactionDate": "2025-10-27T15:48:04.738Z",
       "createdAt": "2025-10-26T21:44:30.271Z",
-      "updatedAt": "2025-10-26T21:46:22.324Z",
+      "updatedAt": "2025-10-27T15:48:04.738Z",
       "transactions": [
         {
           "id": "txn_1761515070271_8o938a",
@@ -569,6 +594,168 @@
           "paymentMethod": "demo",
           "paymentAmount": 17,
           "createdAt": "2025-10-26T21:46:22.324Z"
+        },
+        {
+          "id": "txn_1761560587866_je85mm",
+          "customerId": "FGkdTIJZQAZaVwdD0YInIbcRRu82",
+          "customerEmail": "rahulravi000007@gmail.com",
+          "type": "purchase",
+          "amount": 1100,
+          "balanceBefore": 22050,
+          "balanceAfter": 23150,
+          "description": "Purchased Popular Pack",
+          "paymentMethod": "demo",
+          "paymentAmount": 1000,
+          "createdAt": "2025-10-27T10:23:07.866Z"
+        },
+        {
+          "id": "txn_1761560588654_epov9b",
+          "customerId": "FGkdTIJZQAZaVwdD0YInIbcRRu82",
+          "customerEmail": "rahulravi000007@gmail.com",
+          "type": "purchase",
+          "amount": 1100,
+          "balanceBefore": 23150,
+          "balanceAfter": 24250,
+          "description": "Purchased Popular Pack",
+          "paymentMethod": "demo",
+          "paymentAmount": 1000,
+          "createdAt": "2025-10-27T10:23:08.654Z"
+        },
+        {
+          "id": "txn_1761560589659_9fiue",
+          "customerId": "FGkdTIJZQAZaVwdD0YInIbcRRu82",
+          "customerEmail": "rahulravi000007@gmail.com",
+          "type": "purchase",
+          "amount": 6000,
+          "balanceBefore": 24250,
+          "balanceAfter": 30250,
+          "description": "Purchased Ultimate Pack",
+          "paymentMethod": "demo",
+          "paymentAmount": 5000,
+          "createdAt": "2025-10-27T10:23:09.659Z"
+        },
+        {
+          "id": "txn_1761560590953_h0dv8w",
+          "customerId": "FGkdTIJZQAZaVwdD0YInIbcRRu82",
+          "customerEmail": "rahulravi000007@gmail.com",
+          "type": "purchase",
+          "amount": 2300,
+          "balanceBefore": 30250,
+          "balanceAfter": 32550,
+          "description": "Purchased Premium Pack",
+          "paymentMethod": "demo",
+          "paymentAmount": 2000,
+          "createdAt": "2025-10-27T10:23:10.953Z"
+        },
+        {
+          "id": "txn_1761560592435_qrgq79",
+          "customerId": "FGkdTIJZQAZaVwdD0YInIbcRRu82",
+          "customerEmail": "rahulravi000007@gmail.com",
+          "type": "purchase",
+          "amount": 6000,
+          "balanceBefore": 32550,
+          "balanceAfter": 38550,
+          "description": "Purchased Ultimate Pack",
+          "paymentMethod": "demo",
+          "paymentAmount": 5000,
+          "createdAt": "2025-10-27T10:23:12.435Z"
+        },
+        {
+          "id": "txn_1761560649338_ie8dur",
+          "customerId": "FGkdTIJZQAZaVwdD0YInIbcRRu82",
+          "customerEmail": "rahulravi000007@gmail.com",
+          "type": "deduction",
+          "amount": -2382,
+          "balanceBefore": 38550,
+          "balanceAfter": 36168,
+          "description": "Payment for order ORD-649189-516",
+          "orderId": "ORD-649189-516",
+          "createdAt": "2025-10-27T10:24:09.338Z"
+        },
+        {
+          "id": "txn_1761561981512_bljo2l",
+          "customerId": "FGkdTIJZQAZaVwdD0YInIbcRRu82",
+          "customerEmail": "rahulravi000007@gmail.com",
+          "type": "deduction",
+          "amount": -4747,
+          "balanceBefore": 36168,
+          "balanceAfter": 31421,
+          "description": "Payment for order ORD-981301-327",
+          "orderId": "ORD-981301-327",
+          "createdAt": "2025-10-27T10:46:21.512Z"
+        },
+        {
+          "id": "txn_1761563161479_r0n7u",
+          "customerId": "FGkdTIJZQAZaVwdD0YInIbcRRu82",
+          "customerEmail": "rahulravi000007@gmail.com",
+          "type": "deduction",
+          "amount": -1846,
+          "balanceBefore": 31421,
+          "balanceAfter": 29575,
+          "description": "Payment for order ORD-160261-471",
+          "orderId": "ORD-160261-471",
+          "createdAt": "2025-10-27T11:06:01.479Z"
+        },
+        {
+          "id": "txn_1761564275121_uv2n3a",
+          "customerId": "FGkdTIJZQAZaVwdD0YInIbcRRu82",
+          "customerEmail": "rahulravi000007@gmail.com",
+          "type": "deduction",
+          "amount": -4795,
+          "balanceBefore": 29575,
+          "balanceAfter": 24780,
+          "description": "Payment for order ORD-274940-044",
+          "orderId": "ORD-274940-044",
+          "createdAt": "2025-10-27T11:24:35.121Z"
+        },
+        {
+          "id": "txn_1761568157307_6jei18",
+          "customerId": "FGkdTIJZQAZaVwdD0YInIbcRRu82",
+          "customerEmail": "rahulravi000007@gmail.com",
+          "type": "deduction",
+          "amount": -1898,
+          "balanceBefore": 24780,
+          "balanceAfter": 22882,
+          "description": "Payment for order ORD-157087-222",
+          "orderId": "ORD-157087-222",
+          "createdAt": "2025-10-27T12:29:17.307Z"
+        },
+        {
+          "id": "txn_1761568328567_dmpuxr",
+          "customerId": "FGkdTIJZQAZaVwdD0YInIbcRRu82",
+          "customerEmail": "rahulravi000007@gmail.com",
+          "type": "deduction",
+          "amount": -1654,
+          "balanceBefore": 22882,
+          "balanceAfter": 21228,
+          "description": "Payment for order ORD-328415-779",
+          "orderId": "ORD-328415-779",
+          "createdAt": "2025-10-27T12:32:08.567Z"
+        },
+        {
+          "id": "txn_1761580017476_xkeysg",
+          "customerId": "FGkdTIJZQAZaVwdD0YInIbcRRu82",
+          "customerEmail": "rahulravi000007@gmail.com",
+          "type": "purchase",
+          "amount": 100,
+          "balanceBefore": 21228,
+          "balanceAfter": 21328,
+          "description": "Purchased Starter Pack",
+          "paymentMethod": "demo",
+          "paymentAmount": 100,
+          "createdAt": "2025-10-27T15:46:57.476Z"
+        },
+        {
+          "id": "txn_1761580084738_gdwul",
+          "customerId": "FGkdTIJZQAZaVwdD0YInIbcRRu82",
+          "customerEmail": "rahulravi000007@gmail.com",
+          "type": "deduction",
+          "amount": -5219,
+          "balanceBefore": 21328,
+          "balanceAfter": 16109,
+          "description": "Payment for order ORD-084506-007",
+          "orderId": "ORD-084506-007",
+          "createdAt": "2025-10-27T15:48:04.738Z"
         }
       ]
     }

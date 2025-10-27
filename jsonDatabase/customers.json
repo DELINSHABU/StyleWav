@@ -14,7 +14,9 @@
       "address": "karikom PO kottarakara",
       "city": "kollam",
       "state": "Kerala",
-      "zipCode": "691531"
+      "zipCode": "691531",
+      "id": "addr_1761563656421_wak7gafcn",
+      "isDefault": true
     },
     "addresses": [
       {
@@ -23,7 +25,9 @@
         "address": "karikom PO kottarakara",
         "city": "kollam",
         "state": "Kerala",
-        "zipCode": "691531"
+        "zipCode": "691531",
+        "id": "addr_1761563656421_wak7gafcn",
+        "isDefault": true
       }
     ],
     "wishlist": [],
@@ -52,7 +56,9 @@
       "address": "karikom PO kottarakara",
       "city": "kollam",
       "state": "Kerala",
-      "zipCode": "691531"
+      "zipCode": "691531",
+      "id": "addr_1761563656421_txk9lbgpx",
+      "isDefault": true
     },
     "addresses": [
       {
@@ -61,7 +67,9 @@
         "address": "karikom PO kottarakara",
         "city": "kollam",
         "state": "Kerala",
-        "zipCode": "691531"
+        "zipCode": "691531",
+        "id": "addr_1761563656421_txk9lbgpx",
+        "isDefault": true
       }
     ],
     "wishlist": [],
@@ -90,7 +98,9 @@
       "address": "karikom PO kottarakara",
       "city": "kollam",
       "state": "Kerala",
-      "zipCode": "691531"
+      "zipCode": "691531",
+      "id": "addr_1761563656421_bftpngw9w",
+      "isDefault": true
     },
     "addresses": [
       {
@@ -99,7 +109,9 @@
         "address": "karikom PO kottarakara",
         "city": "kollam",
         "state": "Kerala",
-        "zipCode": "691531"
+        "zipCode": "691531",
+        "id": "addr_1761563656421_bftpngw9w",
+        "isDefault": true
       }
     ],
     "wishlist": [],
@@ -120,7 +132,7 @@
     "lastName": "ravi",
     "phone": "09633766791",
     "dateJoined": "2025-10-26T21:47:08.025Z",
-    "lastActive": "2025-10-26T21:47:08.025Z",
+    "lastActive": "2025-10-27T17:01:12.374Z",
     "isActive": true,
     "defaultShippingAddress": {
       "firstName": "rahul",
@@ -128,7 +140,12 @@
       "address": "karikom PO kottarakara",
       "city": "kollam",
       "state": "Kerala",
-      "zipCode": "691531"
+      "zipCode": "691531",
+      "id": "addr_1761563656421_irgpy2fh8",
+      "isDefault": true,
+      "email": "rahulravi000007@gmail.com",
+      "phone": "09633766791",
+      "country": "United Kingdom"
     },
     "addresses": [
       {
@@ -137,7 +154,23 @@
         "address": "karikom PO kottarakara",
         "city": "kollam",
         "state": "Kerala",
-        "zipCode": "691531"
+        "zipCode": "691531",
+        "id": "addr_1761563656421_irgpy2fh8",
+        "isDefault": true,
+        "email": "rahulravi000007@gmail.com",
+        "phone": "09633766791",
+        "country": "United Kingdom"
+      },
+      {
+        "firstName": "DELIN",
+        "lastName": "SHABU",
+        "address": "karikom PO kottarakara",
+        "city": "kollam",
+        "state": "Kerala",
+        "zipCode": "691531",
+        "country": "India",
+        "id": "addr_1761563780273_m52j60ej2",
+        "isDefault": false
       }
     ],
     "wishlist": [],

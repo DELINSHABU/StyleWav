@@ -9,13 +9,17 @@ export interface OrderItem {
 }
 
 export interface ShippingAddress {
+  id?: string
   firstName: string
   lastName: string
+  email?: string
+  phone?: string
   address: string
   city: string
   state: string
   zipCode: string
   country?: string
+  isDefault?: boolean
 }
 
 export interface Order {
@@ -195,4 +199,54 @@ export interface NotificationsDatabase {
   notifications: {
     [customerId: string]: Notification[]
   }
+}
+
+// Offer system types
+export interface Offer {
+  id: string
+  name: string
+  description: string
+  type: 'product' | 'combo' | 'payment_method' | 'category' | 'sitewide'
+  discountType: 'percentage' | 'fixed' | 'coins'
+  discountValue: number // percentage (10 = 10%), fixed amount, or coin value
+  
+  // Applicability
+  productIds?: string[] // for product-specific offers
+  comboProductIds?: string[][] // array of product ID arrays for combo offers
+  paymentMethods?: string[] // for payment method specific offers (e.g., ['card', 'upi', 'wallet'])
+  categories?: string[] // for category-specific offers
+  
+  // Conditions
+  minPurchaseAmount?: number
+  maxDiscountAmount?: number // cap for percentage discounts
+  usageLimit?: number // total usage limit across all customers
+  usageCount: number // current usage count
+  perCustomerLimit?: number // per customer usage limit
+  
+  // Validity
+  startDate: string
+  endDate: string
+  isActive: boolean
+  
+  // Metadata
+  code?: string // optional promo code
+  priority: number // higher priority offers apply first
+  createdAt: string
+  updatedAt: string
+  createdBy: string
+}
+
+export interface OfferUsage {
+  id: string
+  offerId: string
+  customerId: string
+  customerEmail: string
+  orderId: string
+  discountApplied: number
+  usedAt: string
+}
+
+export interface OffersDatabase {
+  offers: Offer[]
+  usage: OfferUsage[]
 }

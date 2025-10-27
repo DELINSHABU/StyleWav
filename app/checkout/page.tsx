@@ -14,8 +14,12 @@ import { Header } from '@/components/site/header'
 import { Footer } from '@/components/site/footer'
 import { useCart } from '@/hooks/use-cart'
 import { useToast } from '@/hooks/use-toast'
-import { ArrowLeft, CreditCard, Truck, Shield, Smartphone, Coins as CoinsIcon } from 'lucide-react'
+import { ArrowLeft, CreditCard, Truck, Shield, Smartphone, Coins as CoinsIcon, MapPin, Plus, Star } from 'lucide-react'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog'
+import { AddressForm, AddressFormData } from '@/components/site/address-form'
+import { OffersSection } from '@/components/checkout/offers-section'
+import type { Offer } from '@/lib/database-types'
 
 export default function CheckoutPage() {
   const { items, total } = useCart()
@@ -28,6 +32,12 @@ export default function CheckoutPage() {
   const [upiId, setUpiId] = useState('')
   const [coinsBalance, setCoinsBalance] = useState<number>(0)
   const [loadingCoins, setLoadingCoins] = useState(true)
+  const [appliedOffer, setAppliedOffer] = useState<Offer | null>(null)
+  const [offerDiscount, setOfferDiscount] = useState<number>(0)
+  const [isAddressAutoFilled, setIsAddressAutoFilled] = useState(false)
+  const [savedAddresses, setSavedAddresses] = useState<any[]>([])
+  const [selectedAddressId, setSelectedAddressId] = useState<string | null>(null)
+  const [isAddressModalOpen, setIsAddressModalOpen] = useState(false)
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -43,7 +53,7 @@ export default function CheckoutPage() {
     cardHolder: ''
   })
 
-  // Fetch coins balance
+  // Fetch coins balance and customer data
   useEffect(() => {
     const fetchCoinsBalance = async () => {
       if (currentUser) {
@@ -65,7 +75,75 @@ export default function CheckoutPage() {
       }
     };
 
+    const fetchCustomerData = async () => {
+      if (currentUser && currentUser.email) {
+        try {
+          // Fetch customer addresses
+          const encodedEmail = encodeURIComponent(currentUser.email);
+          const addressResponse = await fetch(`/api/customers/${encodedEmail}/addresses`);
+          
+          if (addressResponse.ok) {
+            const addressResult = await addressResponse.json();
+            if (addressResult.success) {
+              const addresses = addressResult.data.addresses || [];
+              const defaultAddress = addressResult.data.defaultShippingAddress;
+              
+              setSavedAddresses(addresses);
+              
+              // If there's a default address, select it and pre-fill form
+              if (defaultAddress) {
+                setSelectedAddressId(defaultAddress.id);
+                fillFormWithAddress(defaultAddress);
+                setIsAddressAutoFilled(true);
+                console.log('Default address auto-selected');
+              } else if (addresses.length > 0) {
+                // If no default but addresses exist, select the first one
+                setSelectedAddressId(addresses[0].id);
+                fillFormWithAddress(addresses[0]);
+              }
+            }
+          }
+          
+          // Also fetch customer data for email if not in address
+          const customerResponse = await fetch(`/api/customers/${encodedEmail}`);
+          if (customerResponse.ok) {
+            const customerResult = await customerResponse.json();
+            if (customerResult.success && customerResult.data) {
+              const customer = customerResult.data;
+              // Update form with customer email if address doesn't have it
+              if (!formData.email) {
+                setFormData(prev => ({
+                  ...prev,
+                  email: customer.email || currentUser.email || prev.email,
+                }));
+              }
+            }
+          }
+        } catch (error) {
+          console.error('Error fetching customer data:', error);
+        }
+      }
+    };
+
+    const fillFormWithAddress = (address: any) => {
+      setFormData({
+        firstName: address.firstName || '',
+        lastName: address.lastName || '',
+        email: address.email || currentUser?.email || '',
+        phone: address.phone || '',
+        address: address.address || '',
+        city: address.city || '',
+        state: address.state || '',
+        zipCode: address.zipCode || '',
+        cardNumber: '',
+        expiryDate: '',
+        cvv: '',
+        cardHolder: ''
+      });
+    };
+
     fetchCoinsBalance();
+    fetchCustomerData();
   }, [currentUser]);
 
   const handleInputChange = (field: string, value: string) => {
@@ -73,6 +151,81 @@ export default function CheckoutPage() {
       ...prev,
       [field]: value
     }))
+  }
+
+  const handleAddressSelect = (addressId: string) => {
+    setSelectedAddressId(addressId);
+    const selectedAddress = savedAddresses.find(addr => addr.id === addressId);
+    if (selectedAddress) {
+      fillFormWithAddress(selectedAddress);
+    }
+  }
+
+  const fillFormWithAddress = (address: any) => {
+    setFormData({
+      firstName: address.firstName || '',
+      lastName: address.lastName || '',
+      email: address.email || currentUser?.email || '',
+      phone: address.phone || '',
+      address: address.address || '',
+      city: address.city || '',
+      state: address.state || '',
+      zipCode: address.zipCode || '',
+      cardNumber: '',
+      expiryDate: '',
+      cvv: '',
+      cardHolder: ''
+    });
+  }
+
+  const handleAddNewAddress = async (data: AddressFormData) => {
+    if (!currentUser?.email) return;
+    
+    try {
+      const response = await fetch(`/api/customers/${encodeURIComponent(currentUser.email)}/addresses`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      
+      const result = await response.json();
+      
+      if (result.success) {
+        toast({
+          title: "Address added",
+          description: "Your address has been successfully added."
+        });
+        setIsAddressModalOpen(false);
+        // Refresh addresses
+        const addressResponse = await fetch(`/api/customers/${encodeURIComponent(currentUser.email)}/addresses`);
+        if (addressResponse.ok) {
+          const addressResult = await addressResponse.json();
+          if (addressResult.success) {
+            const addresses = addressResult.data.addresses || [];
+            setSavedAddresses(addresses);
+            // Select the newly added address
+            if (addresses.length > 0) {
+              const newAddress = addresses[addresses.length - 1];
+              setSelectedAddressId(newAddress.id);
+              fillFormWithAddress(newAddress);
+            }
+          }
+        }
+      } else {
+        throw new Error(result.message);
+      }
+    } catch (error: any) {
+      toast({
+        variant: "destructive",
+        title: "Failed to add address",
+        description: error.message
+      });
+    }
+  }
+
+  const handleOfferApply = (offer: Offer | null, discount: number) => {
+    setAppliedOffer(offer)
+    setOfferDiscount(discount)
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -126,9 +279,10 @@ export default function CheckoutPage() {
 
     setIsProcessing(true)
     
-    // Calculate shipping and total
+    // Calculate shipping and total with offer discount
     const shippingCost = total >= 999 ? 0 : 99
-    const finalTotal = total + shippingCost
+    const subtotalAfterDiscount = total - offerDiscount
+    const finalTotal = subtotalAfterDiscount + shippingCost
     
     console.log('🛒 Starting checkout process...')
     console.log(`📊 Order summary: Items: ${items.length}, Subtotal: ₹${total}, Shipping: ₹${shippingCost}, Total: ₹${finalTotal}`)
@@ -146,6 +300,8 @@ export default function CheckoutPage() {
         shippingAddress: {
           firstName: formData.firstName,
           lastName: formData.lastName,
+          email: formData.email,
+          phone: formData.phone,
           address: formData.address,
           city: formData.city,
           state: formData.state,
@@ -189,6 +345,8 @@ export default function CheckoutPage() {
           color: item.color
         })),
         subtotal: total,
+        discount: offerDiscount,
+        appliedOfferId: appliedOffer?.id,
         shipping: shippingCost,
         total: finalTotal,
         status: 'confirmed' as const,
@@ -197,6 +355,8 @@ export default function CheckoutPage() {
         shippingAddress: {
           firstName: formData.firstName,
           lastName: formData.lastName,
+          email: formData.email,
+          phone: formData.phone,
           address: formData.address,
           city: formData.city,
           state: formData.state,
@@ -343,7 +503,8 @@ export default function CheckoutPage() {
   }
 
   const shippingCost = total >= 999 ? 0 : 99
-  const finalTotal = total + shippingCost
+  const subtotalAfterDiscount = total - offerDiscount
+  const finalTotal = subtotalAfterDiscount + shippingCost
 
   return (
     <div className="min-h-screen bg-background">
@@ -360,14 +521,121 @@ export default function CheckoutPage() {
           </Button>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Checkout Form */}
+            {/* Left Column: Offers at top, Shipping Information at bottom */}
             <div className="space-y-6">
+              {/* Offers Section */}
+              <OffersSection
+                subtotal={total}
+                paymentMethod={paymentMethod}
+                cartItems={items}
+                onOfferApply={handleOfferApply}
+              />
+
+              {/* Shipping Information */}
               <Card>
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Truck className="h-5 w-5" />
-                    Shipping Information
-                  </CardTitle>
+                  <div className="flex items-center justify-between">
+                    <CardTitle className="flex items-center gap-2">
+                      <Truck className="h-5 w-5" />
+                      Shipping Information
+                    </CardTitle>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setIsAddressModalOpen(true)}
+                    >
+                      <Plus className="h-4 w-4 mr-2" />
+                      New Address
+                    </Button>
+                  </div>
+                  {isAddressAutoFilled && savedAddresses.length > 0 && (
+                    <div className="mt-2 p-2 bg-green-50 dark:bg-green-950/20 rounded-lg border border-green-200 dark:border-green-900">
+                      <p className="text-xs text-green-800 dark:text-green-200 flex items-center gap-1">
+                        ✓ Your saved address has been loaded.
+                      </p>
+                    </div>
+                  )}
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  {savedAddresses.length > 0 ? (
+                    <div className="space-y-3">
+                      <Label className="text-sm font-medium">Select a saved address:</Label>
+                      <RadioGroup value={selectedAddressId || ''} onValueChange={handleAddressSelect}>
+                        {savedAddresses.map((address) => (
+                          <label
+                            key={address.id}
+                            className={`flex items-start space-x-3 p-4 border-2 rounded-lg cursor-pointer transition-all ${
+                              selectedAddressId === address.id
+                                ? 'border-primary bg-primary/5'
+                                : 'border-border hover:border-primary/50'
+                            }`}
+                          >
+                            <RadioGroupItem value={address.id} id={address.id} className="mt-1" />
+                            <div className="flex-1">
+                              <div className="flex items-center gap-2">
+                                <p className="font-medium">
+                                  {address.firstName} {address.lastName}
+                                </p>
+                                {address.isDefault && (
+                                  <Badge variant="secondary" className="text-xs">
+                                    <Star className="h-3 w-3 mr-1" />
+                                    Default
+                                  </Badge>
+                                )}
+                              </div>
+                              {address.email && (
+                                <p className="text-sm text-muted-foreground">{address.email}</p>
+                              )}
+                              {address.phone && (
+                                <p className="text-sm text-muted-foreground">{address.phone}</p>
+                              )}
+                              <p className="text-sm text-muted-foreground mt-1">{address.address}</p>
+                              <p className="text-sm text-muted-foreground">
+                                {address.city}, {address.state} {address.zipCode}
+                              </p>
+                            </div>
+                          </label>
+                        ))}
+                      </RadioGroup>
+                    </div>
+                  ) : (
+                    <div className="text-center py-8 border-2 border-dashed rounded-lg">
+                      <MapPin className="mx-auto h-12 w-12 text-muted-foreground mb-3" />
+                      <p className="text-muted-foreground mb-2">No saved addresses</p>
+                      <Button
+                        variant="default"
+                        size="sm"
+                        onClick={() => setIsAddressModalOpen(true)}
+                      >
+                        <Plus className="h-4 w-4 mr-2" />
+                        Add New Address
+                      </Button>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+
+              {/* Add Address Modal */}
+              <Dialog open={isAddressModalOpen} onOpenChange={setIsAddressModalOpen}>
+                <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+                  <DialogHeader>
+                    <DialogTitle>Add New Shipping Address</DialogTitle>
+                    <DialogDescription>
+                      Add a new delivery address for this order.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <AddressForm
+                    onSubmit={handleAddNewAddress}
+                    onCancel={() => setIsAddressModalOpen(false)}
+                    submitLabel="Add Address"
+                  />
+                </DialogContent>
+              </Dialog>
+
+              {/* Hidden fields to maintain form data - only shown for debugging */}
+              <Card className="hidden">
+                <CardHeader>
+                  <CardTitle>Form Data (Hidden)</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="grid grid-cols-2 gap-4">
@@ -456,6 +724,29 @@ export default function CheckoutPage() {
                 </CardContent>
               </Card>
 
+              {/* Security & Shipping Info */}
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="space-y-3 text-sm">
+                    <div className="flex items-center gap-2">
+                      <Shield className="h-4 w-4 text-green-600" />
+                      <span>Secure 256-bit SSL encryption</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Truck className="h-4 w-4 text-blue-600" />
+                      <span>Free shipping on orders over ₹999</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-green-600">✓</span>
+                      <span>30-day return policy</span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Right Column: Payment Method at top, Order Summary at bottom */}
+            <div className="space-y-6">
               <Card>
                 <CardHeader>
                   <CardTitle>Payment Method</CardTitle>
@@ -465,28 +756,46 @@ export default function CheckoutPage() {
                   <RadioGroup value={paymentMethod} onValueChange={(value: any) => setPaymentMethod(value)}>
                     <div className="space-y-3">
                       {/* Credit/Debit Card */}
-                      <label className={`flex items-center space-x-3 p-4 border-2 rounded-lg cursor-pointer transition-all ${
-                        paymentMethod === 'card' ? 'border-primary bg-primary/5' : 'border-border hover:border-primary/50'
-                      }`}>
+                      <label 
+                        className={`flex items-center space-x-3 p-4 border-2 rounded-lg cursor-pointer transition-all ${
+                          paymentMethod === 'card' 
+                            ? 'border-[#0000D1]' 
+                            : 'border-border hover:border-[#0000D1]/50'
+                        }`}
+                        style={{
+                          backgroundColor: paymentMethod === 'card' ? 'rgba(0, 0, 209, 0.1)' : 'transparent'
+                        }}
+                      >
                         <RadioGroupItem value="card" id="card" />
                         <div className="flex-1 flex items-center gap-3">
-                          <CreditCard className="h-5 w-5" />
+                          <CreditCard className="h-5 w-5" style={{ color: paymentMethod === 'card' ? '#0000D1' : undefined }} />
                           <div>
-                            <p className="font-medium">Credit / Debit Card</p>
+                            <p className="font-medium" style={{ color: paymentMethod === 'card' ? '#0000D1' : undefined }}>
+                              Credit / Debit Card
+                            </p>
                             <p className="text-xs text-muted-foreground">Visa, Mastercard, Rupay</p>
                           </div>
                         </div>
                       </label>
 
                       {/* UPI */}
-                      <label className={`flex items-center space-x-3 p-4 border-2 rounded-lg cursor-pointer transition-all ${
-                        paymentMethod === 'upi' ? 'border-primary bg-primary/5' : 'border-border hover:border-primary/50'
-                      }`}>
+                      <label 
+                        className={`flex items-center space-x-3 p-4 border-2 rounded-lg cursor-pointer transition-all ${
+                          paymentMethod === 'upi' 
+                            ? 'border-[#008000]' 
+                            : 'border-border hover:border-[#008000]/50'
+                        }`}
+                        style={{
+                          backgroundColor: paymentMethod === 'upi' ? 'rgba(0, 128, 0, 0.1)' : 'transparent'
+                        }}
+                      >
                         <RadioGroupItem value="upi" id="upi" />
                         <div className="flex-1 flex items-center gap-3">
-                          <Smartphone className="h-5 w-5" />
+                          <Smartphone className="h-5 w-5" style={{ color: paymentMethod === 'upi' ? '#008000' : undefined }} />
                           <div>
-                            <p className="font-medium">UPI Payment</p>
+                            <p className="font-medium" style={{ color: paymentMethod === 'upi' ? '#008000' : undefined }}>
+                              UPI Payment
+                            </p>
                             <p className="text-xs text-muted-foreground">Google Pay, PhonePe, Paytm</p>
                           </div>
                         </div>
@@ -494,18 +803,27 @@ export default function CheckoutPage() {
                       </label>
 
                       {/* Coins */}
-                      <label className={`flex items-center space-x-3 p-4 border-2 rounded-lg cursor-pointer transition-all ${
-                        paymentMethod === 'coins' ? 'border-primary bg-primary/5' : 'border-border hover:border-primary/50'
-                      }`}>
+                      <label 
+                        className={`flex items-center space-x-3 p-4 border-2 rounded-lg cursor-pointer transition-all ${
+                          paymentMethod === 'coins' 
+                            ? 'border-yellow-500' 
+                            : 'border-border hover:border-yellow-500/50'
+                        }`}
+                        style={{
+                          backgroundColor: paymentMethod === 'coins' ? 'rgba(234, 179, 8, 0.1)' : 'transparent'
+                        }}
+                      >
                         <RadioGroupItem value="coins" id="coins" />
                         <div className="flex-1 flex items-center gap-3">
-                          <CoinsIcon className="h-5 w-5" />
+                          <CoinsIcon className="h-5 w-5 text-yellow-500" />
                           <div>
-                            <p className="font-medium">Pay with Coins</p>
+                            <p className="font-medium" style={{ color: paymentMethod === 'coins' ? '#eab308' : undefined }}>
+                              Pay with Coins
+                            </p>
                             <p className="text-xs text-muted-foreground">Use your reward coins</p>
                           </div>
                         </div>
-                        <Badge variant="outline" className="text-xs">
+                        <Badge variant="outline" className="text-xs border-yellow-500 text-yellow-600">
                           {loadingCoins ? 'Loading...' : `${coinsBalance.toLocaleString()} Coins Available`}
                         </Badge>
                       </label>
@@ -637,10 +955,36 @@ export default function CheckoutPage() {
                   )}
                 </CardContent>
               </Card>
-            </div>
 
-            {/* Order Summary */}
-            <div className="space-y-6">
+              {/* Place Order Button */}
+              <Button 
+                onClick={handleSubmit} 
+                className="w-full h-12 text-lg"
+                disabled={isProcessing || (paymentMethod === 'coins' && (finalTotal > coinsBalance || !currentUser))}
+              >
+                {isProcessing ? (
+                  <>
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                    Processing Payment...
+                  </>
+                ) : (
+                  <>
+                    {paymentMethod === 'card' && <CreditCard className="h-5 w-5 mr-2" />}
+                    {paymentMethod === 'upi' && <Smartphone className="h-5 w-5 mr-2" />}
+                    {paymentMethod === 'coins' && <CoinsIcon className="h-5 w-5 mr-2" />}
+                    {paymentMethod === 'coins' 
+                      ? 'Pay with Coins' 
+                      : 'Complete Purchase'
+                    }
+                  </>
+                )}
+              </Button>
+              
+              <p className="text-xs text-muted-foreground text-center">
+                By placing this order, you agree to our Terms of Service and Privacy Policy.
+              </p>
+
+              {/* Order Summary */}
               <Card>
                 <CardHeader>
                   <CardTitle>Order Summary</CardTitle>
@@ -678,6 +1022,12 @@ export default function CheckoutPage() {
                       <span>Subtotal</span>
                       <span>₹{total}</span>
                     </div>
+                    {offerDiscount > 0 && (
+                      <div className="flex justify-between text-sm text-green-600 dark:text-green-400">
+                        <span>Offer Discount</span>
+                        <span>-₹{offerDiscount}</span>
+                      </div>
+                    )}
                     <div className="flex justify-between text-sm">
                       <span>Shipping</span>
                       <span>{shippingCost === 0 ? 'Free' : `₹${shippingCost}`}</span>
@@ -687,57 +1037,14 @@ export default function CheckoutPage() {
                       <span>Total</span>
                       <span>₹{finalTotal}</span>
                     </div>
+                    {offerDiscount > 0 && (
+                      <div className="text-xs text-green-600 dark:text-green-400 text-right">
+                        You saved ₹{offerDiscount}!
+                      </div>
+                    )}
                   </div>
                 </CardContent>
               </Card>
-
-              {/* Security & Shipping Info */}
-              <Card>
-                <CardContent className="pt-6">
-                  <div className="space-y-3 text-sm">
-                    <div className="flex items-center gap-2">
-                      <Shield className="h-4 w-4 text-green-600" />
-                      <span>Secure 256-bit SSL encryption</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Truck className="h-4 w-4 text-blue-600" />
-                      <span>Free shipping on orders over ₹999</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-green-600">✓</span>
-                      <span>30-day return policy</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Place Order Button */}
-              <Button 
-                onClick={handleSubmit} 
-                className="w-full h-12 text-lg"
-                disabled={isProcessing || (paymentMethod === 'coins' && (finalTotal > coinsBalance || !currentUser))}
-              >
-                {isProcessing ? (
-                  <>
-                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                    Processing Payment...
-                  </>
-                ) : (
-                  <>
-                    {paymentMethod === 'card' && <CreditCard className="h-5 w-5 mr-2" />}
-                    {paymentMethod === 'upi' && <Smartphone className="h-5 w-5 mr-2" />}
-                    {paymentMethod === 'coins' && <CoinsIcon className="h-5 w-5 mr-2" />}
-                    {paymentMethod === 'coins' 
-                      ? `Pay with ${finalTotal} Coins` 
-                      : `Complete Purchase - ₹${finalTotal}`
-                    }
-                  </>
-                )}
-              </Button>
-              
-              <p className="text-xs text-muted-foreground text-center">
-                By placing this order, you agree to our Terms of Service and Privacy Policy.
-              </p>
             </div>
           </div>
         </div>

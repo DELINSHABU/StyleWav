@@ -2,6 +2,84 @@
   "notifications": {
     "0": [
       {
+        "id": "notif_1761581956077_7rv15",
+        "customerId": "0",
+        "type": "offer",
+        "title": "🏷️ Super Sale",
+        "message": "Having a Super sale when no one gives you an offer - 10% OFF Use code: SUPERSALE10",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T16:19:16.077Z",
+        "expiresAt": "2025-11-26T16:19:16.074Z"
+      },
+      {
+        "id": "notif_1761581954575_6pa14",
+        "customerId": "0",
+        "type": "offer",
+        "title": "🏷️ bulk order discount ",
+        "message": "If you are great at bulk buying for you and your family, you can get a discount - 27% OFF Use code: BULK27",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T16:19:14.575Z",
+        "expiresAt": "2025-11-26T16:19:14.564Z"
+      },
+      {
+        "id": "notif_1761581952843_h26he",
+        "customerId": "0",
+        "type": "offer",
+        "title": "🏷️ UPI payment offer",
+        "message": "If you're using UPI payment, then you also have an offer - 10% OFF",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T16:19:12.843Z",
+        "expiresAt": "2025-11-26T16:19:12.838Z"
+      },
+      {
+        "id": "notif_1761561919519_8ctr3n",
+        "customerId": "0",
+        "type": "offer",
+        "title": "🏷️ Loyal Customer offer",
+        "message": "For our Loyal customers, give a great offer for a limited period of time. - 45% OFF Use code: LOYALCUSTOME45",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T10:45:19.519Z",
+        "expiresAt": "2025-11-26T10:45:19.516Z"
+      },
+      {
+        "id": "notif_1761561768003_b7t11",
+        "customerId": "0",
+        "type": "offer",
+        "title": "🏷️ Loyal Customer offer",
+        "message": "For our Loyal customers, give a great offer for a limited period of time. - 45 Coins Bonus Use code: LOYALCUSTOME45",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T10:42:48.003Z",
+        "expiresAt": "2025-11-26T10:42:47.999Z"
+      },
+      {
+        "id": "notif_1761561302124_rwks6c",
+        "customerId": "0",
+        "type": "system",
+        "title": "📦 Order Tracking Update",
+        "message": "Your order has been shipped! Track your delivery in real-time.",
+        "data": {
+          "link": "/orders"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T10:35:02.124Z",
+        "expiresAt": "2025-11-26T10:35:02.121Z"
+      },
+      {
         "id": "notif_1761513806570_pt80rc",
         "customerId": "0",
         "type": "offer",
@@ -29,6 +107,84 @@
       }
     ],
     "1": [
+      {
+        "id": "notif_1761581956078_j2jm3j",
+        "customerId": "1",
+        "type": "offer",
+        "title": "🏷️ Super Sale",
+        "message": "Having a Super sale when no one gives you an offer - 10% OFF Use code: SUPERSALE10",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T16:19:16.078Z",
+        "expiresAt": "2025-11-26T16:19:16.074Z"
+      },
+      {
+        "id": "notif_1761581954576_mjtzmg",
+        "customerId": "1",
+        "type": "offer",
+        "title": "🏷️ bulk order discount ",
+        "message": "If you are great at bulk buying for you and your family, you can get a discount - 27% OFF Use code: BULK27",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T16:19:14.576Z",
+        "expiresAt": "2025-11-26T16:19:14.564Z"
+      },
+      {
+        "id": "notif_1761581952843_277ndb",
+        "customerId": "1",
+        "type": "offer",
+        "title": "🏷️ UPI payment offer",
+        "message": "If you're using UPI payment, then you also have an offer - 10% OFF",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T16:19:12.843Z",
+        "expiresAt": "2025-11-26T16:19:12.838Z"
+      },
+      {
+        "id": "notif_1761561919520_iuswm",
+        "customerId": "1",
+        "type": "offer",
+        "title": "🏷️ Loyal Customer offer",
+        "message": "For our Loyal customers, give a great offer for a limited period of time. - 45% OFF Use code: LOYALCUSTOME45",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T10:45:19.520Z",
+        "expiresAt": "2025-11-26T10:45:19.516Z"
+      },
+      {
+        "id": "notif_1761561768004_63c5e",
+        "customerId": "1",
+        "type": "offer",
+        "title": "🏷️ Loyal Customer offer",
+        "message": "For our Loyal customers, give a great offer for a limited period of time. - 45 Coins Bonus Use code: LOYALCUSTOME45",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T10:42:48.004Z",
+        "expiresAt": "2025-11-26T10:42:47.999Z"
+      },
+      {
+        "id": "notif_1761561302125_3k3nig",
+        "customerId": "1",
+        "type": "system",
+        "title": "📦 Order Tracking Update",
+        "message": "Your order has been shipped! Track your delivery in real-time.",
+        "data": {
+          "link": "/orders"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T10:35:02.125Z",
+        "expiresAt": "2025-11-26T10:35:02.121Z"
+      },
       {
         "id": "notif_1761513806570_utpmpi",
         "customerId": "1",
@@ -58,6 +214,84 @@
     ],
     "2": [
       {
+        "id": "notif_1761581956079_hp1uu",
+        "customerId": "2",
+        "type": "offer",
+        "title": "🏷️ Super Sale",
+        "message": "Having a Super sale when no one gives you an offer - 10% OFF Use code: SUPERSALE10",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T16:19:16.079Z",
+        "expiresAt": "2025-11-26T16:19:16.074Z"
+      },
+      {
+        "id": "notif_1761581954576_9l6eo3",
+        "customerId": "2",
+        "type": "offer",
+        "title": "🏷️ bulk order discount ",
+        "message": "If you are great at bulk buying for you and your family, you can get a discount - 27% OFF Use code: BULK27",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T16:19:14.576Z",
+        "expiresAt": "2025-11-26T16:19:14.564Z"
+      },
+      {
+        "id": "notif_1761581952844_oudxihe",
+        "customerId": "2",
+        "type": "offer",
+        "title": "🏷️ UPI payment offer",
+        "message": "If you're using UPI payment, then you also have an offer - 10% OFF",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T16:19:12.844Z",
+        "expiresAt": "2025-11-26T16:19:12.838Z"
+      },
+      {
+        "id": "notif_1761561919520_uoby7m",
+        "customerId": "2",
+        "type": "offer",
+        "title": "🏷️ Loyal Customer offer",
+        "message": "For our Loyal customers, give a great offer for a limited period of time. - 45% OFF Use code: LOYALCUSTOME45",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T10:45:19.520Z",
+        "expiresAt": "2025-11-26T10:45:19.516Z"
+      },
+      {
+        "id": "notif_1761561768004_0flzc",
+        "customerId": "2",
+        "type": "offer",
+        "title": "🏷️ Loyal Customer offer",
+        "message": "For our Loyal customers, give a great offer for a limited period of time. - 45 Coins Bonus Use code: LOYALCUSTOME45",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T10:42:48.004Z",
+        "expiresAt": "2025-11-26T10:42:47.999Z"
+      },
+      {
+        "id": "notif_1761561302125_7q346y",
+        "customerId": "2",
+        "type": "system",
+        "title": "📦 Order Tracking Update",
+        "message": "Your order has been shipped! Track your delivery in real-time.",
+        "data": {
+          "link": "/orders"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T10:35:02.125Z",
+        "expiresAt": "2025-11-26T10:35:02.121Z"
+      },
+      {
         "id": "notif_1761513806570_vnxkql",
         "customerId": "2",
         "type": "offer",
@@ -85,6 +319,84 @@
       }
     ],
     "OZoo83vzaaYNZ3l1vHfwIlKMTTv1": [
+      {
+        "id": "notif_1761581956076_3z76y",
+        "customerId": "OZoo83vzaaYNZ3l1vHfwIlKMTTv1",
+        "type": "offer",
+        "title": "🏷️ Super Sale",
+        "message": "Having a Super sale when no one gives you an offer - 10% OFF Use code: SUPERSALE10",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T16:19:16.076Z",
+        "expiresAt": "2025-11-26T16:19:16.074Z"
+      },
+      {
+        "id": "notif_1761581954574_extj6v",
+        "customerId": "OZoo83vzaaYNZ3l1vHfwIlKMTTv1",
+        "type": "offer",
+        "title": "🏷️ bulk order discount ",
+        "message": "If you are great at bulk buying for you and your family, you can get a discount - 27% OFF Use code: BULK27",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T16:19:14.574Z",
+        "expiresAt": "2025-11-26T16:19:14.564Z"
+      },
+      {
+        "id": "notif_1761581952842_hnkzmi",
+        "customerId": "OZoo83vzaaYNZ3l1vHfwIlKMTTv1",
+        "type": "offer",
+        "title": "🏷️ UPI payment offer",
+        "message": "If you're using UPI payment, then you also have an offer - 10% OFF",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T16:19:12.842Z",
+        "expiresAt": "2025-11-26T16:19:12.838Z"
+      },
+      {
+        "id": "notif_1761561919518_y9ya9",
+        "customerId": "OZoo83vzaaYNZ3l1vHfwIlKMTTv1",
+        "type": "offer",
+        "title": "🏷️ Loyal Customer offer",
+        "message": "For our Loyal customers, give a great offer for a limited period of time. - 45% OFF Use code: LOYALCUSTOME45",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T10:45:19.518Z",
+        "expiresAt": "2025-11-26T10:45:19.516Z"
+      },
+      {
+        "id": "notif_1761561768002_z3j27d",
+        "customerId": "OZoo83vzaaYNZ3l1vHfwIlKMTTv1",
+        "type": "offer",
+        "title": "🏷️ Loyal Customer offer",
+        "message": "For our Loyal customers, give a great offer for a limited period of time. - 45 Coins Bonus Use code: LOYALCUSTOME45",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T10:42:48.002Z",
+        "expiresAt": "2025-11-26T10:42:47.999Z"
+      },
+      {
+        "id": "notif_1761561302124_kkco3",
+        "customerId": "OZoo83vzaaYNZ3l1vHfwIlKMTTv1",
+        "type": "system",
+        "title": "📦 Order Tracking Update",
+        "message": "Your order has been shipped! Track your delivery in real-time.",
+        "data": {
+          "link": "/orders"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T10:35:02.124Z",
+        "expiresAt": "2025-11-26T10:35:02.121Z"
+      },
       {
         "id": "notif_1761513806569_3rmzzg",
         "customerId": "OZoo83vzaaYNZ3l1vHfwIlKMTTv1",
@@ -154,6 +466,84 @@
     ],
     "qaWmS0HRrCTiq0loxPi12zDyHtt1": [
       {
+        "id": "notif_1761581956076_b6419",
+        "customerId": "qaWmS0HRrCTiq0loxPi12zDyHtt1",
+        "type": "offer",
+        "title": "🏷️ Super Sale",
+        "message": "Having a Super sale when no one gives you an offer - 10% OFF Use code: SUPERSALE10",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T16:19:16.076Z",
+        "expiresAt": "2025-11-26T16:19:16.074Z"
+      },
+      {
+        "id": "notif_1761581954574_pblcq7",
+        "customerId": "qaWmS0HRrCTiq0loxPi12zDyHtt1",
+        "type": "offer",
+        "title": "🏷️ bulk order discount ",
+        "message": "If you are great at bulk buying for you and your family, you can get a discount - 27% OFF Use code: BULK27",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T16:19:14.574Z",
+        "expiresAt": "2025-11-26T16:19:14.564Z"
+      },
+      {
+        "id": "notif_1761581952842_6wprl",
+        "customerId": "qaWmS0HRrCTiq0loxPi12zDyHtt1",
+        "type": "offer",
+        "title": "🏷️ UPI payment offer",
+        "message": "If you're using UPI payment, then you also have an offer - 10% OFF",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T16:19:12.842Z",
+        "expiresAt": "2025-11-26T16:19:12.838Z"
+      },
+      {
+        "id": "notif_1761561919519_vjn08e",
+        "customerId": "qaWmS0HRrCTiq0loxPi12zDyHtt1",
+        "type": "offer",
+        "title": "🏷️ Loyal Customer offer",
+        "message": "For our Loyal customers, give a great offer for a limited period of time. - 45% OFF Use code: LOYALCUSTOME45",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T10:45:19.519Z",
+        "expiresAt": "2025-11-26T10:45:19.516Z"
+      },
+      {
+        "id": "notif_1761561768002_aizbme",
+        "customerId": "qaWmS0HRrCTiq0loxPi12zDyHtt1",
+        "type": "offer",
+        "title": "🏷️ Loyal Customer offer",
+        "message": "For our Loyal customers, give a great offer for a limited period of time. - 45 Coins Bonus Use code: LOYALCUSTOME45",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T10:42:48.002Z",
+        "expiresAt": "2025-11-26T10:42:47.999Z"
+      },
+      {
+        "id": "notif_1761561302124_eoc9tf",
+        "customerId": "qaWmS0HRrCTiq0loxPi12zDyHtt1",
+        "type": "system",
+        "title": "📦 Order Tracking Update",
+        "message": "Your order has been shipped! Track your delivery in real-time.",
+        "data": {
+          "link": "/orders"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T10:35:02.124Z",
+        "expiresAt": "2025-11-26T10:35:02.121Z"
+      },
+      {
         "id": "notif_1761513806570_ad2cwx",
         "customerId": "qaWmS0HRrCTiq0loxPi12zDyHtt1",
         "type": "offer",
@@ -183,6 +573,84 @@
     ],
     "customer_1759862808282_didkjltl2": [
       {
+        "id": "notif_1761581956075_y4mt4i",
+        "customerId": "customer_1759862808282_didkjltl2",
+        "type": "offer",
+        "title": "🏷️ Super Sale",
+        "message": "Having a Super sale when no one gives you an offer - 10% OFF Use code: SUPERSALE10",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T16:19:16.075Z",
+        "expiresAt": "2025-11-26T16:19:16.074Z"
+      },
+      {
+        "id": "notif_1761581954565_cniro",
+        "customerId": "customer_1759862808282_didkjltl2",
+        "type": "offer",
+        "title": "🏷️ bulk order discount ",
+        "message": "If you are great at bulk buying for you and your family, you can get a discount - 27% OFF Use code: BULK27",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T16:19:14.565Z",
+        "expiresAt": "2025-11-26T16:19:14.564Z"
+      },
+      {
+        "id": "notif_1761581952839_glmr6o",
+        "customerId": "customer_1759862808282_didkjltl2",
+        "type": "offer",
+        "title": "🏷️ UPI payment offer",
+        "message": "If you're using UPI payment, then you also have an offer - 10% OFF",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T16:19:12.839Z",
+        "expiresAt": "2025-11-26T16:19:12.838Z"
+      },
+      {
+        "id": "notif_1761561919517_t566z",
+        "customerId": "customer_1759862808282_didkjltl2",
+        "type": "offer",
+        "title": "🏷️ Loyal Customer offer",
+        "message": "For our Loyal customers, give a great offer for a limited period of time. - 45% OFF Use code: LOYALCUSTOME45",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T10:45:19.517Z",
+        "expiresAt": "2025-11-26T10:45:19.516Z"
+      },
+      {
+        "id": "notif_1761561768001_g7mzbr",
+        "customerId": "customer_1759862808282_didkjltl2",
+        "type": "offer",
+        "title": "🏷️ Loyal Customer offer",
+        "message": "For our Loyal customers, give a great offer for a limited period of time. - 45 Coins Bonus Use code: LOYALCUSTOME45",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T10:42:48.001Z",
+        "expiresAt": "2025-11-26T10:42:47.999Z"
+      },
+      {
+        "id": "notif_1761561302122_acusvid",
+        "customerId": "customer_1759862808282_didkjltl2",
+        "type": "system",
+        "title": "📦 Order Tracking Update",
+        "message": "Your order has been shipped! Track your delivery in real-time.",
+        "data": {
+          "link": "/orders"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T10:35:02.122Z",
+        "expiresAt": "2025-11-26T10:35:02.121Z"
+      },
+      {
         "id": "notif_1761513806569_qw34cd",
         "customerId": "customer_1759862808282_didkjltl2",
         "type": "offer",
@@ -197,6 +665,84 @@
       }
     ],
     "customer_1759865069745_5kwn0b2kl": [
+      {
+        "id": "notif_1761581956075_re89v9",
+        "customerId": "customer_1759865069745_5kwn0b2kl",
+        "type": "offer",
+        "title": "🏷️ Super Sale",
+        "message": "Having a Super sale when no one gives you an offer - 10% OFF Use code: SUPERSALE10",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T16:19:16.075Z",
+        "expiresAt": "2025-11-26T16:19:16.074Z"
+      },
+      {
+        "id": "notif_1761581954565_sm4eu9",
+        "customerId": "customer_1759865069745_5kwn0b2kl",
+        "type": "offer",
+        "title": "🏷️ bulk order discount ",
+        "message": "If you are great at bulk buying for you and your family, you can get a discount - 27% OFF Use code: BULK27",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T16:19:14.565Z",
+        "expiresAt": "2025-11-26T16:19:14.564Z"
+      },
+      {
+        "id": "notif_1761581952841_ql3otq",
+        "customerId": "customer_1759865069745_5kwn0b2kl",
+        "type": "offer",
+        "title": "🏷️ UPI payment offer",
+        "message": "If you're using UPI payment, then you also have an offer - 10% OFF",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T16:19:12.841Z",
+        "expiresAt": "2025-11-26T16:19:12.838Z"
+      },
+      {
+        "id": "notif_1761561919518_5hzev9",
+        "customerId": "customer_1759865069745_5kwn0b2kl",
+        "type": "offer",
+        "title": "🏷️ Loyal Customer offer",
+        "message": "For our Loyal customers, give a great offer for a limited period of time. - 45% OFF Use code: LOYALCUSTOME45",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T10:45:19.517Z",
+        "expiresAt": "2025-11-26T10:45:19.516Z"
+      },
+      {
+        "id": "notif_1761561768001_5lihnj",
+        "customerId": "customer_1759865069745_5kwn0b2kl",
+        "type": "offer",
+        "title": "🏷️ Loyal Customer offer",
+        "message": "For our Loyal customers, give a great offer for a limited period of time. - 45 Coins Bonus Use code: LOYALCUSTOME45",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T10:42:48.001Z",
+        "expiresAt": "2025-11-26T10:42:47.999Z"
+      },
+      {
+        "id": "notif_1761561302123_svoae",
+        "customerId": "customer_1759865069745_5kwn0b2kl",
+        "type": "system",
+        "title": "📦 Order Tracking Update",
+        "message": "Your order has been shipped! Track your delivery in real-time.",
+        "data": {
+          "link": "/orders"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T10:35:02.123Z",
+        "expiresAt": "2025-11-26T10:35:02.121Z"
+      },
       {
         "id": "notif_1761513806569_kdtsac",
         "customerId": "customer_1759865069745_5kwn0b2kl",
@@ -213,6 +759,84 @@
     ],
     "customer_1760097804133_pxnxgo4q3": [
       {
+        "id": "notif_1761581956076_ki9mmw",
+        "customerId": "customer_1760097804133_pxnxgo4q3",
+        "type": "offer",
+        "title": "🏷️ Super Sale",
+        "message": "Having a Super sale when no one gives you an offer - 10% OFF Use code: SUPERSALE10",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T16:19:16.075Z",
+        "expiresAt": "2025-11-26T16:19:16.074Z"
+      },
+      {
+        "id": "notif_1761581954573_8efzwv",
+        "customerId": "customer_1760097804133_pxnxgo4q3",
+        "type": "offer",
+        "title": "🏷️ bulk order discount ",
+        "message": "If you are great at bulk buying for you and your family, you can get a discount - 27% OFF Use code: BULK27",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T16:19:14.573Z",
+        "expiresAt": "2025-11-26T16:19:14.564Z"
+      },
+      {
+        "id": "notif_1761581952841_18vj6o",
+        "customerId": "customer_1760097804133_pxnxgo4q3",
+        "type": "offer",
+        "title": "🏷️ UPI payment offer",
+        "message": "If you're using UPI payment, then you also have an offer - 10% OFF",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T16:19:12.841Z",
+        "expiresAt": "2025-11-26T16:19:12.838Z"
+      },
+      {
+        "id": "notif_1761561919518_6acpby",
+        "customerId": "customer_1760097804133_pxnxgo4q3",
+        "type": "offer",
+        "title": "🏷️ Loyal Customer offer",
+        "message": "For our Loyal customers, give a great offer for a limited period of time. - 45% OFF Use code: LOYALCUSTOME45",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T10:45:19.518Z",
+        "expiresAt": "2025-11-26T10:45:19.516Z"
+      },
+      {
+        "id": "notif_1761561768002_htmona",
+        "customerId": "customer_1760097804133_pxnxgo4q3",
+        "type": "offer",
+        "title": "🏷️ Loyal Customer offer",
+        "message": "For our Loyal customers, give a great offer for a limited period of time. - 45 Coins Bonus Use code: LOYALCUSTOME45",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T10:42:48.002Z",
+        "expiresAt": "2025-11-26T10:42:47.999Z"
+      },
+      {
+        "id": "notif_1761561302123_n4eucr",
+        "customerId": "customer_1760097804133_pxnxgo4q3",
+        "type": "system",
+        "title": "📦 Order Tracking Update",
+        "message": "Your order has been shipped! Track your delivery in real-time.",
+        "data": {
+          "link": "/orders"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T10:35:02.123Z",
+        "expiresAt": "2025-11-26T10:35:02.121Z"
+      },
+      {
         "id": "notif_1761513806569_x8oat",
         "customerId": "customer_1760097804133_pxnxgo4q3",
         "type": "offer",
@@ -228,6 +852,84 @@
     ],
     "db89rYY9wJYLOFzxc6ktMmLpy042": [
       {
+        "id": "notif_1761581956077_wi337",
+        "customerId": "db89rYY9wJYLOFzxc6ktMmLpy042",
+        "type": "offer",
+        "title": "🏷️ Super Sale",
+        "message": "Having a Super sale when no one gives you an offer - 10% OFF Use code: SUPERSALE10",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T16:19:16.077Z",
+        "expiresAt": "2025-11-26T16:19:16.074Z"
+      },
+      {
+        "id": "notif_1761581954575_n7xri",
+        "customerId": "db89rYY9wJYLOFzxc6ktMmLpy042",
+        "type": "offer",
+        "title": "🏷️ bulk order discount ",
+        "message": "If you are great at bulk buying for you and your family, you can get a discount - 27% OFF Use code: BULK27",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T16:19:14.575Z",
+        "expiresAt": "2025-11-26T16:19:14.564Z"
+      },
+      {
+        "id": "notif_1761581952842_u4bhia",
+        "customerId": "db89rYY9wJYLOFzxc6ktMmLpy042",
+        "type": "offer",
+        "title": "🏷️ UPI payment offer",
+        "message": "If you're using UPI payment, then you also have an offer - 10% OFF",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T16:19:12.842Z",
+        "expiresAt": "2025-11-26T16:19:12.838Z"
+      },
+      {
+        "id": "notif_1761561919519_odm2xo",
+        "customerId": "db89rYY9wJYLOFzxc6ktMmLpy042",
+        "type": "offer",
+        "title": "🏷️ Loyal Customer offer",
+        "message": "For our Loyal customers, give a great offer for a limited period of time. - 45% OFF Use code: LOYALCUSTOME45",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T10:45:19.519Z",
+        "expiresAt": "2025-11-26T10:45:19.516Z"
+      },
+      {
+        "id": "notif_1761561768003_x4t20e",
+        "customerId": "db89rYY9wJYLOFzxc6ktMmLpy042",
+        "type": "offer",
+        "title": "🏷️ Loyal Customer offer",
+        "message": "For our Loyal customers, give a great offer for a limited period of time. - 45 Coins Bonus Use code: LOYALCUSTOME45",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T10:42:48.003Z",
+        "expiresAt": "2025-11-26T10:42:47.999Z"
+      },
+      {
+        "id": "notif_1761561302124_92coqk",
+        "customerId": "db89rYY9wJYLOFzxc6ktMmLpy042",
+        "type": "system",
+        "title": "📦 Order Tracking Update",
+        "message": "Your order has been shipped! Track your delivery in real-time.",
+        "data": {
+          "link": "/orders"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T10:35:02.124Z",
+        "expiresAt": "2025-11-26T10:35:02.121Z"
+      },
+      {
         "id": "notif_1761513806570_dseqq",
         "customerId": "db89rYY9wJYLOFzxc6ktMmLpy042",
         "type": "offer",
@@ -239,6 +941,166 @@
         "isRead": true,
         "createdAt": "2025-10-26T21:23:26.570Z",
         "expiresAt": "2025-11-25T21:23:26.568Z"
+      }
+    ],
+    "customer_1761515228025_o6a33h5c3": [
+      {
+        "id": "notif_1761581956076_j0n26f",
+        "customerId": "customer_1761515228025_o6a33h5c3",
+        "type": "offer",
+        "title": "🏷️ Super Sale",
+        "message": "Having a Super sale when no one gives you an offer - 10% OFF Use code: SUPERSALE10",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T16:19:16.076Z",
+        "expiresAt": "2025-11-26T16:19:16.074Z"
+      },
+      {
+        "id": "notif_1761581954574_3ijiug",
+        "customerId": "customer_1761515228025_o6a33h5c3",
+        "type": "offer",
+        "title": "🏷️ bulk order discount ",
+        "message": "If you are great at bulk buying for you and your family, you can get a discount - 27% OFF Use code: BULK27",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T16:19:14.574Z",
+        "expiresAt": "2025-11-26T16:19:14.564Z"
+      },
+      {
+        "id": "notif_1761581952842_hz76ak",
+        "customerId": "customer_1761515228025_o6a33h5c3",
+        "type": "offer",
+        "title": "🏷️ UPI payment offer",
+        "message": "If you're using UPI payment, then you also have an offer - 10% OFF",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T16:19:12.842Z",
+        "expiresAt": "2025-11-26T16:19:12.838Z"
+      },
+      {
+        "id": "notif_1761561919518_0eei5p",
+        "customerId": "customer_1761515228025_o6a33h5c3",
+        "type": "offer",
+        "title": "🏷️ Loyal Customer offer",
+        "message": "For our Loyal customers, give a great offer for a limited period of time. - 45% OFF Use code: LOYALCUSTOME45",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T10:45:19.518Z",
+        "expiresAt": "2025-11-26T10:45:19.516Z"
+      },
+      {
+        "id": "notif_1761561768002_wbnt7f",
+        "customerId": "customer_1761515228025_o6a33h5c3",
+        "type": "offer",
+        "title": "🏷️ Loyal Customer offer",
+        "message": "For our Loyal customers, give a great offer for a limited period of time. - 45 Coins Bonus Use code: LOYALCUSTOME45",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T10:42:48.002Z",
+        "expiresAt": "2025-11-26T10:42:47.999Z"
+      },
+      {
+        "id": "notif_1761561302123_07ogv",
+        "customerId": "customer_1761515228025_o6a33h5c3",
+        "type": "system",
+        "title": "📦 Order Tracking Update",
+        "message": "Your order has been shipped! Track your delivery in real-time.",
+        "data": {
+          "link": "/orders"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T10:35:02.123Z",
+        "expiresAt": "2025-11-26T10:35:02.121Z"
+      }
+    ],
+    "FGkdTIJZQAZaVwdD0YInIbcRRu82": [
+      {
+        "id": "notif_1761581956077_378y8",
+        "customerId": "FGkdTIJZQAZaVwdD0YInIbcRRu82",
+        "type": "offer",
+        "title": "🏷️ Super Sale",
+        "message": "Having a Super sale when no one gives you an offer - 10% OFF Use code: SUPERSALE10",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T16:19:16.077Z",
+        "expiresAt": "2025-11-26T16:19:16.074Z"
+      },
+      {
+        "id": "notif_1761581954575_47khrc",
+        "customerId": "FGkdTIJZQAZaVwdD0YInIbcRRu82",
+        "type": "offer",
+        "title": "🏷️ bulk order discount ",
+        "message": "If you are great at bulk buying for you and your family, you can get a discount - 27% OFF Use code: BULK27",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T16:19:14.575Z",
+        "expiresAt": "2025-11-26T16:19:14.564Z"
+      },
+      {
+        "id": "notif_1761581952843_op40y9",
+        "customerId": "FGkdTIJZQAZaVwdD0YInIbcRRu82",
+        "type": "offer",
+        "title": "🏷️ UPI payment offer",
+        "message": "If you're using UPI payment, then you also have an offer - 10% OFF",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T16:19:12.843Z",
+        "expiresAt": "2025-11-26T16:19:12.838Z"
+      },
+      {
+        "id": "notif_1761561919519_pows77",
+        "customerId": "FGkdTIJZQAZaVwdD0YInIbcRRu82",
+        "type": "offer",
+        "title": "🏷️ Loyal Customer offer",
+        "message": "For our Loyal customers, give a great offer for a limited period of time. - 45% OFF Use code: LOYALCUSTOME45",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-27T10:45:19.519Z",
+        "expiresAt": "2025-11-26T10:45:19.516Z"
+      },
+      {
+        "id": "notif_1761561768003_2zj41s",
+        "customerId": "FGkdTIJZQAZaVwdD0YInIbcRRu82",
+        "type": "offer",
+        "title": "🏷️ Loyal Customer offer",
+        "message": "For our Loyal customers, give a great offer for a limited period of time. - 45 Coins Bonus Use code: LOYALCUSTOME45",
+        "data": {
+          "link": "/checkout"
+        },
+        "isRead": true,
+        "createdAt": "2025-10-27T10:42:48.003Z",
+        "expiresAt": "2025-11-26T10:42:47.999Z"
+      },
+      {
+        "id": "notif_1761561302124_bnzxyu",
+        "customerId": "FGkdTIJZQAZaVwdD0YInIbcRRu82",
+        "type": "system",
+        "title": "📦 Order Tracking Update",
+        "message": "Your order has been shipped! Track your delivery in real-time.",
+        "data": {
+          "link": "/orders"
+        },
+        "isRead": true,
+        "createdAt": "2025-10-27T10:35:02.124Z",
+        "expiresAt": "2025-11-26T10:35:02.121Z"
       }
     ]
   }

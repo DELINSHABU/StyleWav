@@ -1654,7 +1654,7 @@
     "subtotal": 5797,
     "shipping": 0,
     "total": 5797,
-    "status": "confirmed",
+    "status": "processing",
     "paymentStatus": "paid",
     "paymentMethod": "Coins",
     "shippingAddress": {
@@ -1668,6 +1668,456 @@
     "id": "order_1761517125765_pphfw6lbm",
     "orderNumber": "ORD-125766-608",
     "orderDate": "2025-10-26T22:18:45.766Z",
-    "updatedAt": "2025-10-26T22:18:45.766Z"
+    "updatedAt": "2025-10-27T07:59:04.223Z",
+    "notes": ""
+  },
+  {
+    "customerId": "customer_1759862808282_didkjltl2",
+    "customerEmail": "delincelin@gmail.com",
+    "items": [
+      {
+        "id": "sw-010",
+        "name": "Urban Nomad",
+        "price": 849,
+        "quantity": 1,
+        "image": "urbannomad-1760128048523.png",
+        "size": "S"
+      },
+      {
+        "id": "sw-012",
+        "name": "Midnight Drift",
+        "price": 799,
+        "quantity": 3,
+        "image": "midnightdrift-1760124608751.png",
+        "size": "S",
+        "color": "Midnight Black"
+      },
+      {
+        "id": "sw-012",
+        "name": "Midnight Drift",
+        "price": 799,
+        "quantity": 3,
+        "image": "midnightdrift-1760124608751.png",
+        "size": "L",
+        "color": "Midnight Black"
+      },
+      {
+        "id": "sw-049",
+        "name": "Mirage",
+        "price": 2099,
+        "quantity": 1,
+        "image": "mirage-1760172171919.png",
+        "size": "XS",
+        "color": "Mirage Blue"
+      },
+      {
+        "id": "sw-041",
+        "name": "Dusk till Dawn",
+        "price": 1899,
+        "quantity": 1,
+        "image": "dusktilldawn-1760127066302.png",
+        "size": "M",
+        "color": "Dusk Orange"
+      }
+    ],
+    "subtotal": 9641,
+    "shipping": 0,
+    "total": 9641,
+    "status": "confirmed",
+    "paymentStatus": "paid",
+    "paymentMethod": "Coins",
+    "shippingAddress": {
+      "firstName": "DELIN",
+      "lastName": "SHABU",
+      "address": "karikom PO kottarakara",
+      "city": "kollam",
+      "state": "Kerala",
+      "zipCode": "691531"
+    },
+    "id": "order_1761560001994_f6frixoye",
+    "orderNumber": "ORD-001994-879",
+    "orderDate": "2025-10-27T10:13:21.994Z",
+    "updatedAt": "2025-10-27T10:13:21.994Z"
+  },
+  {
+    "customerId": "customer_1761515228025_o6a33h5c3",
+    "customerEmail": "rahulravi000007@gmail.com",
+    "items": [
+      {
+        "id": "sw-040",
+        "name": "The Alchemist",
+        "price": 2199,
+        "quantity": 1,
+        "image": "thealchemist-1760126980356.png",
+        "size": "L",
+        "color": "Alchemy Black"
+      },
+      {
+        "id": "sw-035",
+        "name": "Galactic Roar",
+        "price": 779,
+        "quantity": 1,
+        "image": "galacticroar-1760173775863.png",
+        "size": "L",
+        "color": "Roar Orange"
+      }
+    ],
+    "subtotal": 2978,
+    "discount": 596,
+    "appliedOfferId": "offer_1761559963421_z31pcu1a8",
+    "shipping": 0,
+    "total": 2382,
+    "status": "confirmed",
+    "paymentStatus": "paid",
+    "paymentMethod": "Coins",
+    "shippingAddress": {
+      "firstName": "rahul",
+      "lastName": "ravi",
+      "address": "karikom PO kottarakara",
+      "city": "kollam",
+      "state": "Kerala",
+      "zipCode": "691531"
+    },
+    "id": "order_1761560649189_2nzsdchdc",
+    "orderNumber": "ORD-649189-516",
+    "orderDate": "2025-10-27T10:24:09.189Z",
+    "updatedAt": "2025-10-27T10:24:09.189Z"
+  },
+  {
+    "customerId": "customer_1761515228025_o6a33h5c3",
+    "customerEmail": "rahulravi000007@gmail.com",
+    "items": [
+      {
+        "id": "sw-012",
+        "name": "Midnight Drift",
+        "price": 799,
+        "quantity": 3,
+        "image": "midnightdrift-1760124608751.png",
+        "size": "L",
+        "color": "Midnight Black"
+      },
+      {
+        "id": "sw-034",
+        "name": "Electric Eye",
+        "price": 719,
+        "quantity": 1,
+        "image": "electriceye-1760173763830.png",
+        "size": "M",
+        "color": "Electric Blue"
+      },
+      {
+        "id": "sw-011",
+        "name": "Cosmic Wanderer",
+        "price": 949,
+        "quantity": 3,
+        "image": "cosmicwanderer-1760124427712.png",
+        "size": "L",
+        "color": "Deep Purple"
+      },
+      {
+        "id": "sw-058",
+        "name": "Infinity",
+        "price": 769,
+        "quantity": 1,
+        "image": "infinity-1760125982648.png",
+        "size": "L",
+        "color": "Infinite Black"
+      },
+      {
+        "id": "sw-041",
+        "name": "Dusk till Dawn",
+        "price": 1899,
+        "quantity": 1,
+        "image": "dusktilldawn-1760127066302.png",
+        "size": "L",
+        "color": "Dusk Orange"
+      }
+    ],
+    "subtotal": 8631,
+    "discount": 3884,
+    "appliedOfferId": "offer_1761561908143_4b6gq9wsd",
+    "shipping": 0,
+    "total": 4747,
+    "status": "confirmed",
+    "paymentStatus": "paid",
+    "paymentMethod": "Coins",
+    "shippingAddress": {
+      "firstName": "rahul",
+      "lastName": "ravi",
+      "address": "karikom PO kottarakara",
+      "city": "kollam",
+      "state": "Kerala",
+      "zipCode": "691531"
+    },
+    "id": "order_1761561981301_c09w34g3t",
+    "orderNumber": "ORD-981301-327",
+    "orderDate": "2025-10-27T10:46:21.301Z",
+    "updatedAt": "2025-10-27T10:46:21.301Z"
+  },
+  {
+    "customerId": "customer_1761515228025_o6a33h5c3",
+    "customerEmail": "rahulravi000007@gmail.com",
+    "items": [
+      {
+        "id": "sw-036",
+        "name": "Phantom Rider",
+        "price": 749,
+        "quantity": 1,
+        "image": "phantomrider-1760173874925.png",
+        "size": "L",
+        "color": "Phantom Gray"
+      },
+      {
+        "id": "sw-018",
+        "name": "The Quiet Place",
+        "price": 819,
+        "quantity": 1,
+        "image": "thequietplace-1760124996745.png",
+        "size": "L",
+        "color": "Whisper Gray"
+      },
+      {
+        "id": "sw-014",
+        "name": "The Voyager",
+        "price": 899,
+        "quantity": 1,
+        "image": "thevoyager-1760124748843.png",
+        "size": "L",
+        "color": "Desert Sand"
+      },
+      {
+        "id": "sw-017",
+        "name": "Horizon",
+        "price": 889,
+        "quantity": 1,
+        "image": "horizon-1760124938054.png",
+        "size": "XL",
+        "color": "Sunrise Orange"
+      }
+    ],
+    "subtotal": 3356,
+    "discount": 1510,
+    "appliedOfferId": "offer_1761561908143_4b6gq9wsd",
+    "shipping": 0,
+    "total": 1846,
+    "status": "confirmed",
+    "paymentStatus": "paid",
+    "paymentMethod": "Coins",
+    "shippingAddress": {
+      "firstName": "rahul",
+      "lastName": "ravi",
+      "address": "karikom PO kottarakara",
+      "city": "kollam",
+      "state": "Kerala",
+      "zipCode": "691531"
+    },
+    "id": "order_1761563160261_ryrv058rq",
+    "orderNumber": "ORD-160261-471",
+    "orderDate": "2025-10-27T11:06:00.261Z",
+    "updatedAt": "2025-10-27T11:06:00.261Z"
+  },
+  {
+    "customerId": "customer_1759862808282_didkjltl2",
+    "customerEmail": "delincelin@gmail.com",
+    "items": [
+      {
+        "id": "sw-011",
+        "name": "Cosmic Wanderer",
+        "price": 949,
+        "quantity": 3,
+        "image": "cosmicwanderer-1760124427712.png",
+        "size": "L",
+        "color": "Deep Purple"
+      },
+      {
+        "id": "sw-018",
+        "name": "The Quiet Place",
+        "price": 819,
+        "quantity": 2,
+        "image": "thequietplace-1760124996745.png",
+        "size": "L",
+        "color": "Whisper Gray"
+      },
+      {
+        "id": "sw-025",
+        "name": "Cosmic Bloom",
+        "price": 689,
+        "quantity": 4,
+        "image": "cosmicbloom-1760125527208.png",
+        "size": "M",
+        "color": "Galaxy Purple"
+      },
+      {
+        "id": "sw-061",
+        "name": "The Architect",
+        "price": 739,
+        "quantity": 2,
+        "image": "thearchitect-1760126198148.png",
+        "size": "M",
+        "color": "Blueprint Blue"
+      }
+    ],
+    "subtotal": 8719,
+    "discount": 3924,
+    "appliedOfferId": "offer_1761561908143_4b6gq9wsd",
+    "shipping": 0,
+    "total": 4795,
+    "status": "confirmed",
+    "paymentStatus": "paid",
+    "paymentMethod": "Coins",
+    "shippingAddress": {
+      "firstName": "DELIN",
+      "lastName": "SHABU",
+      "address": "karikom PO kottarakara",
+      "city": "kollam",
+      "state": "Kerala",
+      "zipCode": "691531"
+    },
+    "id": "order_1761564274940_vgm9jlz1y",
+    "orderNumber": "ORD-274940-044",
+    "orderDate": "2025-10-27T11:24:34.940Z",
+    "updatedAt": "2025-10-27T11:24:34.940Z"
+  },
+  {
+    "customerId": "customer_1761515228025_o6a33h5c3",
+    "customerEmail": "rahulravi000007@gmail.com",
+    "items": [
+      {
+        "id": "sw-011",
+        "name": "Cosmic Wanderer",
+        "price": 949,
+        "quantity": 2,
+        "image": "cosmicwanderer-1760124427712.png",
+        "size": "S",
+        "color": "Deep Purple"
+      }
+    ],
+    "subtotal": 1898,
+    "discount": 0,
+    "shipping": 0,
+    "total": 1898,
+    "status": "confirmed",
+    "paymentStatus": "paid",
+    "paymentMethod": "Coins",
+    "shippingAddress": {
+      "firstName": "rahul",
+      "lastName": "ravi",
+      "address": "karikom PO kottarakara",
+      "city": "kollam",
+      "state": "Kerala",
+      "zipCode": "691531"
+    },
+    "id": "order_1761568157087_ddi70z5sq",
+    "orderNumber": "ORD-157087-222",
+    "orderDate": "2025-10-27T12:29:17.087Z",
+    "updatedAt": "2025-10-27T12:29:17.087Z"
+  },
+  {
+    "customerId": "customer_1761515228025_o6a33h5c3",
+    "customerEmail": "rahulravi000007@gmail.com",
+    "items": [
+      {
+        "id": "sw-025",
+        "name": "Cosmic Bloom",
+        "price": 689,
+        "quantity": 3,
+        "image": "cosmicbloom-1760125527208.png",
+        "size": "M",
+        "color": "Galaxy Purple"
+      }
+    ],
+    "subtotal": 2067,
+    "discount": 413,
+    "appliedOfferId": "offer_1761559963421_z31pcu1a8",
+    "shipping": 0,
+    "total": 1654,
+    "status": "confirmed",
+    "paymentStatus": "paid",
+    "paymentMethod": "Coins",
+    "shippingAddress": {
+      "firstName": "rahul",
+      "lastName": "ravi",
+      "address": "karikom PO kottarakara",
+      "city": "kollam",
+      "state": "Kerala",
+      "zipCode": "691531"
+    },
+    "id": "order_1761568328414_yc110h3oc",
+    "orderNumber": "ORD-328415-779",
+    "orderDate": "2025-10-27T12:32:08.415Z",
+    "updatedAt": "2025-10-27T12:32:08.415Z"
+  },
+  {
+    "customerId": "customer_1761515228025_o6a33h5c3",
+    "customerEmail": "rahulravi000007@gmail.com",
+    "items": [
+      {
+        "id": "sw-011",
+        "name": "Cosmic Wanderer",
+        "price": 949,
+        "quantity": 2,
+        "image": "cosmicwanderer-1760124427712.png",
+        "size": "L",
+        "color": "Deep Purple"
+      }
+    ],
+    "subtotal": 1898,
+    "discount": 0,
+    "shipping": 0,
+    "total": 1898,
+    "status": "confirmed",
+    "paymentStatus": "paid",
+    "paymentMethod": "Credit Card",
+    "shippingAddress": {
+      "firstName": "rahul",
+      "lastName": "ravi",
+      "email": "rahulravi000007@gmail.com",
+      "phone": "09633766791",
+      "address": "karikom PO kottarakara",
+      "city": "kollam",
+      "state": "Kerala",
+      "zipCode": "691531"
+    },
+    "id": "order_1761578715633_vyjua3hy5",
+    "orderNumber": "ORD-715633-066",
+    "orderDate": "2025-10-27T15:25:15.633Z",
+    "updatedAt": "2025-10-27T15:25:15.633Z"
+  },
+  {
+    "customerId": "customer_1761515228025_o6a33h5c3",
+    "customerEmail": "rahulravi000007@gmail.com",
+    "items": [
+      {
+        "id": "sw-011",
+        "name": "Cosmic Wanderer",
+        "price": 949,
+        "quantity": 10,
+        "image": "cosmicwanderer-1760124427712.png",
+        "size": "L",
+        "color": "Deep Purple"
+      }
+    ],
+    "subtotal": 9490,
+    "discount": 4271,
+    "appliedOfferId": "offer_1761561908143_4b6gq9wsd",
+    "shipping": 0,
+    "total": 5219,
+    "status": "confirmed",
+    "paymentStatus": "paid",
+    "paymentMethod": "Coins",
+    "shippingAddress": {
+      "firstName": "rahul",
+      "lastName": "ravi",
+      "email": "rahulravi000007@gmail.com",
+      "phone": "09633766791",
+      "address": "karikom PO kottarakara",
+      "city": "kollam",
+      "state": "Kerala",
+      "zipCode": "691531"
+    },
+    "id": "order_1761580084505_wxoy70mft",
+    "orderNumber": "ORD-084506-007",
+    "orderDate": "2025-10-27T15:48:04.506Z",
+    "updatedAt": "2025-10-27T15:48:04.506Z"
   }
 ]

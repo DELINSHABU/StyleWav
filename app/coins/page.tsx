@@ -33,11 +33,11 @@ interface CoinPackage {
 }
 
 const COIN_PACKAGES: CoinPackage[] = [
-  { id: 'pack_100', name: 'Starter Pack', coins: 100, price: 1.00 },
-  { id: 'pack_500', name: 'Value Pack', coins: 500, price: 4.50, bonusCoins: 50 },
-  { id: 'pack_1000', name: 'Popular Pack', coins: 1000, price: 9.00, bonusCoins: 100, popular: true },
-  { id: 'pack_2000', name: 'Premium Pack', coins: 2000, price: 17.00, bonusCoins: 300 },
-  { id: 'pack_5000', name: 'Ultimate Pack', coins: 5000, price: 40.00, bonusCoins: 1000 },
+  { id: 'pack_100', name: 'Starter Pack', coins: 100, price: 100 },
+  { id: 'pack_500', name: 'Value Pack', coins: 500, price: 500, bonusCoins: 50 },
+  { id: 'pack_1000', name: 'Popular Pack', coins: 1000, price: 1000, bonusCoins: 100, popular: true },
+  { id: 'pack_2000', name: 'Premium Pack', coins: 2000, price: 2000, bonusCoins: 300 },
+  { id: 'pack_5000', name: 'Ultimate Pack', coins: 5000, price: 5000, bonusCoins: 1000 },
 ]
 
 export default function CoinsPage() {
@@ -183,7 +183,7 @@ export default function CoinsPage() {
               {balance.toLocaleString()} <span className="text-2xl text-muted-foreground">Coins</span>
             </div>
             <p className="text-sm text-muted-foreground mt-2">
-              ≈ ${(balance * 0.01).toFixed(2)} USD
+              ≈ ₹{balance.toLocaleString()}
             </p>
           </CardContent>
         </Card>
@@ -192,42 +192,66 @@ export default function CoinsPage() {
         <div>
           <h2 className="text-2xl font-bold mb-4">Recharge Coins</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {COIN_PACKAGES.map((pkg) => (
-              <Card key={pkg.id} className={pkg.popular ? 'border-primary shadow-lg' : ''}>
-                <CardHeader>
-                  <div className="flex items-start justify-between">
-                    <div>
-                      <CardTitle>{pkg.name}</CardTitle>
-                      <CardDescription className="mt-2">
-                        <span className="text-2xl font-bold text-foreground">{pkg.coins}</span> Coins
-                        {pkg.bonusCoins && (
-                          <Badge variant="secondary" className="ml-2">
-                            +{pkg.bonusCoins} Bonus
-                          </Badge>
-                        )}
-                      </CardDescription>
+            {COIN_PACKAGES.map((pkg) => {
+              const totalCoins = pkg.coins + (pkg.bonusCoins || 0)
+              const discountPercent = pkg.bonusCoins ? Math.round((pkg.bonusCoins / pkg.coins) * 100) : 0
+              
+              return (
+                <div key={pkg.id} className="relative">
+                  {pkg.popular && (
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10">
+                      <Badge variant="default" className="bg-primary text-primary-foreground px-4 py-1 text-sm font-semibold shadow-md">
+                        Popular
+                      </Badge>
                     </div>
-                    {pkg.popular && (
-                      <Badge variant="default">Popular</Badge>
-                    )}
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    <div className="text-3xl font-bold">
-                      ${pkg.price.toFixed(2)}
-                    </div>
-                    <Button
-                      className="w-full"
-                      onClick={() => handlePurchase(pkg)}
-                      disabled={purchasing}
-                    >
-                      {purchasing ? 'Processing...' : 'Purchase'}
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+                  )}
+                  <Card className={pkg.popular ? 'border-2 border-primary shadow-lg' : ''}>
+                    <CardHeader>
+                      <div className="flex items-start justify-between">
+                        <div className="flex-1">
+                          <div className="flex items-center justify-between">
+                            <CardTitle>{pkg.name}</CardTitle>
+                            {discountPercent > 0 && (
+                              <Badge variant="destructive" className="bg-green-600 hover:bg-green-700">
+                                {discountPercent}% OFF
+                              </Badge>
+                            )}
+                          </div>
+                          <CardDescription className="mt-2">
+                            <span className="text-4xl font-bold text-yellow-600">{pkg.coins}</span> <span className="text-lg text-muted-foreground">Coins</span>
+                            {pkg.bonusCoins && (
+                              <Badge variant="secondary" className="ml-2 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-yellow-950 border-yellow-600 relative overflow-hidden">
+                                <span className="relative z-10">+{pkg.bonusCoins} Bonus</span>
+                                <span className="absolute inset-0 -translate-x-full animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+                              </Badge>
+                            )}
+                          </CardDescription>
+                          {pkg.bonusCoins && (
+                            <p className="text-base text-muted-foreground mt-1">
+                              Total: <span className="font-semibold text-yellow-600 text-lg">{totalCoins}</span> coins
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-4">
+                        <div className="text-2xl">
+                          ₹{pkg.price.toFixed(2)}
+                        </div>
+                        <Button
+                          className="w-full"
+                          onClick={() => handlePurchase(pkg)}
+                          disabled={purchasing}
+                        >
+                          {purchasing ? 'Processing...' : 'Purchase'}
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              )
+            })}
           </div>
         </div>
 
@@ -254,7 +278,7 @@ export default function CoinsPage() {
                               <span className="ml-2">• Gifted by {txn.giftedBy}</span>
                             )}
                             {txn.paymentMethod && (
-                              <span className="ml-2">• Paid ${txn.paymentAmount?.toFixed(2)}</span>
+                              <span className="ml-2">• Paid ₹{txn.paymentAmount?.toFixed(2)}</span>
                             )}
                           </p>
                         </div>

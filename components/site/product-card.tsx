@@ -105,6 +105,25 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
             {/* Background glow effect */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             
+            {/* Persistent Wishlist Button (always visible) */}
+            <motion.button
+              onClick={handleWishlistToggle}
+              className={`absolute bottom-2 right-2 z-10 p-2 rounded-full backdrop-blur-md transition-all duration-300 shadow-lg ${
+                isWishlisted 
+                  ? 'bg-red-500/90 text-white' 
+                  : 'bg-white/90 text-gray-700 hover:bg-red-500/90 hover:text-white'
+              }`}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              aria-label={isWishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
+            >
+              <Heart 
+                className={`h-4 w-4 transition-transform duration-200 ${
+                  isWishlisted ? 'fill-current scale-110' : ''
+                }`} 
+              />
+            </motion.button>
+            
             <motion.img 
               src={product.image 
                 ? (product.image.startsWith('data:') || product.image.startsWith('http') 
@@ -207,11 +226,11 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
           </div>
           
             {/* Content */}
-          <div className="p-4 space-y-3 bg-white dark:bg-black text-gray-900 dark:text-white">
+          <div className="p-2 md:p-4 space-y-2 md:space-y-3 bg-white dark:bg-black text-gray-900 dark:text-white">
             {/* Category and Title */}
-            <div className="space-y-1">
+            <div className="space-y-0.5 md:space-y-1">
               {product.category && (
-                <span className="text-xs font-medium uppercase tracking-wider text-gray-600 dark:text-gray-400">
+                <span className="text-[10px] md:text-xs font-medium uppercase tracking-wider text-gray-600 dark:text-gray-400">
                   {product.category}
                 </span>
               )}
@@ -249,32 +268,8 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
                 </span>
                 {/* You could add originalPrice here if available */}
               </div>
-              
-              {/* Size indicator */}
-              {product.sizes && product.sizes.length > 0 && (
-                <Badge variant="outline" className="text-xs">
-                  {product.sizes.length} sizes
-                </Badge>
-              )}
             </div>
             
-            {/* Action Button (visible on mobile) */}
-            <div className="md:hidden">
-              <Button 
-                size="sm" 
-                className="w-full bg-gray-900 hover:bg-gray-800 text-white dark:bg-white dark:hover:bg-gray-100 dark:text-gray-900" 
-                onClick={handleAddToCart}
-                disabled={!isAvailable}
-                variant={!isAvailable ? 'secondary' : 'default'}
-              >
-                {!isAvailable 
-                  ? getStockStatusText(product)
-                  : (product.sizes && product.sizes.length > 0)
-                    ? 'View Product'
-                    : 'Add to Cart'
-                }
-              </Button>
-            </div>
             
             {stockStatus === 'low-stock' && isAvailable && (
               <p className="text-xs text-orange-600 dark:text-orange-400 text-center font-medium">

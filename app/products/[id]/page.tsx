@@ -17,7 +17,7 @@ import { getProductById } from '@/lib/products'
 import type { Product } from '@/lib/products'
 import { StockStatusBadge, StockQuantityDisplay } from '@/components/ui/stock-status-badge'
 import { getStockStatus, isProductAvailable, getStockStatusText } from '@/lib/stock-utils'
-import { Heart, Star, ArrowLeft, ShoppingBag, Truck, Shield, RotateCcw, Ruler } from 'lucide-react'
+import { Heart, Star, ArrowLeft, ShoppingBag, Truck, Shield, RotateCcw, Ruler, Share2 } from 'lucide-react'
 import ProductSuggestions from '@/components/site/ProductSuggestions'
 
 export default function ProductPage() {
@@ -192,6 +192,28 @@ export default function ProductPage() {
       title: "Added to cart",
       description: `${quantity} x ${product.name}${sizeText}${colorText} added to your cart.`
     })
+  }
+
+  const handleShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: product.name,
+          text: `Check out ${product.name} - ₹${product.price}`,
+          url: window.location.href
+        })
+      } catch (error) {
+        // User cancelled or share failed
+        console.log('Share cancelled or failed:', error)
+      }
+    } else {
+      // Fallback: copy to clipboard
+      navigator.clipboard.writeText(window.location.href)
+      toast({
+        title: "Link copied",
+        description: "Product link copied to clipboard!"
+      })
+    }
   }
 
   const productImages = product.images && product.images.length > 0 ? product.images : [product.image]
@@ -490,6 +512,29 @@ export default function ProductPage() {
       </main>
 
       <Footer />
+      
+      {/* Mobile Bottom Navigation */}
+      <div className="fixed bottom-0 left-0 right-0 bg-background border-t border-border p-4 lg:hidden z-50">
+        <div className="flex gap-3">
+          <Button
+            variant="outline"
+            size="lg"
+            onClick={handleShare}
+            className="w-14 shrink-0"
+          >
+            <Share2 className="h-5 w-5" />
+          </Button>
+          <Button
+            size="lg"
+            onClick={handleAddToCart}
+            disabled={!isAvailable}
+            className="flex-1 bg-black text-white hover:bg-black/90 dark:bg-white dark:text-black dark:hover:bg-white/90"
+          >
+            <ShoppingBag className="h-4 w-4 mr-2" />
+            Add to Cart
+          </Button>
+        </div>
+      </div>
       
       {/* Size Chart Modal */}
       <SizeChartModal 

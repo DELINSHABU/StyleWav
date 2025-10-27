@@ -12,7 +12,8 @@ import {
   Info,
   Briefcase,
   Coins,
-  Bell
+  Bell,
+  Tags
 } from "lucide-react"
 
 const sidebarItems = [
@@ -40,6 +41,11 @@ const sidebarItems = [
     id: "coins",
     label: "Coins",
     icon: Coins,
+  },
+  {
+    id: "offers",
+    label: "Offers",
+    icon: Tags,
   },
   {
     id: "notifications",

@@ -325,3 +325,148 @@ export async function getCustomerStatistics() {
   console.log('📊 CUSTOMERS DATABASE: Statistics calculated:', stats)
   return stats
 }
+
+// Add address to customer
+export async function addAddress(customerId: string, address: Omit<ShippingAddress, 'id'>): Promise<ShippingAddress | null> {
+  console.log(`📍 CUSTOMERS DATABASE: Adding address for customer ${customerId}`)
+  const customer = await getCustomerById(customerId)
+  
+  if (!customer) {
+    console.log(`❌ CUSTOMERS DATABASE: Customer not found for adding address: ${customerId}`)
+    return null
+  }
+  
+  // Generate unique address ID
+  const addressId = `addr_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
+  
+  const newAddress: ShippingAddress = {
+    ...address,
+    id: addressId,
+    isDefault: customer.addresses.length === 0 // First address is default
+  }
+  
+  customer.addresses.push(newAddress)
+  
+  // If this is the first address or marked as default, set as default shipping address
+  if (newAddress.isDefault || !customer.defaultShippingAddress) {
+    customer.defaultShippingAddress = newAddress
+  }
+  
+  await updateCustomer(customerId, { 
+    addresses: customer.addresses,
+    defaultShippingAddress: customer.defaultShippingAddress
+  })
+  
+  console.log(`✅ CUSTOMERS DATABASE: Added address ${addressId}`)
+  return newAddress
+}
+
+// Update address for customer
+export async function updateAddress(customerId: string, addressId: string, updates: Partial<ShippingAddress>): Promise<ShippingAddress | null> {
+  console.log(`🔄 CUSTOMERS DATABASE: Updating address ${addressId} for customer ${customerId}`)
+  const customer = await getCustomerById(customerId)
+  
+  if (!customer) {
+    console.log(`❌ CUSTOMERS DATABASE: Customer not found for updating address: ${customerId}`)
+    return null
+  }
+  
+  const addressIndex = customer.addresses.findIndex(a => a.id === addressId)
+  
+  if (addressIndex === -1) {
+    console.log(`❌ CUSTOMERS DATABASE: Address not found: ${addressId}`)
+    return null
+  }
+  
+  // Update address
+  customer.addresses[addressIndex] = {
+    ...customer.addresses[addressIndex],
+    ...updates,
+    id: addressId // Preserve ID
+  }
+  
+  // If this is the default address, update defaultShippingAddress
+  if (customer.addresses[addressIndex].isDefault || customer.defaultShippingAddress?.id === addressId) {
+    customer.defaultShippingAddress = customer.addresses[addressIndex]
+  }
+  
+  await updateCustomer(customerId, { 
+    addresses: customer.addresses,
+    defaultShippingAddress: customer.defaultShippingAddress
+  })
+  
+  console.log(`✅ CUSTOMERS DATABASE: Updated address ${addressId}`)
+  return customer.addresses[addressIndex]
+}
+
+// Delete address from customer
+export async function deleteAddress(customerId: string, addressId: string): Promise<boolean> {
+  console.log(`🗑️ CUSTOMERS DATABASE: Deleting address ${addressId} for customer ${customerId}`)
+  const customer = await getCustomerById(customerId)
+  
+  if (!customer) {
+    console.log(`❌ CUSTOMERS DATABASE: Customer not found for deleting address: ${customerId}`)
+    return false
+  }
+  
+  const addressIndex = customer.addresses.findIndex(a => a.id === addressId)
+  
+  if (addressIndex === -1) {
+    console.log(`❌ CUSTOMERS DATABASE: Address not found: ${addressId}`)
+    return false
+  }
+  
+  const wasDefault = customer.addresses[addressIndex].isDefault
+  customer.addresses.splice(addressIndex, 1)
+  
+  // If deleted address was default, set first remaining address as default
+  if (wasDefault && customer.addresses.length > 0) {
+    customer.addresses[0].isDefault = true
+    customer.defaultShippingAddress = customer.addresses[0]
+  } else if (customer.addresses.length === 0) {
+    customer.defaultShippingAddress = undefined
+  }
+  
+  await updateCustomer(customerId, { 
+    addresses: customer.addresses,
+    defaultShippingAddress: customer.defaultShippingAddress
+  })
+  
+  console.log(`✅ CUSTOMERS DATABASE: Deleted address ${addressId}`)
+  return true
+}
+
+// Set default address for customer
+export async function setDefaultAddress(customerId: string, addressId: string): Promise<boolean> {
+  console.log(`⭐ CUSTOMERS DATABASE: Setting default address ${addressId} for customer ${customerId}`)
+  const customer = await getCustomerById(customerId)
+  
+  if (!customer) {
+    console.log(`❌ CUSTOMERS DATABASE: Customer not found for setting default address: ${customerId}`)
+    return false
+  }
+  
+  const addressIndex = customer.addresses.findIndex(a => a.id === addressId)
+  
+  if (addressIndex === -1) {
+    console.log(`❌ CUSTOMERS DATABASE: Address not found: ${addressId}`)
+    return false
+  }
+  
+  // Remove default flag from all addresses
+  customer.addresses.forEach(addr => {
+    addr.isDefault = false
+  })
+  
+  // Set new default
+  customer.addresses[addressIndex].isDefault = true
+  customer.defaultShippingAddress = customer.addresses[addressIndex]
+  
+  await updateCustomer(customerId, { 
+    addresses: customer.addresses,
+    defaultShippingAddress: customer.defaultShippingAddress
+  })
+  
+  console.log(`✅ CUSTOMERS DATABASE: Set default address to ${addressId}`)
+  return true
+}

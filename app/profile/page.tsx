@@ -10,12 +10,18 @@ import { Separator } from '@/components/ui/separator'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { updateProfile } from 'firebase/auth'
 import { useToast } from '@/hooks/use-toast'
 import { Header } from '@/components/site/header'
 import { Footer } from '@/components/site/footer'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
+import { AddressForm, AddressFormData } from '@/components/site/address-form'
+import { ShippingAddress } from '@/lib/database-types'
+import { MapPin, Plus, Edit, Trash2, Star } from 'lucide-react'
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog'
+import { Badge } from '@/components/ui/badge'
 
 const profileSchema = z.object({
   displayName: z.string().min(2, 'Name must be at least 2 characters'),
@@ -27,6 +33,12 @@ type ProfileFormData = z.infer<typeof profileSchema>
 export default function ProfilePage() {
   const { currentUser } = useAuth()
   const [isLoading, setIsLoading] = useState(false)
+  const [addresses, setAddresses] = useState<ShippingAddress[]>([])
+  const [defaultAddress, setDefaultAddress] = useState<ShippingAddress | undefined>()
+  const [isAddressDialogOpen, setIsAddressDialogOpen] = useState(false)
+  const [editingAddress, setEditingAddress] = useState<ShippingAddress | null>(null)
+  const [deletingAddressId, setDeletingAddressId] = useState<string | null>(null)
+  const [isAddressLoading, setIsAddressLoading] = useState(false)
   const { toast } = useToast()
 
   const form = useForm<ProfileFormData>({
@@ -36,6 +48,27 @@ export default function ProfilePage() {
       email: currentUser?.email || ''
     }
   })
+
+  // Fetch addresses
+  const fetchAddresses = async () => {
+    if (!currentUser?.email) return
+    
+    try {
+      const response = await fetch(`/api/customers/${encodeURIComponent(currentUser.email)}/addresses`)
+      const result = await response.json()
+      
+      if (result.success) {
+        setAddresses(result.data.addresses || [])
+        setDefaultAddress(result.data.defaultShippingAddress)
+      }
+    } catch (error) {
+      console.error('Failed to fetch addresses:', error)
+    }
+  }
+
+  useEffect(() => {
+    fetchAddresses()
+  }, [currentUser])
 
   const handleUpdateProfile = async (data: ProfileFormData) => {
     if (!currentUser) return
@@ -58,6 +91,134 @@ export default function ProfilePage() {
       })
     } finally {
       setIsLoading(false)
+    }
+  }
+
+  const handleAddAddress = async (data: AddressFormData) => {
+    if (!currentUser?.email) return
+    
+    setIsAddressLoading(true)
+    try {
+      const response = await fetch(`/api/customers/${encodeURIComponent(currentUser.email)}/addresses`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
+      
+      const result = await response.json()
+      
+      if (result.success) {
+        toast({
+          title: "Address added",
+          description: "Your address has been successfully added."
+        })
+        setIsAddressDialogOpen(false)
+        await fetchAddresses()
+      } else {
+        throw new Error(result.message)
+      }
+    } catch (error: any) {
+      toast({
+        variant: "destructive",
+        title: "Failed to add address",
+        description: error.message
+      })
+    } finally {
+      setIsAddressLoading(false)
+    }
+  }
+
+  const handleEditAddress = async (data: AddressFormData) => {
+    if (!currentUser?.email || !editingAddress?.id) return
+    
+    setIsAddressLoading(true)
+    try {
+      const response = await fetch(`/api/customers/${encodeURIComponent(currentUser.email)}/addresses`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ addressId: editingAddress.id, ...data })
+      })
+      
+      const result = await response.json()
+      
+      if (result.success) {
+        toast({
+          title: "Address updated",
+          description: "Your address has been successfully updated."
+        })
+        setIsAddressDialogOpen(false)
+        setEditingAddress(null)
+        await fetchAddresses()
+      } else {
+        throw new Error(result.message)
+      }
+    } catch (error: any) {
+      toast({
+        variant: "destructive",
+        title: "Failed to update address",
+        description: error.message
+      })
+    } finally {
+      setIsAddressLoading(false)
+    }
+  }
+
+  const handleSetDefaultAddress = async (addressId: string) => {
+    if (!currentUser?.email) return
+    
+    try {
+      const response = await fetch(`/api/customers/${encodeURIComponent(currentUser.email)}/addresses`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ addressId, setDefault: true })
+      })
+      
+      const result = await response.json()
+      
+      if (result.success) {
+        toast({
+          title: "Default address updated",
+          description: "Your default address has been changed."
+        })
+        await fetchAddresses()
+      } else {
+        throw new Error(result.message)
+      }
+    } catch (error: any) {
+      toast({
+        variant: "destructive",
+        title: "Failed to set default address",
+        description: error.message
+      })
+    }
+  }
+
+  const handleDeleteAddress = async (addressId: string) => {
+    if (!currentUser?.email) return
+    
+    try {
+      const response = await fetch(`/api/customers/${encodeURIComponent(currentUser.email)}/addresses?addressId=${addressId}`, {
+        method: 'DELETE'
+      })
+      
+      const result = await response.json()
+      
+      if (result.success) {
+        toast({
+          title: "Address deleted",
+          description: "Your address has been successfully deleted."
+        })
+        setDeletingAddressId(null)
+        await fetchAddresses()
+      } else {
+        throw new Error(result.message)
+      }
+    } catch (error: any) {
+      toast({
+        variant: "destructive",
+        title: "Failed to delete address",
+        description: error.message
+      })
     }
   }
 
@@ -146,6 +307,131 @@ export default function ProfilePage() {
 
             <Card>
               <CardHeader>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <CardTitle>Saved Addresses</CardTitle>
+                    <CardDescription>
+                      Manage your delivery addresses.
+                    </CardDescription>
+                  </div>
+                  <Dialog open={isAddressDialogOpen} onOpenChange={(open) => {
+                    setIsAddressDialogOpen(open)
+                    if (!open) setEditingAddress(null)
+                  }}>
+                    <DialogTrigger asChild>
+                      <Button size="sm">
+                        <Plus className="mr-2 h-4 w-4" />
+                        Add Address
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-2xl">
+                      <DialogHeader>
+                        <DialogTitle>{editingAddress ? 'Edit Address' : 'Add New Address'}</DialogTitle>
+                        <DialogDescription>
+                          {editingAddress ? 'Update your address details.' : 'Add a new delivery address to your profile.'}
+                        </DialogDescription>
+                      </DialogHeader>
+                      <AddressForm
+                        defaultValues={editingAddress || undefined}
+                        onSubmit={editingAddress ? handleEditAddress : handleAddAddress}
+                        onCancel={() => {
+                          setIsAddressDialogOpen(false)
+                          setEditingAddress(null)
+                        }}
+                        isLoading={isAddressLoading}
+                        submitLabel={editingAddress ? 'Update Address' : 'Add Address'}
+                      />
+                    </DialogContent>
+                  </Dialog>
+                </div>
+              </CardHeader>
+              <CardContent>
+                {addresses.length === 0 ? (
+                  <div className="text-center py-8 text-muted-foreground">
+                    <MapPin className="mx-auto h-12 w-12 mb-3 opacity-50" />
+                    <p>No addresses saved yet.</p>
+                    <p className="text-sm mt-1">Add your first address to make checkout faster.</p>
+                  </div>
+                ) : (
+                  <div className="space-y-4">
+                    {addresses.map((address) => (
+                      <div
+                        key={address.id}
+                        className="border rounded-lg p-4 relative"
+                      >
+                        {address.isDefault && (
+                          <Badge className="absolute top-4 right-4">
+                            <Star className="mr-1 h-3 w-3" />
+                            Default
+                          </Badge>
+                        )}
+                        <div className="pr-20">
+                          <p className="font-medium">
+                            {address.firstName} {address.lastName}
+                          </p>
+                          {address.email && (
+                            <p className="text-sm text-muted-foreground mt-1">
+                              {address.email}
+                            </p>
+                          )}
+                          {address.phone && (
+                            <p className="text-sm text-muted-foreground">
+                              {address.phone}
+                            </p>
+                          )}
+                          <p className="text-sm text-muted-foreground mt-1">
+                            {address.address}
+                          </p>
+                          <p className="text-sm text-muted-foreground">
+                            {address.city}, {address.state} {address.zipCode}
+                          </p>
+                          {address.country && (
+                            <p className="text-sm text-muted-foreground">
+                              {address.country}
+                            </p>
+                          )}
+                        </div>
+                        <div className="flex gap-2 mt-4">
+                          {!address.isDefault && (
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              onClick={() => handleSetDefaultAddress(address.id!)}
+                            >
+                              Set as Default
+                            </Button>
+                          )}
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => {
+                              setEditingAddress(address)
+                              setIsAddressDialogOpen(true)
+                            }}
+                          >
+                            <Edit className="mr-2 h-4 w-4" />
+                            Edit
+                          </Button>
+                          {addresses.length > 1 && (
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              onClick={() => setDeletingAddressId(address.id!)}
+                            >
+                              <Trash2 className="mr-2 h-4 w-4" />
+                              Delete
+                            </Button>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
                 <CardTitle>Account Information</CardTitle>
                 <CardDescription>
                   Your account details and status.
@@ -186,6 +472,23 @@ export default function ProfilePage() {
                 </div>
               </CardContent>
             </Card>
+
+            <AlertDialog open={!!deletingAddressId} onOpenChange={(open) => !open && setDeletingAddressId(null)}>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Delete Address</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    Are you sure you want to delete this address? This action cannot be undone.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                  <AlertDialogAction onClick={() => deletingAddressId && handleDeleteAddress(deletingAddressId)}>
+                    Delete
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
           </div>
         </main>
 

@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -14,8 +14,9 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Badge } from "@/components/ui/badge"
-import { Bell, Send, Users, Gift, Tag } from "lucide-react"
+import { Bell, Send, Users, Gift, Tag, Tags } from "lucide-react"
 import { toast } from "sonner"
+import type { Offer } from "@/lib/database-types"
 
 type NotificationType = 'coin_gift' | 'offer' | 'order_update' | 'system' | 'promotion'
 type ActionType = 'broadcast' | 'sendToOne' | 'sendToMultiple'
@@ -29,6 +30,26 @@ export default function AdminNotificationsPage() {
   const [customerId, setCustomerId] = useState("")
   const [customerIds, setCustomerIds] = useState("")
   const [sending, setSending] = useState(false)
+  const [offers, setOffers] = useState<Offer[]>([])
+  const [loadingOffers, setLoadingOffers] = useState(true)
+
+  useEffect(() => {
+    loadOffers()
+  }, [])
+
+  const loadOffers = async () => {
+    try {
+      const response = await fetch('/api/admin/offers?active=true')
+      if (response.ok) {
+        const data = await response.json()
+        setOffers(data)
+      }
+    } catch (error) {
+      console.error('Error loading offers:', error)
+    } finally {
+      setLoadingOffers(false)
+    }
+  }
 
   const handleSendNotification = async () => {
     if (!title || !message) {
@@ -93,6 +114,16 @@ export default function AdminNotificationsPage() {
     }
   }
 
+  const getDiscountText = (offer: Offer) => {
+    if (offer.discountType === 'percentage') {
+      return `${offer.discountValue}% OFF`
+    } else if (offer.discountType === 'fixed') {
+      return `₹${offer.discountValue} OFF`
+    } else {
+      return `${offer.discountValue} Coins Bonus`
+    }
+  }
+
   const notificationTemplates = [
     {
       type: 'offer' as NotificationType,
@@ -107,23 +138,18 @@ export default function AdminNotificationsPage() {
       link: '/products'
     },
     {
-      type: 'offer' as NotificationType,
-      title: '🎉 Weekend Special',
-      message: 'Free shipping on orders above $50 this weekend only!',
-      link: '/products'
-    },
-    {
       type: 'coin_gift' as NotificationType,
       title: '🪙 Double Coins Event',
       message: 'Purchase any coin package and get 2x bonus coins! Valid for 24 hours.',
       link: '/coins'
     },
-    {
-      type: 'system' as NotificationType,
-      title: '📦 Order Tracking Update',
-      message: 'Your order has been shipped! Track your delivery in real-time.',
-      link: '/orders'
-    }
+    // Add offer templates dynamically from database
+    ...offers.map(offer => ({
+      type: 'offer' as NotificationType,
+      title: `🏷️ ${offer.name}`,
+      message: `${offer.description} - ${getDiscountText(offer)}${offer.code ? ` Use code: ${offer.code}` : ''}`,
+      link: '/checkout'
+    }))
   ]
 
   const applyTemplate = (template: typeof notificationTemplates[0]) => {
@@ -150,25 +176,37 @@ export default function AdminNotificationsPage() {
           {/* Templates */}
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">Quick Templates</CardTitle>
-              <CardDescription>Use pre-made notification templates</CardDescription>
+              <CardTitle className="text-lg flex items-center gap-2">
+                <Tags className="h-4 w-4" />
+                Quick Notification
+              </CardTitle>
+              <CardDescription>Use pre-made templates or active offers</CardDescription>
             </CardHeader>
             <CardContent className="space-y-2">
-              {notificationTemplates.map((template, index) => (
-                <Button
-                  key={index}
-                  variant="outline"
-                  className="w-full justify-start text-left h-auto py-3"
-                  onClick={() => applyTemplate(template)}
-                >
-                  <div className="space-y-1">
-                    <div className="font-medium">{template.title}</div>
-                    <div className="text-xs text-muted-foreground line-clamp-2">
-                      {template.message}
+              {loadingOffers ? (
+                <div className="text-center py-4">
+                  <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-primary mx-auto mb-2"></div>
+                  <p className="text-xs text-muted-foreground">Loading templates...</p>
+                </div>
+              ) : notificationTemplates.length === 0 ? (
+                <p className="text-sm text-muted-foreground text-center py-4">No templates available</p>
+              ) : (
+                notificationTemplates.map((template, index) => (
+                  <Button
+                    key={index}
+                    variant="outline"
+                    className="w-full justify-start text-left h-auto py-3"
+                    onClick={() => applyTemplate(template)}
+                  >
+                    <div className="space-y-1 w-full">
+                      <div className="font-medium">{template.title}</div>
+                      <div className="text-xs text-muted-foreground line-clamp-2">
+                        {template.message}
+                      </div>
                     </div>
-                  </div>
-                </Button>
-              ))}
+                  </Button>
+                ))
+              )}
             </CardContent>
           </Card>
 

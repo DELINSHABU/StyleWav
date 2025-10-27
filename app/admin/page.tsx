@@ -12,6 +12,7 @@ import { MediaLibrary } from "@/components/admin/media-library"
 import { AdminSettings } from "@/components/admin/admin-settings"
 import { AdminAbout } from "@/components/admin/admin-about"
 import { AdminCareers } from "@/components/admin/admin-careers"
+import { AdminOffers } from "@/components/admin/admin-offers"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { Product } from "@/lib/products"
 import Link from "next/link"
@@ -133,6 +134,8 @@ export default function AdminPage() {
         )
       case 'coins':
         return <AdminCoins />
+      case 'offers':
+        return <AdminOffers />
       case 'notifications':
         return (
           <div className="space-y-6">

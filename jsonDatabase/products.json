@@ -4,7 +4,7 @@
     "name": "Urban Nomad",
     "price": 849,
     "image": "urbannomad-1760128048523.png",
-    "stockQuantity": 149,
+    "stockQuantity": 148,
     "lowStockThreshold": 20,
     "unlimitedStock": false,
     "inStock": true,
@@ -27,7 +27,7 @@
       "XXL"
     ],
     "sizeStock": {
-      "S": 17,
+      "S": 16,
       "M": 37,
       "L": 38,
       "XL": 32,
@@ -41,7 +41,7 @@
     "name": "Cosmic Wanderer",
     "price": 949,
     "image": "cosmicwanderer-1760124427712.png",
-    "stockQuantity": 96,
+    "stockQuantity": 78,
     "lowStockThreshold": 15,
     "unlimitedStock": false,
     "inStock": true,
@@ -66,9 +66,9 @@
       "XXL"
     ],
     "sizeStock": {
-      "S": 19,
+      "S": 17,
       "M": 24,
-      "L": 16,
+      "L": 0,
       "XL": 22,
       "XXL": 15
     },
@@ -80,7 +80,7 @@
     "name": "Midnight Drift",
     "price": 799,
     "image": "midnightdrift-1760124608751.png",
-    "stockQuantity": 194,
+    "stockQuantity": 185,
     "lowStockThreshold": 25,
     "unlimitedStock": false,
     "inStock": true,
@@ -103,9 +103,9 @@
       "XXL"
     ],
     "sizeStock": {
-      "S": 35,
+      "S": 32,
       "M": 45,
-      "L": 44,
+      "L": 38,
       "XL": 40,
       "XXL": 30
     },
@@ -154,7 +154,7 @@
     "name": "The Voyager",
     "price": 899,
     "image": "thevoyager-1760124748843.png",
-    "stockQuantity": 128,
+    "stockQuantity": 127,
     "lowStockThreshold": 18,
     "unlimitedStock": false,
     "inStock": true,
@@ -180,7 +180,7 @@
     "sizeStock": {
       "S": 22,
       "M": 32,
-      "L": 35,
+      "L": 34,
       "XL": 21,
       "XXL": 18
     },
@@ -266,7 +266,7 @@
     "name": "Horizon",
     "price": 889,
     "image": "horizon-1760124938054.png",
-    "stockQuantity": 180,
+    "stockQuantity": 179,
     "lowStockThreshold": 21,
     "unlimitedStock": false,
     "inStock": true,
@@ -294,7 +294,7 @@
       "S": 30,
       "M": 38,
       "L": 44,
-      "XL": 33,
+      "XL": 32,
       "XXL": 25,
       "XS": 10
     },
@@ -306,7 +306,7 @@
     "name": "The Quiet Place",
     "price": 819,
     "image": "thequietplace-1760124996745.png",
-    "stockQuantity": 190,
+    "stockQuantity": 187,
     "lowStockThreshold": 23,
     "unlimitedStock": false,
     "inStock": true,
@@ -331,7 +331,7 @@
     "sizeStock": {
       "S": 34,
       "M": 44,
-      "L": 48,
+      "L": 45,
       "XL": 38,
       "XXL": 26
     },
@@ -567,7 +567,7 @@
     "name": "Cosmic Bloom",
     "price": 689,
     "image": "cosmicbloom-1760125527208.png",
-    "stockQuantity": 200,
+    "stockQuantity": 193,
     "lowStockThreshold": 25,
     "unlimitedStock": false,
     "inStock": true,
@@ -592,7 +592,7 @@
     "sizeStock": {
       "XS": 32,
       "S": 42,
-      "M": 50,
+      "M": 43,
       "L": 46,
       "XL": 30
     },
@@ -904,7 +904,7 @@
     "name": "Electric Eye",
     "price": 719,
     "image": "electriceye-1760173763830.png",
-    "stockQuantity": 190,
+    "stockQuantity": 189,
     "lowStockThreshold": 23,
     "unlimitedStock": false,
     "inStock": true,
@@ -929,7 +929,7 @@
     "sizeStock": {
       "XS": 29,
       "S": 38,
-      "M": 46,
+      "M": 45,
       "L": 42,
       "XL": 35
     },
@@ -941,7 +941,7 @@
     "name": "Galactic Roar",
     "price": 779,
     "image": "galacticroar-1760173775863.png",
-    "stockQuantity": 155,
+    "stockQuantity": 154,
     "lowStockThreshold": 19,
     "unlimitedStock": false,
     "inStock": true,
@@ -967,7 +967,7 @@
       "XS": 23,
       "S": 31,
       "M": 37,
-      "L": 34,
+      "L": 33,
       "XL": 30
     },
     "rating": 4.8,
@@ -978,7 +978,7 @@
     "name": "Phantom Rider",
     "price": 749,
     "image": "phantomrider-1760173874925.png",
-    "stockQuantity": 170,
+    "stockQuantity": 169,
     "lowStockThreshold": 21,
     "unlimitedStock": false,
     "inStock": true,
@@ -1004,7 +1004,7 @@
       "XS": 26,
       "S": 34,
       "M": 41,
-      "L": 38,
+      "L": 37,
       "XL": 31
     },
     "rating": 4.7,
@@ -1128,7 +1128,7 @@
     "name": "The Alchemist",
     "price": 2199,
     "image": "thealchemist-1760126980356.png",
-    "stockQuantity": 66,
+    "stockQuantity": 65,
     "lowStockThreshold": 8,
     "unlimitedStock": false,
     "inStock": true,
@@ -1154,7 +1154,7 @@
       "XS": 10,
       "S": 15,
       "M": 11,
-      "L": 18,
+      "L": 17,
       "XL": 12
     },
     "rating": 4.8,
@@ -1165,7 +1165,7 @@
     "name": "Dusk till Dawn",
     "price": 1899,
     "image": "dusktilldawn-1760127066302.png",
-    "stockQuantity": 95,
+    "stockQuantity": 93,
     "lowStockThreshold": 12,
     "unlimitedStock": false,
     "inStock": true,
@@ -1191,8 +1191,8 @@
     "sizeStock": {
       "XS": 15,
       "S": 20,
-      "M": 25,
-      "L": 22,
+      "M": 24,
+      "L": 21,
       "XL": 13
     },
     "rating": 4.7,
@@ -1464,7 +1464,7 @@
     "name": "Mirage",
     "price": 2099,
     "image": "mirage-1760172171919.png",
-    "stockQuantity": 75,
+    "stockQuantity": 74,
     "lowStockThreshold": 9,
     "unlimitedStock": false,
     "inStock": true,
@@ -1487,7 +1487,7 @@
       "XL"
     ],
     "sizeStock": {
-      "XS": 10,
+      "XS": 9,
       "S": 15,
       "M": 19,
       "L": 17,
@@ -1800,7 +1800,7 @@
     "name": "Infinity",
     "price": 769,
     "image": "infinity-1760125982648.png",
-    "stockQuantity": 140,
+    "stockQuantity": 139,
     "lowStockThreshold": 17,
     "unlimitedStock": false,
     "inStock": true,
@@ -1826,7 +1826,7 @@
       "XS": 21,
       "S": 28,
       "M": 35,
-      "L": 31,
+      "L": 30,
       "XL": 25
     },
     "rating": 4.6,
@@ -1912,7 +1912,7 @@
     "name": "The Architect",
     "price": 739,
     "image": "thearchitect-1760126198148.png",
-    "stockQuantity": 125,
+    "stockQuantity": 123,
     "lowStockThreshold": 15,
     "unlimitedStock": false,
     "inStock": true,
@@ -1937,7 +1937,7 @@
     "sizeStock": {
       "XS": 19,
       "S": 26,
-      "M": 32,
+      "M": 30,
       "L": 28,
       "XL": 20
     },
