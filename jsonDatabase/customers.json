@@ -112,5 +112,43 @@
       "currency": "INR",
       "notifications": true
     }
+  },
+  {
+    "id": "customer_1761515228025_o6a33h5c3",
+    "email": "rahulravi000007@gmail.com",
+    "firstName": "rahul",
+    "lastName": "ravi",
+    "phone": "09633766791",
+    "dateJoined": "2025-10-26T21:47:08.025Z",
+    "lastActive": "2025-10-26T21:47:08.025Z",
+    "isActive": true,
+    "defaultShippingAddress": {
+      "firstName": "rahul",
+      "lastName": "ravi",
+      "address": "karikom PO kottarakara",
+      "city": "kollam",
+      "state": "Kerala",
+      "zipCode": "691531"
+    },
+    "addresses": [
+      {
+        "firstName": "rahul",
+        "lastName": "ravi",
+        "address": "karikom PO kottarakara",
+        "city": "kollam",
+        "state": "Kerala",
+        "zipCode": "691531"
+      }
+    ],
+    "wishlist": [],
+    "cart": [],
+    "totalOrders": 0,
+    "totalSpent": 0,
+    "emailMarketing": true,
+    "smsMarketing": false,
+    "preferences": {
+      "currency": "INR",
+      "notifications": true
+    }
   }
 ]

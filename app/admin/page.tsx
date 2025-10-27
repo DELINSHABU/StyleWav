@@ -6,6 +6,7 @@ import { AdminStats } from "@/components/admin/admin-stats"
 import { AdminAuth } from "@/components/admin/admin-auth"
 import { AdminSidebar } from "@/components/admin/admin-sidebar"
 import { AdminOrders } from "@/components/admin/admin-orders"
+import { AdminCoins } from "@/components/admin/admin-coins"
 import { AdminDashboard } from "@/components/admin/admin-dashboard"
 import { MediaLibrary } from "@/components/admin/media-library"
 import { AdminSettings } from "@/components/admin/admin-settings"
@@ -126,6 +127,41 @@ export default function AdminPage() {
                 <h3 className="text-lg font-semibold mb-2">📦 Products Database</h3>
                 <p className="text-muted-foreground mb-4">Real-time inventory management with stock updates.</p>
                 <a href="/api/products" className="text-primary hover:underline">View API →</a>
+              </div>
+            </div>
+          </div>
+        )
+      case 'coins':
+        return <AdminCoins />
+      case 'notifications':
+        return (
+          <div className="space-y-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <h1 className="text-3xl font-bold">Notification Manager</h1>
+                <p className="text-muted-foreground">Send offers, promotions, and updates to customers</p>
+              </div>
+              <div className="flex gap-2">
+                <a href="/admin/notifications" className="inline-flex items-center px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90">
+                  Full Notification Manager
+                </a>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="p-6 border rounded-lg">
+                <h3 className="text-lg font-semibold mb-2">🔔 Send Notifications</h3>
+                <p className="text-muted-foreground mb-4">Create and send notifications to customers about offers and updates.</p>
+                <a href="/admin/notifications" className="text-primary hover:underline">Send Notifications →</a>
+              </div>
+              <div className="p-6 border rounded-lg">
+                <h3 className="text-lg font-semibold mb-2">🎯 Broadcast Messages</h3>
+                <p className="text-muted-foreground mb-4">Send bulk notifications to all customers at once.</p>
+                <a href="/admin/notifications" className="text-primary hover:underline">Broadcast →</a>
+              </div>
+              <div className="p-6 border rounded-lg">
+                <h3 className="text-lg font-semibold mb-2">🏷️ Quick Templates</h3>
+                <p className="text-muted-foreground mb-4">Use pre-made templates for flash sales, promotions, and more.</p>
+                <a href="/admin/notifications" className="text-primary hover:underline">View Templates →</a>
               </div>
             </div>
           </div>

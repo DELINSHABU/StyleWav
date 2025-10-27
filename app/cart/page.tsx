@@ -3,6 +3,7 @@
 import { useCart } from "@/hooks/use-cart"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import CartProductSuggestions from "@/components/site/CartProductSuggestions"
 
 export default function CartPage() {
   const { items, total, increment, decrement, removeItem, clear } = useCart()
@@ -102,6 +103,17 @@ export default function CartPage() {
               Clear Cart
             </button>
           </aside>
+        </div>
+      )}
+
+      {/* Product Suggestions - Show only when cart has items */}
+      {items.length > 0 && (
+        <div className="mt-12">
+          <div className="mb-6">
+            <h2 className="text-2xl font-semibold mb-2">Continue Shopping</h2>
+            <p className="text-muted-foreground">Discover more products you might like</p>
+          </div>
+          <CartProductSuggestions excludeIds={items.map(item => item.id)} />
         </div>
       )}
     </main>

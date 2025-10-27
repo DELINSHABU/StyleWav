@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import ProductCollage from '@/components/site/ProductCollage';
 
 interface AboutContent {
   hero: {
@@ -149,6 +150,9 @@ export default function AboutPage() {
           </div>
         </motion.div>
       </section>
+
+      {/* Product Collage Section */}
+      <ProductCollage />
 
       {/* Mission Section */}
       <section className="flex min-h-screen items-center justify-center px-6 bg-black">

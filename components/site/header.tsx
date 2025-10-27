@@ -18,6 +18,8 @@ import { AuthModal } from "@/components/auth/auth-modal"
 import { cn } from "@/lib/utils"
 import { User, LogOut, ShoppingBag, Heart } from "lucide-react"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { CoinsDisplay } from "@/components/site/coins-display"
+import { NotificationBell } from "@/components/site/notification-bell"
 
 export function Header() {
   const { items, total, removeItem } = useCart()
@@ -70,6 +72,10 @@ export function Header() {
               <Link href="/orders" className="text-sm hover:opacity-80 hidden md:inline-block">
                 Track Order
               </Link>
+              
+              <NotificationBell />
+              
+              <CoinsDisplay />
               
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>

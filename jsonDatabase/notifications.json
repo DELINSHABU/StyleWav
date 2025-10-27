@@ -1,0 +1,245 @@
+{
+  "notifications": {
+    "0": [
+      {
+        "id": "notif_1761513806570_pt80rc",
+        "customerId": "0",
+        "type": "offer",
+        "title": "🔥 Flash Sale Alert!",
+        "message": "Get 50% OFF on all products! Limited time offer. Shop now and save big!",
+        "data": {
+          "link": "/products"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-26T21:23:26.570Z",
+        "expiresAt": "2025-11-25T21:23:26.568Z"
+      },
+      {
+        "id": "notif_1761513581736_b286ec",
+        "customerId": "0",
+        "type": "offer",
+        "title": "🔥 Flash Sale Alert!",
+        "message": "Get 50% OFF on all products! Limited time offer. Shop now and save big!",
+        "data": {
+          "link": "/products"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-26T21:19:41.736Z",
+        "expiresAt": "2025-11-25T21:19:41.735Z"
+      }
+    ],
+    "1": [
+      {
+        "id": "notif_1761513806570_utpmpi",
+        "customerId": "1",
+        "type": "offer",
+        "title": "🔥 Flash Sale Alert!",
+        "message": "Get 50% OFF on all products! Limited time offer. Shop now and save big!",
+        "data": {
+          "link": "/products"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-26T21:23:26.570Z",
+        "expiresAt": "2025-11-25T21:23:26.568Z"
+      },
+      {
+        "id": "notif_1761513581736_md8lsf",
+        "customerId": "1",
+        "type": "offer",
+        "title": "🔥 Flash Sale Alert!",
+        "message": "Get 50% OFF on all products! Limited time offer. Shop now and save big!",
+        "data": {
+          "link": "/products"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-26T21:19:41.736Z",
+        "expiresAt": "2025-11-25T21:19:41.735Z"
+      }
+    ],
+    "2": [
+      {
+        "id": "notif_1761513806570_vnxkql",
+        "customerId": "2",
+        "type": "offer",
+        "title": "🔥 Flash Sale Alert!",
+        "message": "Get 50% OFF on all products! Limited time offer. Shop now and save big!",
+        "data": {
+          "link": "/products"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-26T21:23:26.570Z",
+        "expiresAt": "2025-11-25T21:23:26.568Z"
+      },
+      {
+        "id": "notif_1761513581736_cpjl",
+        "customerId": "2",
+        "type": "offer",
+        "title": "🔥 Flash Sale Alert!",
+        "message": "Get 50% OFF on all products! Limited time offer. Shop now and save big!",
+        "data": {
+          "link": "/products"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-26T21:19:41.736Z",
+        "expiresAt": "2025-11-25T21:19:41.735Z"
+      }
+    ],
+    "OZoo83vzaaYNZ3l1vHfwIlKMTTv1": [
+      {
+        "id": "notif_1761513806569_3rmzzg",
+        "customerId": "OZoo83vzaaYNZ3l1vHfwIlKMTTv1",
+        "type": "offer",
+        "title": "🔥 Flash Sale Alert!",
+        "message": "Get 50% OFF on all products! Limited time offer. Shop now and save big!",
+        "data": {
+          "link": "/products"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-26T21:23:26.569Z",
+        "expiresAt": "2025-11-25T21:23:26.568Z"
+      },
+      {
+        "id": "notif_1761513306042_nllwb",
+        "customerId": "OZoo83vzaaYNZ3l1vHfwIlKMTTv1",
+        "type": "promotion",
+        "title": "✨ New Collection Launch",
+        "message": "Check out our latest arrivals! Fresh styles just dropped.",
+        "data": {
+          "link": "/products"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-26T21:15:06.042Z",
+        "expiresAt": "2025-11-25T21:15:06.042Z"
+      },
+      {
+        "id": "notif_1761513281724_q1risn",
+        "customerId": "OZoo83vzaaYNZ3l1vHfwIlKMTTv1",
+        "type": "offer",
+        "title": "🔥 Flash Sale Alert!",
+        "message": "Get 50% OFF on all products! Limited time offer. Shop now and save big!",
+        "data": {
+          "link": "/products"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-26T21:14:41.724Z",
+        "expiresAt": "2025-11-25T21:14:41.724Z"
+      },
+      {
+        "id": "notif_1761513230969_imayc",
+        "customerId": "OZoo83vzaaYNZ3l1vHfwIlKMTTv1",
+        "type": "offer",
+        "title": "🔥 Flash Sale Alert!",
+        "message": "Get 50% OFF on all products! Limited time offer. Shop now and save big!",
+        "data": {
+          "link": "/products"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-26T21:13:50.969Z",
+        "expiresAt": "2025-11-25T21:13:50.969Z"
+      },
+      {
+        "id": "notif_1761513159816_35t2c",
+        "customerId": "OZoo83vzaaYNZ3l1vHfwIlKMTTv1",
+        "type": "coin_gift",
+        "title": "🎁 Free Coins Received!",
+        "message": "You've received 1000 free coins: free offer",
+        "data": {
+          "coinAmount": 1000,
+          "link": "/coins"
+        },
+        "isRead": true,
+        "createdAt": "2025-10-26T21:12:39.816Z",
+        "expiresAt": "2025-11-25T21:12:39.816Z"
+      }
+    ],
+    "qaWmS0HRrCTiq0loxPi12zDyHtt1": [
+      {
+        "id": "notif_1761513806570_ad2cwx",
+        "customerId": "qaWmS0HRrCTiq0loxPi12zDyHtt1",
+        "type": "offer",
+        "title": "🔥 Flash Sale Alert!",
+        "message": "Get 50% OFF on all products! Limited time offer. Shop now and save big!",
+        "data": {
+          "link": "/products"
+        },
+        "isRead": true,
+        "createdAt": "2025-10-26T21:23:26.570Z",
+        "expiresAt": "2025-11-25T21:23:26.568Z"
+      },
+      {
+        "id": "notif_1761513653779_bk0fyd",
+        "customerId": "qaWmS0HRrCTiq0loxPi12zDyHtt1",
+        "type": "coin_gift",
+        "title": "🎁 Free Coins Received!",
+        "message": "You've received 1000 free coins: free offer",
+        "data": {
+          "coinAmount": 1000,
+          "link": "/coins"
+        },
+        "isRead": true,
+        "createdAt": "2025-10-26T21:20:53.779Z",
+        "expiresAt": "2025-11-25T21:20:53.779Z"
+      }
+    ],
+    "customer_1759862808282_didkjltl2": [
+      {
+        "id": "notif_1761513806569_qw34cd",
+        "customerId": "customer_1759862808282_didkjltl2",
+        "type": "offer",
+        "title": "🔥 Flash Sale Alert!",
+        "message": "Get 50% OFF on all products! Limited time offer. Shop now and save big!",
+        "data": {
+          "link": "/products"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-26T21:23:26.569Z",
+        "expiresAt": "2025-11-25T21:23:26.568Z"
+      }
+    ],
+    "customer_1759865069745_5kwn0b2kl": [
+      {
+        "id": "notif_1761513806569_kdtsac",
+        "customerId": "customer_1759865069745_5kwn0b2kl",
+        "type": "offer",
+        "title": "🔥 Flash Sale Alert!",
+        "message": "Get 50% OFF on all products! Limited time offer. Shop now and save big!",
+        "data": {
+          "link": "/products"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-26T21:23:26.569Z",
+        "expiresAt": "2025-11-25T21:23:26.568Z"
+      }
+    ],
+    "customer_1760097804133_pxnxgo4q3": [
+      {
+        "id": "notif_1761513806569_x8oat",
+        "customerId": "customer_1760097804133_pxnxgo4q3",
+        "type": "offer",
+        "title": "🔥 Flash Sale Alert!",
+        "message": "Get 50% OFF on all products! Limited time offer. Shop now and save big!",
+        "data": {
+          "link": "/products"
+        },
+        "isRead": false,
+        "createdAt": "2025-10-26T21:23:26.569Z",
+        "expiresAt": "2025-11-25T21:23:26.568Z"
+      }
+    ],
+    "db89rYY9wJYLOFzxc6ktMmLpy042": [
+      {
+        "id": "notif_1761513806570_dseqq",
+        "customerId": "db89rYY9wJYLOFzxc6ktMmLpy042",
+        "type": "offer",
+        "title": "🔥 Flash Sale Alert!",
+        "message": "Get 50% OFF on all products! Limited time offer. Shop now and save big!",
+        "data": {
+          "link": "/products"
+        },
+        "isRead": true,
+        "createdAt": "2025-10-26T21:23:26.570Z",
+        "expiresAt": "2025-11-25T21:23:26.568Z"
+      }
+    ]
+  }
+}

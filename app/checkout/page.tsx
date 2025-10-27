@@ -1,25 +1,33 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import { useAuth } from '@/lib/auth-context'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import { Header } from '@/components/site/header'
 import { Footer } from '@/components/site/footer'
 import { useCart } from '@/hooks/use-cart'
 import { useToast } from '@/hooks/use-toast'
-import { ArrowLeft, CreditCard, Truck, Shield } from 'lucide-react'
+import { ArrowLeft, CreditCard, Truck, Shield, Smartphone, Coins as CoinsIcon } from 'lucide-react'
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 
 export default function CheckoutPage() {
   const { items, total } = useCart()
   const { toast } = useToast()
   const router = useRouter()
+  const { currentUser } = useAuth()
   
   const [isProcessing, setIsProcessing] = useState(false)
+  const [paymentMethod, setPaymentMethod] = useState<'card' | 'upi' | 'coins'>('card')
+  const [upiId, setUpiId] = useState('')
+  const [coinsBalance, setCoinsBalance] = useState<number>(0)
+  const [loadingCoins, setLoadingCoins] = useState(true)
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -34,6 +42,31 @@ export default function CheckoutPage() {
     cvv: '',
     cardHolder: ''
   })
+
+  // Fetch coins balance
+  useEffect(() => {
+    const fetchCoinsBalance = async () => {
+      if (currentUser) {
+        try {
+          const response = await fetch(`/api/coins?customerId=${currentUser.uid}`);
+          if (response.ok) {
+            const result = await response.json();
+            if (result.success) {
+              setCoinsBalance(result.data.balance);
+            }
+          }
+        } catch (error) {
+          console.error('Error fetching coins:', error);
+        } finally {
+          setLoadingCoins(false);
+        }
+      } else {
+        setLoadingCoins(false);
+      }
+    };
+
+    fetchCoinsBalance();
+  }, [currentUser]);
 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({
@@ -65,6 +98,30 @@ export default function CheckoutPage() {
         description: "Your cart is empty. Add some items before checking out."
       })
       return
+    }
+
+    // Validate coins payment
+    if (paymentMethod === 'coins') {
+      if (!currentUser) {
+        toast({
+          variant: "destructive",
+          title: "Authentication Required",
+          description: "Please sign in to use coins payment."
+        })
+        return
+      }
+      
+      const shippingCost = total >= 999 ? 0 : 99
+      const finalTotal = total + shippingCost
+      
+      if (coinsBalance < finalTotal) {
+        toast({
+          variant: "destructive",
+          title: "Insufficient Coins",
+          description: `You need ${finalTotal.toLocaleString()} coins but only have ${coinsBalance.toLocaleString()} coins.`
+        })
+        return
+      }
     }
 
     setIsProcessing(true)
@@ -136,7 +193,7 @@ export default function CheckoutPage() {
         total: finalTotal,
         status: 'confirmed' as const,
         paymentStatus: 'paid' as const,
-        paymentMethod: 'Credit Card',
+        paymentMethod: paymentMethod === 'card' ? 'Credit Card' : paymentMethod === 'upi' ? 'UPI' : 'Coins',
         shippingAddress: {
           firstName: formData.firstName,
           lastName: formData.lastName,
@@ -170,6 +227,52 @@ export default function CheckoutPage() {
         throw new Error('Order creation failed: ' + orderResult.error)
       }
       
+      // Step 2.5: Deduct coins if paying with coins
+      if (paymentMethod === 'coins' && currentUser) {
+        console.log('💰 Deducting coins from balance...')
+        console.log('Deduction details:', {
+          customerId: currentUser.uid,
+          amount: finalTotal,
+          orderNumber: orderResult.data.orderNumber
+        })
+        
+        try {
+          const coinsResponse = await fetch('/api/coins', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              action: 'deduct',
+              customerId: currentUser.uid,
+              customerEmail: formData.email,
+              amount: finalTotal,
+              description: `Payment for order ${orderResult.data.orderNumber}`,
+              options: {
+                orderId: orderResult.data.orderNumber
+              }
+            }),
+          })
+          
+          const coinsResult = await coinsResponse.json()
+          console.log('Coins API response:', coinsResult)
+          
+          if (!coinsResponse.ok || !coinsResult.success) {
+            console.error('⚠️ Coins deduction failed:', coinsResult.error || 'Unknown error')
+            // Don't fail the order, but log the issue
+            toast({
+              variant: 'destructive',
+              title: 'Warning',
+              description: 'Order placed but coins deduction may have failed. Contact support if needed.'
+            })
+          } else {
+            console.log('✅ Coins deducted successfully. New balance:', coinsResult.data.balance)
+          }
+        } catch (coinsError) {
+          console.error('⚠️ Coins deduction error:', coinsError)
+        }
+      }
+      
       // Step 3: Update stock quantities
       console.log('📦 Updating inventory...')
       
@@ -189,9 +292,15 @@ export default function CheckoutPage() {
       }
       
       // Success! Show confirmation and redirect
+      const paymentMethodText = paymentMethod === 'coins' 
+        ? `Paid with ${finalTotal} coins` 
+        : paymentMethod === 'upi' 
+        ? 'Paid via UPI' 
+        : 'Paid with card'
+      
       toast({
         title: "Order Placed Successfully! 🎉",
-        description: `Order ${orderResult.data.orderNumber} has been confirmed. Redirecting to confirmation page...`
+        description: `Order ${orderResult.data.orderNumber} has been confirmed. ${paymentMethodText}. Redirecting...`
       })
       
       console.log('🎉 Checkout completed successfully!')
@@ -349,52 +458,183 @@ export default function CheckoutPage() {
 
               <Card>
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <CreditCard className="h-5 w-5" />
-                    Payment Information
-                  </CardTitle>
+                  <CardTitle>Payment Method</CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                  <div>
-                    <Label htmlFor="cardHolder">Cardholder Name</Label>
-                    <Input
-                      id="cardHolder"
-                      value={formData.cardHolder}
-                      onChange={(e) => handleInputChange('cardHolder', e.target.value)}
-                      placeholder="Name on card"
-                    />
-                  </div>
-                  
-                  <div>
-                    <Label htmlFor="cardNumber">Card Number</Label>
-                    <Input
-                      id="cardNumber"
-                      value={formData.cardNumber}
-                      onChange={(e) => handleInputChange('cardNumber', e.target.value)}
-                      placeholder="1234 5678 9012 3456"
-                    />
-                  </div>
-                  
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <Label htmlFor="expiryDate">Expiry Date</Label>
-                      <Input
-                        id="expiryDate"
-                        value={formData.expiryDate}
-                        onChange={(e) => handleInputChange('expiryDate', e.target.value)}
-                        placeholder="MM/YY"
-                      />
+                <CardContent className="space-y-6">
+                  {/* Payment Method Selection */}
+                  <RadioGroup value={paymentMethod} onValueChange={(value: any) => setPaymentMethod(value)}>
+                    <div className="space-y-3">
+                      {/* Credit/Debit Card */}
+                      <label className={`flex items-center space-x-3 p-4 border-2 rounded-lg cursor-pointer transition-all ${
+                        paymentMethod === 'card' ? 'border-primary bg-primary/5' : 'border-border hover:border-primary/50'
+                      }`}>
+                        <RadioGroupItem value="card" id="card" />
+                        <div className="flex-1 flex items-center gap-3">
+                          <CreditCard className="h-5 w-5" />
+                          <div>
+                            <p className="font-medium">Credit / Debit Card</p>
+                            <p className="text-xs text-muted-foreground">Visa, Mastercard, Rupay</p>
+                          </div>
+                        </div>
+                      </label>
+
+                      {/* UPI */}
+                      <label className={`flex items-center space-x-3 p-4 border-2 rounded-lg cursor-pointer transition-all ${
+                        paymentMethod === 'upi' ? 'border-primary bg-primary/5' : 'border-border hover:border-primary/50'
+                      }`}>
+                        <RadioGroupItem value="upi" id="upi" />
+                        <div className="flex-1 flex items-center gap-3">
+                          <Smartphone className="h-5 w-5" />
+                          <div>
+                            <p className="font-medium">UPI Payment</p>
+                            <p className="text-xs text-muted-foreground">Google Pay, PhonePe, Paytm</p>
+                          </div>
+                        </div>
+                        <Badge variant="secondary" className="text-xs">Demo</Badge>
+                      </label>
+
+                      {/* Coins */}
+                      <label className={`flex items-center space-x-3 p-4 border-2 rounded-lg cursor-pointer transition-all ${
+                        paymentMethod === 'coins' ? 'border-primary bg-primary/5' : 'border-border hover:border-primary/50'
+                      }`}>
+                        <RadioGroupItem value="coins" id="coins" />
+                        <div className="flex-1 flex items-center gap-3">
+                          <CoinsIcon className="h-5 w-5" />
+                          <div>
+                            <p className="font-medium">Pay with Coins</p>
+                            <p className="text-xs text-muted-foreground">Use your reward coins</p>
+                          </div>
+                        </div>
+                        <Badge variant="outline" className="text-xs">
+                          {loadingCoins ? 'Loading...' : `${coinsBalance.toLocaleString()} Coins Available`}
+                        </Badge>
+                      </label>
                     </div>
-                    <div>
-                      <Label htmlFor="cvv">CVV</Label>
-                      <Input
-                        id="cvv"
-                        value={formData.cvv}
-                        onChange={(e) => handleInputChange('cvv', e.target.value)}
-                        placeholder="123"
-                      />
+                  </RadioGroup>
+
+                  <Separator />
+
+                  {/* Card Payment Form */}
+                  {paymentMethod === 'card' && (
+                    <div className="space-y-4 animate-in fade-in-50 duration-300">
+                      <div>
+                        <Label htmlFor="cardHolder">Cardholder Name</Label>
+                        <Input
+                          id="cardHolder"
+                          value={formData.cardHolder}
+                          onChange={(e) => handleInputChange('cardHolder', e.target.value)}
+                          placeholder="Name on card"
+                        />
+                      </div>
+                      
+                      <div>
+                        <Label htmlFor="cardNumber">Card Number</Label>
+                        <Input
+                          id="cardNumber"
+                          value={formData.cardNumber}
+                          onChange={(e) => handleInputChange('cardNumber', e.target.value)}
+                          placeholder="1234 5678 9012 3456"
+                        />
+                      </div>
+                      
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <Label htmlFor="expiryDate">Expiry Date</Label>
+                          <Input
+                            id="expiryDate"
+                            value={formData.expiryDate}
+                            onChange={(e) => handleInputChange('expiryDate', e.target.value)}
+                            placeholder="MM/YY"
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="cvv">CVV</Label>
+                          <Input
+                            id="cvv"
+                            value={formData.cvv}
+                            onChange={(e) => handleInputChange('cvv', e.target.value)}
+                            placeholder="123"
+                          />
+                        </div>
+                      </div>
                     </div>
-                  </div>
+                  )}
+
+                  {/* UPI Payment Form */}
+                  {paymentMethod === 'upi' && (
+                    <div className="space-y-4 animate-in fade-in-50 duration-300">
+                      <div className="bg-muted/50 p-4 rounded-lg">
+                        <p className="text-sm text-center text-muted-foreground mb-3">
+                          💡 This is a demo mode. In production, you'll be redirected to UPI payment gateway.
+                        </p>
+                      </div>
+                      <div>
+                        <Label htmlFor="upiId">UPI ID (Optional)</Label>
+                        <Input
+                          id="upiId"
+                          value={upiId}
+                          onChange={(e) => setUpiId(e.target.value)}
+                          placeholder="yourname@upi"
+                        />
+                      </div>
+                      <div className="flex gap-2">
+                        <Button variant="outline" className="flex-1" type="button">
+                          <img src="/placeholder.svg" alt="GPay" className="h-4 w-4 mr-2" />
+                          Google Pay
+                        </Button>
+                        <Button variant="outline" className="flex-1" type="button">
+                          <img src="/placeholder.svg" alt="PhonePe" className="h-4 w-4 mr-2" />
+                          PhonePe
+                        </Button>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Coins Payment Info */}
+                  {paymentMethod === 'coins' && (
+                    <div className="space-y-4 animate-in fade-in-50 duration-300">
+                      {loadingCoins ? (
+                        <div className="text-center py-4">
+                          <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-primary mx-auto"></div>
+                          <p className="text-sm text-muted-foreground mt-2">Loading coins balance...</p>
+                        </div>
+                      ) : !currentUser ? (
+                        <div className="bg-orange-50 dark:bg-orange-950/20 p-4 rounded-lg border border-orange-200 dark:border-orange-900">
+                          <p className="text-sm text-orange-800 dark:text-orange-200 text-center">
+                            ⚠️ Please sign in to use coins payment
+                          </p>
+                        </div>
+                      ) : (
+                        <>
+                          <div className="bg-gradient-to-r from-yellow-50 to-orange-50 dark:from-yellow-950/20 dark:to-orange-950/20 p-4 rounded-lg border border-yellow-200 dark:border-yellow-900">
+                            <div className="flex items-center gap-3 mb-3">
+                              <CoinsIcon className="h-6 w-6 text-yellow-600" />
+                              <div>
+                                <p className="font-semibold text-yellow-900 dark:text-yellow-100">Available Balance</p>
+                                <p className="text-2xl font-bold text-yellow-700 dark:text-yellow-300">
+                                  {coinsBalance.toLocaleString()} Coins
+                                </p>
+                              </div>
+                            </div>
+                            <p className="text-sm text-yellow-800 dark:text-yellow-200">
+                              1 Coin = ₹1 • Total order: {finalTotal} coins needed
+                            </p>
+                          </div>
+                          
+                          {finalTotal > coinsBalance && (
+                            <div className="bg-orange-50 dark:bg-orange-950/20 p-3 rounded-lg border border-orange-200 dark:border-orange-900">
+                              <p className="text-sm text-orange-800 dark:text-orange-200">
+                                ⚠️ Insufficient coins. You need {(finalTotal - coinsBalance).toLocaleString()} more coins.
+                              </p>
+                              <Link href="/coins" className="text-sm text-orange-600 dark:text-orange-400 underline mt-1 inline-block">
+                                Buy more coins →
+                              </Link>
+                            </div>
+                          )}
+                        </>
+                      )}
+                    </div>
+                  )}
                 </CardContent>
               </Card>
             </div>
@@ -475,7 +715,7 @@ export default function CheckoutPage() {
               <Button 
                 onClick={handleSubmit} 
                 className="w-full h-12 text-lg"
-                disabled={isProcessing}
+                disabled={isProcessing || (paymentMethod === 'coins' && (finalTotal > coinsBalance || !currentUser))}
               >
                 {isProcessing ? (
                   <>
@@ -484,8 +724,13 @@ export default function CheckoutPage() {
                   </>
                 ) : (
                   <>
-                    <CreditCard className="h-5 w-5 mr-2" />
-                    Complete Purchase - ₹{finalTotal}
+                    {paymentMethod === 'card' && <CreditCard className="h-5 w-5 mr-2" />}
+                    {paymentMethod === 'upi' && <Smartphone className="h-5 w-5 mr-2" />}
+                    {paymentMethod === 'coins' && <CoinsIcon className="h-5 w-5 mr-2" />}
+                    {paymentMethod === 'coins' 
+                      ? `Pay with ${finalTotal} Coins` 
+                      : `Complete Purchase - ₹${finalTotal}`
+                    }
                   </>
                 )}
               </Button>

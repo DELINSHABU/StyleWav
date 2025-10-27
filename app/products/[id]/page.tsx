@@ -18,6 +18,7 @@ import type { Product } from '@/lib/products'
 import { StockStatusBadge, StockQuantityDisplay } from '@/components/ui/stock-status-badge'
 import { getStockStatus, isProductAvailable, getStockStatusText } from '@/lib/stock-utils'
 import { Heart, Star, ArrowLeft, ShoppingBag, Truck, Shield, RotateCcw, Ruler } from 'lucide-react'
+import ProductSuggestions from '@/components/site/ProductSuggestions'
 
 export default function ProductPage() {
   const params = useParams()
@@ -209,9 +210,9 @@ export default function ProductPage() {
           </Button>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Product Images */}
-          <div className="space-y-4">
+          <div className="lg:col-span-1 space-y-4">
             <div className="aspect-square w-full rounded-lg overflow-hidden bg-muted">
               <img
                 src={(selectedImage || product.image)
@@ -249,7 +250,7 @@ export default function ProductPage() {
           </div>
 
           {/* Product Details */}
-          <div className="space-y-6">
+          <div className="lg:col-span-1 space-y-6">
             <div>
               <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
@@ -442,6 +443,22 @@ export default function ProductPage() {
               </div>
             </div>
           </div>
+
+          {/* Suggestions Sidebar */}
+          <div className="lg:col-span-1 hidden lg:block">
+            <ProductSuggestions 
+              currentProductId={product.id} 
+              currentCategory={product.category}
+            />
+          </div>
+        </div>
+
+        {/* Mobile Suggestions */}
+        <div className="mt-8 lg:hidden">
+          <ProductSuggestions 
+            currentProductId={product.id} 
+            currentCategory={product.category}
+          />
         </div>
 
         {/* Additional Product Info */}

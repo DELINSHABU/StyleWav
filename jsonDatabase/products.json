@@ -4,7 +4,7 @@
     "name": "Urban Nomad",
     "price": 849,
     "image": "urbannomad-1760128048523.png",
-    "stockQuantity": 152,
+    "stockQuantity": 149,
     "lowStockThreshold": 20,
     "unlimitedStock": false,
     "inStock": true,
@@ -27,9 +27,9 @@
       "XXL"
     ],
     "sizeStock": {
-      "S": 18,
+      "S": 17,
       "M": 37,
-      "L": 40,
+      "L": 38,
       "XL": 32,
       "XXL": 25
     },
@@ -41,7 +41,7 @@
     "name": "Cosmic Wanderer",
     "price": 949,
     "image": "cosmicwanderer-1760124427712.png",
-    "stockQuantity": 111,
+    "stockQuantity": 96,
     "lowStockThreshold": 15,
     "unlimitedStock": false,
     "inStock": true,
@@ -68,7 +68,7 @@
     "sizeStock": {
       "S": 19,
       "M": 24,
-      "L": 31,
+      "L": 16,
       "XL": 22,
       "XXL": 15
     },
@@ -80,7 +80,7 @@
     "name": "Midnight Drift",
     "price": 799,
     "image": "midnightdrift-1760124608751.png",
-    "stockQuantity": 200,
+    "stockQuantity": 194,
     "lowStockThreshold": 25,
     "unlimitedStock": false,
     "inStock": true,
@@ -105,7 +105,7 @@
     "sizeStock": {
       "S": 35,
       "M": 45,
-      "L": 50,
+      "L": 44,
       "XL": 40,
       "XXL": 30
     },
@@ -154,7 +154,7 @@
     "name": "The Voyager",
     "price": 899,
     "image": "thevoyager-1760124748843.png",
-    "stockQuantity": 134,
+    "stockQuantity": 128,
     "lowStockThreshold": 18,
     "unlimitedStock": false,
     "inStock": true,
@@ -178,10 +178,10 @@
       "XXL"
     ],
     "sizeStock": {
-      "S": 24,
+      "S": 22,
       "M": 32,
       "L": 35,
-      "XL": 25,
+      "XL": 21,
       "XXL": 18
     },
     "rating": 4.8,
@@ -417,7 +417,7 @@
     "name": "Lunar",
     "price": 929,
     "image": "lunar-1760125227706.png",
-    "stockQuantity": 125,
+    "stockQuantity": 122,
     "lowStockThreshold": 15,
     "unlimitedStock": false,
     "inStock": true,
@@ -443,7 +443,7 @@
     "sizeStock": {
       "S": 22,
       "M": 28,
-      "L": 32,
+      "L": 29,
       "XL": 25,
       "XXL": 18
     },
@@ -1128,7 +1128,7 @@
     "name": "The Alchemist",
     "price": 2199,
     "image": "thealchemist-1760126980356.png",
-    "stockQuantity": 75,
+    "stockQuantity": 66,
     "lowStockThreshold": 8,
     "unlimitedStock": false,
     "inStock": true,
@@ -1153,7 +1153,7 @@
     "sizeStock": {
       "XS": 10,
       "S": 15,
-      "M": 20,
+      "M": 11,
       "L": 18,
       "XL": 12
     },
@@ -1240,7 +1240,7 @@
     "name": "Rhythm",
     "price": 1799,
     "image": "rhythm-1760127253603.png",
-    "stockQuantity": 105,
+    "stockQuantity": 103,
     "lowStockThreshold": 15,
     "unlimitedStock": false,
     "inStock": true,
@@ -1265,7 +1265,7 @@
     "sizeStock": {
       "XS": 16,
       "S": 22,
-      "M": 28,
+      "M": 26,
       "L": 24,
       "XL": 15
     },
@@ -1576,7 +1576,7 @@
     "name": "The Curator",
     "price": 2199,
     "image": "thecurator-1760172543050.png",
-    "stockQuantity": 65,
+    "stockQuantity": 63,
     "lowStockThreshold": 8,
     "unlimitedStock": false,
     "inStock": true,
@@ -1601,7 +1601,7 @@
     "sizeStock": {
       "XS": 8,
       "S": 13,
-      "M": 17,
+      "M": 15,
       "L": 15,
       "XL": 12
     },
@@ -1874,7 +1874,7 @@
     "name": "Radiant Dusk",
     "price": 2199,
     "image": "radiantdusk-1760126135347.png",
-    "stockQuantity": 70,
+    "stockQuantity": 69,
     "lowStockThreshold": 8,
     "unlimitedStock": false,
     "inStock": true,
@@ -1898,7 +1898,7 @@
       "XL"
     ],
     "sizeStock": {
-      "XS": 9,
+      "XS": 8,
       "S": 14,
       "M": 18,
       "L": 16,
@@ -1949,7 +1949,7 @@
     "name": "Cosmic Tide",
     "price": 899,
     "image": "cosmictide-1760174157613.png",
-    "stockQuantity": 105,
+    "stockQuantity": 102,
     "lowStockThreshold": 13,
     "unlimitedStock": false,
     "inStock": true,
@@ -1975,7 +1975,7 @@
       "S": 16,
       "M": 23,
       "L": 26,
-      "XL": 21,
+      "XL": 18,
       "XXL": 19
     },
     "rating": 4.9,
@@ -2098,7 +2098,7 @@
     "name": "The Seeker",
     "price": 2149,
     "image": "theseeker-1760174939363.png",
-    "stockQuantity": 75,
+    "stockQuantity": 72,
     "lowStockThreshold": 9,
     "unlimitedStock": false,
     "inStock": true,
@@ -2124,7 +2124,7 @@
       "XS": 10,
       "S": 15,
       "M": 19,
-      "L": 17,
+      "L": 14,
       "XL": 14
     },
     "rating": 4.6,

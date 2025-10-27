@@ -10,7 +10,9 @@ import {
   FileImage,
   ShoppingCart,
   Info,
-  Briefcase
+  Briefcase,
+  Coins,
+  Bell
 } from "lucide-react"
 
 const sidebarItems = [
@@ -33,6 +35,16 @@ const sidebarItems = [
     id: "customers",
     label: "Customers",
     icon: Users,
+  },
+  {
+    id: "coins",
+    label: "Coins",
+    icon: Coins,
+  },
+  {
+    id: "notifications",
+    label: "Notifications",
+    icon: Bell,
   },
   {
     id: "media",
